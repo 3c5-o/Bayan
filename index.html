@@ -151,6 +151,12 @@
 
         .qibla-compass-base { background-color: #ffffff; border-radius: 50%; box-shadow: inset 0 10px 30px rgba(0,0,0,0.03), 0 15px 35px rgba(113, 28, 46, 0.1); border: 8px solid #FAF5E6; display: flex; align-items: center; justify-content: center; }
         .qibla-pointer-active { filter: drop-shadow(0 0 20px #10b981) drop-shadow(0 0 10px #10b981) !important; transform: scale(1.05); }
+
+        /* ستايل الختمة */
+        .khatma-progress-bar-container { width: 100%; background-color: rgba(113, 28, 46, 0.1); height: 12px; border-radius: 10px; overflow: hidden; margin-top: 15px; position: relative;}
+        .khatma-progress-bar-fill { height: 100%; background: linear-gradient(90deg, #b89247, #fde047); border-radius: 10px; transition: width 0.5s ease-out; width: 0%; }
+        .khatma-card { background: linear-gradient(135deg, #711c2e 0%, #4a101d 100%); color: white; border-radius: 24px; padding: 25px; position: relative; overflow: hidden; box-shadow: 0 10px 25px rgba(113, 28, 46, 0.2); }
+        .khatma-card::before { content: '\f02d'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; right: -20px; bottom: -20px; font-size: 8rem; opacity: 0.05; transform: rotate(-15deg); }
     </style>
 </head>
 <body class="text-gray-800 pb-28 relative">
@@ -289,13 +295,73 @@
             </div>
 
             <div onclick="showScreen('quran-list-screen')" class="bg-cardbg rounded-3xl p-5 shadow-sm border border-gray-100 flex flex-col items-center justify-center cursor-pointer hover:-translate-y-1 hover:shadow-md transition-all group"><div class="premium-icon"><i class="fa-solid fa-book-quran group-hover:scale-110 transition-transform"></i></div><span class="font-bold text-gray-800 text-sm">القرآن الكريم</span></div>
+            
+            <div onclick="openKhatmaSection()" class="bg-cardbg rounded-3xl p-5 shadow-sm border border-gray-100 flex flex-col items-center justify-center cursor-pointer hover:-translate-y-1 hover:shadow-md transition-all group"><div class="premium-icon"><i class="fa-solid fa-book-bookmark group-hover:scale-110 transition-transform"></i></div><span class="font-bold text-gray-800 text-sm text-center">متابعة الختمة</span></div>
+
             <div onclick="openHadithSection()" class="bg-cardbg rounded-3xl p-5 shadow-sm border border-gray-100 flex flex-col items-center justify-center cursor-pointer hover:-translate-y-1 hover:shadow-md transition-all group"><div class="premium-icon"><i class="fa-solid fa-book-open group-hover:scale-110 transition-transform"></i></div><span class="font-bold text-gray-800 text-sm">مكتبة الحديث</span></div>
             <div onclick="openAdhkarMainHub()" class="bg-cardbg rounded-3xl p-5 shadow-sm border border-gray-100 flex flex-col items-center justify-center cursor-pointer hover:-translate-y-1 hover:shadow-md transition-all group"><div class="premium-icon"><i class="fa-solid fa-hands-praying group-hover:scale-110 transition-transform"></i></div><span class="font-bold text-gray-800 text-sm">الأذكار والأدعية</span></div>
             <div onclick="openAudioSection()" class="bg-cardbg rounded-3xl p-5 shadow-sm border border-gray-100 flex flex-col items-center justify-center cursor-pointer hover:-translate-y-1 hover:shadow-md transition-all group"><div class="premium-icon"><i class="fa-solid fa-headphones-simple group-hover:scale-110 transition-transform"></i></div><span class="font-bold text-gray-800 text-sm">صوتيات</span></div>
             <div onclick="openSibhaSection()" class="bg-cardbg rounded-3xl p-5 shadow-sm border border-gray-100 flex flex-col items-center justify-center cursor-pointer hover:-translate-y-1 hover:shadow-md transition-all group"><div class="premium-icon"><i class="fa-solid fa-fingerprint group-hover:scale-110 transition-transform"></i></div><span class="font-bold text-gray-800 text-sm text-center">السبحة الإلكترونية</span></div>
             <div onclick="openCalendarSection()" class="bg-cardbg rounded-3xl p-5 shadow-sm border border-gray-100 flex flex-col items-center justify-center cursor-pointer hover:-translate-y-1 hover:shadow-md transition-all group"><div class="premium-icon"><i class="fa-solid fa-moon group-hover:scale-110 transition-transform"></i></div><span class="font-bold text-gray-800 text-sm">التقويم الهجري</span></div>
             <div onclick="openPrayerTimesSection()" class="bg-cardbg rounded-3xl p-5 shadow-sm border border-gray-100 flex flex-col items-center justify-center cursor-pointer hover:-translate-y-1 hover:shadow-md transition-all group relative overflow-hidden"><div class="absolute -right-2 -top-2 opacity-5 text-7xl text-primary"><i class="fa-solid fa-mosque"></i></div><div class="premium-icon w-14 h-14"><i class="fa-regular fa-clock group-hover:scale-110 transition-transform"></i></div><span class="font-bold text-gray-800 text-sm">المواقيت</span></div>
-            <div onclick="openQiblaSection()" class="bg-cardbg rounded-3xl p-5 shadow-sm border border-gray-100 flex flex-col items-center justify-center cursor-pointer hover:-translate-y-1 hover:shadow-md transition-all group relative overflow-hidden"><div class="absolute -left-2 -bottom-2 opacity-5 text-7xl text-primary"><i class="fa-solid fa-kaaba"></i></div><div class="premium-icon w-14 h-14"><i class="fa-solid fa-compass group-hover:scale-110 transition-transform"></i></div><span class="font-bold text-gray-800 text-sm">القبلة</span></div>
+            <div onclick="openQiblaSection()" class="col-span-2 bg-cardbg rounded-3xl p-5 shadow-sm border border-gray-100 flex items-center justify-center gap-4 cursor-pointer hover:-translate-y-1 hover:shadow-md transition-all group relative overflow-hidden"><div class="absolute -left-2 -bottom-2 opacity-5 text-7xl text-primary"><i class="fa-solid fa-kaaba"></i></div><div class="premium-icon w-14 h-14 !mb-0"><i class="fa-solid fa-compass group-hover:scale-110 transition-transform"></i></div><span class="font-bold text-gray-800 text-sm">تحديد اتجاه القبلة</span></div>
+        </main>
+
+        <main id="khatma-screen" class="hidden w-full mt-4">
+            <div class="mb-6 khatma-card">
+                <div class="relative z-10 text-center">
+                    <h2 class="text-2xl font-bold font-amiri text-gold mb-2">متابعة الختمة</h2>
+                    <p class="text-sm text-white/80 font-cairo">نظم وقتك وأتمم قراءة القرآن الكريم</p>
+                </div>
+            </div>
+
+            <div id="khatma-setup" class="bg-cardbg rounded-[24px] p-6 shadow-sm border border-gray-100 text-center">
+                <div class="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
+                    <i class="fa-solid fa-bullseye"></i>
+                </div>
+                <h3 class="font-bold text-xl text-gray-800 font-cairo mb-2">خطة الختمة</h3>
+                <p class="text-sm text-gray-500 font-cairo mb-6">اختر المدة التي ترغب بختم القرآن فيها، وسنقوم بحساب الورد اليومي لك.</p>
+                
+                <div class="grid grid-cols-3 gap-3 mb-6">
+                    <button onclick="startKhatma(15)" class="bg-secondary border border-gray-200 py-3 rounded-xl font-bold text-gray-700 hover:bg-gold hover:text-white hover:border-gold transition">15 يوم</button>
+                    <button onclick="startKhatma(30)" class="bg-primary border border-primary py-3 rounded-xl font-bold text-white shadow-md transform scale-105">30 يوم</button>
+                    <button onclick="startKhatma(60)" class="bg-secondary border border-gray-200 py-3 rounded-xl font-bold text-gray-700 hover:bg-gold hover:text-white hover:border-gold transition">60 يوم</button>
+                </div>
+            </div>
+
+            <div id="khatma-active" class="hidden">
+                <div class="bg-cardbg rounded-[24px] p-6 shadow-sm border border-gray-100 mb-4">
+                    <div class="flex justify-between items-center mb-6 border-b border-gray-100 pb-4">
+                        <div>
+                            <p class="text-xs text-gray-500 font-bold mb-1">حالة الختمة</p>
+                            <h3 id="khatma-current-day" class="font-bold text-xl text-primary font-cairo">اليوم 1 من 30</h3>
+                        </div>
+                        <div class="text-left">
+                            <span id="khatma-progress-text" class="text-2xl font-bold font-sans text-gold block">0%</span>
+                        </div>
+                    </div>
+
+                    <div id="khatma-status" class="mb-6">
+                        <div class="bg-primary/5 border border-primary/20 rounded-xl p-4 text-center">
+                            <i class="fa-solid fa-book-open text-primary text-2xl mb-2"></i>
+                            <p class="text-sm text-gray-500 font-bold mb-1">الورد اليومي المطلوب</p>
+                            <p id="khatma-pages" class="text-lg font-bold text-gray-800 font-cairo">من صفحة 1 إلى صفحة 20</p>
+                        </div>
+                    </div>
+
+                    <div class="khatma-progress-bar-container mb-8">
+                        <div id="khatma-progress-bar" class="khatma-progress-bar-fill"></div>
+                    </div>
+
+                    <button id="btn-complete-day" onclick="completeKhatmaDay()" class="w-full bg-gradient-to-l from-primary to-[#4a101d] text-white py-4 rounded-2xl font-bold text-lg shadow-lg flex justify-center items-center gap-2 hover:shadow-xl transition transform hover:-translate-y-1">
+                        <i class="fa-solid fa-check-circle text-gold"></i> أتممت ورد اليوم
+                    </button>
+                </div>
+                
+                <button onclick="resetKhatma()" class="w-full text-red-500 py-3 font-bold text-sm hover:bg-red-50 rounded-xl transition">
+                    <i class="fa-solid fa-rotate-right mr-1"></i> إعادة ضبط وإلغاء الختمة
+                </button>
+            </div>
         </main>
 
         <main id="quran-list-screen" class="hidden w-full mt-4">
@@ -310,7 +376,7 @@
 
         <main id="quran-search-screen" class="hidden w-full mt-4">
             <div class="relative mb-6">
-                <input type="text" id="smart-search-input" placeholder="ابحث عن كلمة (مثال: الجنة)..." class="w-full bg-cardbg border border-gray-200 text-gray-800 rounded-2xl py-3.5 px-4 pr-12 outline-none focus:border-primary transition shadow-sm font-cairo">
+                <input type="text" id="smart-search-input" placeholder="ابحث عن كلمة (مثال: الصبر)..." class="w-full bg-cardbg border border-gray-200 text-gray-800 rounded-2xl py-3.5 px-4 pr-12 outline-none focus:border-primary transition shadow-sm font-cairo">
                 <i class="fa-solid fa-magnifying-glass absolute top-1/2 right-4 -translate-y-1/2 text-gray-400"></i>
             </div>
             <div id="smart-search-loading" class="text-center py-10 hidden">
@@ -459,7 +525,7 @@
         let currentScreen = 'home-screen'; 
         
         function showScreen(screenId, title = "") {
-            ['home-screen', 'quran-list-screen', 'quran-search-screen', 'quran-read-screen', 'audio-reciters-screen', 'audio-surahs-screen', 'hadith-categories-screen', 'hadith-list-screen', 'hadith-read-screen', 'adhkar-main-screen', 'adhkar-categories-screen', 'adhkar-list-screen', 'sibha-screen', 'calendar-screen', 'prayer-screen', 'qibla-screen', 'main-settings-screen'].forEach(id => { document.getElementById(id).classList.add('hidden'); });
+            ['home-screen', 'khatma-screen', 'quran-list-screen', 'quran-search-screen', 'quran-read-screen', 'audio-reciters-screen', 'audio-surahs-screen', 'hadith-categories-screen', 'hadith-list-screen', 'hadith-read-screen', 'adhkar-main-screen', 'adhkar-categories-screen', 'adhkar-list-screen', 'sibha-screen', 'calendar-screen', 'prayer-screen', 'qibla-screen', 'main-settings-screen'].forEach(id => { document.getElementById(id).classList.add('hidden'); });
             document.getElementById(screenId).classList.remove('hidden'); currentScreen = screenId;
             const titleEl = document.getElementById('header-title'); const backBtn = document.getElementById('back-btn'); const settingsBtn = document.getElementById('settings-btn');
             
@@ -476,6 +542,7 @@
                 settingsBtn.innerHTML = '<i class="fa-solid fa-gear text-lg"></i>';
                 updateContinueReadingWidget(); 
             }
+            else if (screenId === 'khatma-screen') { titleEl.innerText = "متابعة الختمة"; }
             else if (screenId === 'quran-list-screen') { titleEl.innerText = "القرآن الكريم"; document.getElementById('header-extra-quran').classList.remove('hidden'); }
             else if (screenId === 'quran-search-screen') { titleEl.innerText = "البحث في الآيات"; }
             else if (screenId === 'quran-read-screen') { 
@@ -500,7 +567,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         function goBack() {
-            if (currentScreen === 'quran-read-screen') showScreen('quran-list-screen'); else if (currentScreen === 'quran-search-screen') showScreen('quran-list-screen'); else if (currentScreen === 'quran-list-screen') showScreen('home-screen'); else if (currentScreen === 'audio-reciters-screen') showScreen('home-screen'); else if (currentScreen === 'audio-surahs-screen') showScreen('audio-reciters-screen'); else if (currentScreen === 'hadith-categories-screen') showScreen('home-screen'); else if (currentScreen === 'hadith-list-screen') showScreen('hadith-categories-screen'); else if (currentScreen === 'hadith-read-screen') showScreen('hadith-list-screen'); else if (currentScreen === 'adhkar-main-screen') showScreen('home-screen'); else if (currentScreen === 'adhkar-categories-screen') showScreen('adhkar-main-screen'); else if (currentScreen === 'adhkar-list-screen') showScreen('adhkar-categories-screen', document.getElementById('header-title').dataset.parentTitle); else if (currentScreen === 'sibha-screen') showScreen('home-screen'); else if (currentScreen === 'calendar-screen') showScreen('home-screen'); else if (currentScreen === 'prayer-screen') showScreen('home-screen'); else if (currentScreen === 'qibla-screen') showScreen('home-screen'); else if (currentScreen === 'main-settings-screen') showScreen('home-screen');
+            if (currentScreen === 'quran-read-screen') showScreen('quran-list-screen'); else if (currentScreen === 'quran-search-screen') showScreen('quran-list-screen'); else if (currentScreen === 'quran-list-screen') showScreen('home-screen'); else if (currentScreen === 'khatma-screen') showScreen('home-screen'); else if (currentScreen === 'audio-reciters-screen') showScreen('home-screen'); else if (currentScreen === 'audio-surahs-screen') showScreen('audio-reciters-screen'); else if (currentScreen === 'hadith-categories-screen') showScreen('home-screen'); else if (currentScreen === 'hadith-list-screen') showScreen('hadith-categories-screen'); else if (currentScreen === 'hadith-read-screen') showScreen('hadith-list-screen'); else if (currentScreen === 'adhkar-main-screen') showScreen('home-screen'); else if (currentScreen === 'adhkar-categories-screen') showScreen('adhkar-main-screen'); else if (currentScreen === 'adhkar-list-screen') showScreen('adhkar-categories-screen', document.getElementById('header-title').dataset.parentTitle); else if (currentScreen === 'sibha-screen') showScreen('home-screen'); else if (currentScreen === 'calendar-screen') showScreen('home-screen'); else if (currentScreen === 'prayer-screen') showScreen('home-screen'); else if (currentScreen === 'qibla-screen') showScreen('home-screen'); else if (currentScreen === 'main-settings-screen') showScreen('home-screen');
         }
 
         function toggleDarkMode() {
@@ -521,6 +588,83 @@
                 navigator.share(shareData).catch(console.error);
             } else {
                 showToast('النسخ متاح: ' + shareData.text);
+            }
+        }
+
+        // ==========================================
+        // ميزة متابعة الختمة (Khatma Tracker)
+        // ==========================================
+        let khatmaState = JSON.parse(localStorage.getItem('khatmaState')) || null;
+
+        function openKhatmaSection() {
+            showScreen('khatma-screen');
+            renderKhatmaUI();
+        }
+
+        function renderKhatmaUI() {
+            const setupDiv = document.getElementById('khatma-setup');
+            const activeDiv = document.getElementById('khatma-active');
+            
+            if (!khatmaState) {
+                setupDiv.classList.remove('hidden');
+                activeDiv.classList.add('hidden');
+            } else {
+                setupDiv.classList.add('hidden');
+                activeDiv.classList.remove('hidden');
+                
+                let pagesPerDay = Math.ceil(604 / khatmaState.totalDays);
+                let currentDay = khatmaState.completedDays + 1;
+                
+                const btnComplete = document.getElementById('btn-complete-day');
+                
+                if(currentDay > khatmaState.totalDays) {
+                    document.getElementById('khatma-current-day').innerText = "تمت الختمة";
+                    document.getElementById('khatma-pages').innerText = "تقبل الله طاعتك وكتب لك الأجر.";
+                    document.getElementById('khatma-progress-text').innerText = "100%";
+                    document.getElementById('khatma-progress-bar').style.width = "100%";
+                    btnComplete.classList.add('hidden');
+                    return;
+                }
+                
+                btnComplete.classList.remove('hidden');
+                let startPage = (currentDay - 1) * pagesPerDay + 1;
+                let endPage = startPage + pagesPerDay - 1;
+                if(endPage > 604) endPage = 604;
+                
+                document.getElementById('khatma-current-day').innerText = `اليوم ${currentDay} من ${khatmaState.totalDays}`;
+                document.getElementById('khatma-pages').innerText = `من صفحة ${startPage} إلى صفحة ${endPage}`;
+                
+                let progress = Math.round((khatmaState.completedDays / khatmaState.totalDays) * 100);
+                document.getElementById('khatma-progress-text').innerText = `${progress}%`;
+                document.getElementById('khatma-progress-bar').style.width = `${progress}%`;
+            }
+        }
+
+        function startKhatma(days) {
+            khatmaState = {
+                totalDays: days,
+                completedDays: 0,
+                startDate: new Date().toISOString()
+            };
+            localStorage.setItem('khatmaState', JSON.stringify(khatmaState));
+            renderKhatmaUI();
+            showToast('تم بدء خطة الختمة بنجاح، نسأل الله لك التوفيق!');
+        }
+
+        function completeKhatmaDay() {
+            if (khatmaState && khatmaState.completedDays < khatmaState.totalDays) {
+                khatmaState.completedDays++;
+                localStorage.setItem('khatmaState', JSON.stringify(khatmaState));
+                renderKhatmaUI();
+                showToast('تقبل الله منك! أتممت ورد اليوم.');
+            }
+        }
+        
+        function resetKhatma() {
+            if(confirm('هل أنت متأكد من إلغاء الختمة الحالية؟ سيتم مسح تقدمك الحالي.')) {
+                khatmaState = null;
+                localStorage.removeItem('khatmaState');
+                renderKhatmaUI();
             }
         }
 
@@ -602,7 +746,7 @@
         } 
         
         // ==========================================
-        // البحث الذكي باستخدام (AlQuran Cloud API)
+        // البحث الذكي باستخدام (AlQuran Cloud API - quran-simple-clean)
         // ==========================================
         function openQuranSearch() {
             showScreen('quran-search-screen');
@@ -627,8 +771,8 @@
             document.getElementById('smart-search-loading').classList.remove('hidden');
 
             try {
-                // استخدمت لك محرك بحث جبار ومخصص للعربي
-                const res = await fetch(`https://api.alquran.cloud/v1/search/${encodeURIComponent(query)}/all/quran-simple`);
+                // البحث الآن بالكلمات المجردة عن التشكيل
+                const res = await fetch(`https://api.alquran.cloud/v1/search/${encodeURIComponent(query)}/all/quran-simple-clean`);
                 const data = await res.json();
                 document.getElementById('smart-search-loading').classList.add('hidden');
 
@@ -648,7 +792,6 @@
             container.innerHTML = '';
             container.classList.remove('hidden');
 
-            // إظهار أول 30 نتيجة لسرعة الأداء
             const limitedResults = results.slice(0, 30);
 
             limitedResults.forEach(item => {
@@ -656,7 +799,6 @@
                 const verseNum = item.numberInSurah;
                 const surahName = item.surah.name.replace('سُورَةُ ', '');
 
-                // تظليل كلمة البحث
                 const regex = new RegExp(`(${query})`, 'gi');
                 const highlightedText = item.text.replace(regex, '<b class="text-gold bg-gold/10 px-1 rounded">$1</b>');
 
@@ -681,9 +823,6 @@
             loadSurahData(surahId, targetPage);
         }
 
-        // ==========================================
-        // دالة التفسير المحدثة (التفسير الميسر العربي)
-        // ==========================================
         async function openTafseer(verseKey) {
             const verseObj = currentSurahVerses.find(v => v.verse_key === verseKey);
             const verseText = verseObj ? verseObj.text_uthmani : "الآية";
@@ -700,7 +839,6 @@
             }, 10);
 
             try {
-                // استخدمت الرقم 16 المخصص للتفسير الميسر باللغة العربية حصراً
                 const res = await fetch(`https://api.quran.com/api/v4/tafsirs/16/by_ayah/${verseKey}`);
                 const data = await res.json();
                 document.getElementById('tafseer-loading').classList.add('hidden');
