@@ -48,11 +48,16 @@
         body.dark-mode .mushaf-frame { background-color: #1a202c !important; border-color: #711c2e; box-shadow: inset 0 0 30px rgba(0,0,0,0.8); }
         body.dark-mode .mushaf-text, body.dark-mode .verse-text { color: #e2e8f0 !important; }
         body.dark-mode #bismillah, body.dark-mode #mushaf-surah-name { color: #e2e8f0 !important; }
-        body.dark-mode .dhikr-select-sheet, body.dark-mode #settings-modal, body.dark-mode #tafseer-modal { background-color: #1e1e1e !important; border-color: #2d3748 !important; }
+        body.dark-mode .dhikr-select-sheet, body.dark-mode #settings-modal { background-color: #1e1e1e !important; border-color: #2d3748 !important; }
         body.dark-mode .dhikr-select-item { border-bottom-color: #2d3748 !important; color: #e5e7eb !important; }
         body.dark-mode .dhikr-select-item:hover { background-color: #2d3748 !important; }
         body.dark-mode .sibha-control-btn { background-color: #2d3748 !important; border-color: #4a5568 !important; }
         body.dark-mode .sibha-control-btn:hover { background-color: #4a5568 !important; }
+
+        /* ستايل نافذة التفسير الفخمة بالوضع الداكن */
+        body.dark-mode .tafseer-premium-modal { background: #1e1e1e !important; border-top-color: #b89247; }
+        body.dark-mode .tafseer-verse-box { background: #121212 !important; border-color: #2d3748 !important; box-shadow: inset 0 0 20px rgba(0,0,0,0.5); }
+        body.dark-mode .tafseer-text-content { color: #e5e7eb !important; }
 
         .switch-rtl { position: relative; display: inline-block; width: 54px; height: 28px; }
         .switch-rtl input { opacity: 0; width: 0; height: 0; }
@@ -77,15 +82,21 @@
         .mushaf-text { flex-grow: 1; text-align: justify; text-justify: inter-word; text-align-last: center; direction: rtl; }
         .mushaf-footer { position: absolute; bottom: 10px; left: 0; right: 0; text-align: center; font-size: 0.85rem; color: #711c2e; font-weight: bold; opacity: 0.7; }
         
-        /* تنسيق الآيات ومحرك البحث */
         .verse-interactive { cursor: pointer; border-radius: 6px; padding: 0 4px; transition: all 0.3s ease; border-bottom: 2px solid transparent; }
         .verse-interactive:hover, .verse-interactive:active { background-color: rgba(184, 146, 71, 0.15); border-bottom-color: #b89247; }
-        .search-match-text b { color: #b89247; font-weight: bold; background-color: rgba(184, 146, 71, 0.1); padding: 0 4px; border-radius: 4px; }
         
         .verse-number { display: inline-flex; align-items: center; justify-content: center; position: relative; margin: 0 6px; color: #b89247; pointer-events: none;}
         .verse-symbol { font-size: 2.3rem; font-family: 'Amiri', serif; line-height: 1; opacity: 0.9; }
         .verse-digit { position: absolute; font-size: 0.85rem; font-family: 'Cairo', sans-serif; font-weight: bold; margin-top: 3px; color: #b89247; }
         
+        /* واجهة التفسير الفخمة */
+        .tafseer-premium-modal { background: linear-gradient(to bottom, #fcfbf8, #f6f3eb); border-top: 3px solid #b89247; box-shadow: 0 -15px 40px rgba(113, 28, 46, 0.15); }
+        .tafseer-premium-header { background: linear-gradient(135deg, #711c2e 0%, #4a101d 100%); color: #b89247; border-bottom: 2px solid rgba(184, 146, 71, 0.3); position: relative; overflow: hidden; }
+        .tafseer-premium-header::after { content: ''; position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(184, 146, 71, 0.1) 0%, transparent 60%); pointer-events: none;}
+        .tafseer-verse-box { background: #ffffff; border: 1px solid rgba(184, 146, 71, 0.3); border-radius: 15px; padding: 25px 20px; margin-bottom: 20px; box-shadow: inset 0 0 20px rgba(184, 146, 71, 0.05), 0 4px 10px rgba(0,0,0,0.02); position: relative; }
+        .tafseer-verse-box::before { content: '❝'; position: absolute; top: 0px; right: 15px; font-size: 3rem; color: rgba(184, 146, 71, 0.15); font-family: serif; }
+        .tafseer-text-content { font-family: 'Cairo', sans-serif; font-size: 1.15rem; line-height: 2.2; color: #4a5568; text-align: justify; }
+
         input[type=range] { accent-color: #b89247; outline: none; }
         .glass-player { background: rgba(113, 28, 46, 0.95); backdrop-filter: blur(10px); border-top: 1px solid rgba(184, 146, 71, 0.3); }
 
@@ -289,7 +300,7 @@
 
         <main id="quran-list-screen" class="hidden w-full mt-4">
             <div class="mb-4">
-                <button onclick="openQuranSearch()" class="w-full bg-gradient-to-l from-primary to-[#4a101d] text-white py-3.5 rounded-2xl font-bold text-md shadow-md flex justify-center items-center gap-2 hover:shadow-lg transition">
+                <button onclick="openQuranSearch()" class="w-full bg-gradient-to-l from-primary to-[#4a101d] text-white py-3.5 rounded-2xl font-bold text-md shadow-md flex justify-center items-center gap-2 hover:shadow-lg transition border border-gold/30">
                     <i class="fa-solid fa-magnifying-glass text-gold"></i> البحث المتقدم في الآيات
                 </button>
             </div>
@@ -299,7 +310,7 @@
 
         <main id="quran-search-screen" class="hidden w-full mt-4">
             <div class="relative mb-6">
-                <input type="text" id="smart-search-input" placeholder="ابحث عن كلمة (مثال: الصبر)..." class="w-full bg-cardbg border border-gray-200 text-gray-800 rounded-2xl py-3.5 px-4 pr-12 outline-none focus:border-primary transition shadow-sm font-cairo">
+                <input type="text" id="smart-search-input" placeholder="ابحث عن كلمة (مثال: الجنة)..." class="w-full bg-cardbg border border-gray-200 text-gray-800 rounded-2xl py-3.5 px-4 pr-12 outline-none focus:border-primary transition shadow-sm font-cairo">
                 <i class="fa-solid fa-magnifying-glass absolute top-1/2 right-4 -translate-y-1/2 text-gray-400"></i>
             </div>
             <div id="smart-search-loading" class="text-center py-10 hidden">
@@ -356,25 +367,36 @@
         </main>
     </div>
 
-    <div id="dhikr-modal-backdrop" class="fixed inset-0 bg-black/60 z-50 hidden opacity-0 transition-opacity duration-300" onclick="closeDhikrSelector()"></div>
-    <div id="dhikr-selector-sheet" class="dhikr-select-sheet"><div class="w-12 h-1.5 bg-gray-300 rounded-full mx-auto mb-5"></div><h3 class="text-xl font-bold mb-4 font-cairo text-gray-800 text-center border-b border-gray-100 pb-3">اختر ذكراً</h3><div id="dhikr-options-list"></div></div>
-    
     <div id="tafseer-modal-backdrop" class="fixed inset-0 bg-black/60 z-[60] hidden opacity-0 transition-opacity duration-300" onclick="closeTafseer()"></div>
-    <div id="tafseer-modal" class="fixed inset-x-0 bottom-0 bg-cardbg rounded-t-3xl shadow-2xl z-[70] transform translate-y-full transition-transform duration-300 max-h-[85vh] flex flex-col border-t border-gray-200">
-        <div class="p-6 border-b border-gray-100 shrink-0">
-            <div class="w-12 h-1.5 bg-gray-300 rounded-full mx-auto mb-5"></div>
-            <div class="flex justify-between items-center">
-                <h3 class="text-xl font-bold font-cairo text-gray-800"><i class="fa-solid fa-book-open-reader text-primary ml-2"></i>التفسير الميسر</h3>
-                <button onclick="closeTafseer()" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200 transition-colors"><i class="fa-solid fa-xmark"></i></button>
+    <div id="tafseer-modal" class="fixed inset-x-0 bottom-0 tafseer-premium-modal rounded-t-[30px] z-[70] transform translate-y-full transition-transform duration-500 max-h-[85vh] flex flex-col">
+        <div class="tafseer-premium-header p-6 rounded-t-[30px] shrink-0">
+            <div class="w-12 h-1.5 bg-white/20 rounded-full mx-auto mb-5"></div>
+            <div class="flex justify-between items-center relative z-10">
+                <h3 class="text-xl font-bold font-cairo text-gold flex items-center gap-2">
+                    <i class="fa-solid fa-book-open-reader"></i> التفسير الميسر
+                </h3>
+                <button onclick="closeTafseer()" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors shadow-inner">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
             </div>
         </div>
-        <div class="p-6 overflow-y-auto grow">
-            <p id="tafseer-verse-text" class="font-amiri text-2xl text-primary text-center mb-6 leading-[2.2] border-b border-dashed border-gray-200 pb-5 px-2"></p>
-            <div id="tafseer-loading" class="text-center py-8 hidden"><i class="fa-solid fa-spinner fa-spin text-4xl text-gold"></i><p class="mt-3 text-sm font-cairo text-gray-500">جاري جلب التفسير...</p></div>
-            <p id="tafseer-content" class="font-cairo text-[17px] text-gray-700 leading-loose text-justify"></p>
+        <div class="p-6 overflow-y-auto grow relative">
+            <div class="tafseer-verse-box">
+                <p id="tafseer-verse-text" class="font-amiri text-2xl text-primary text-center leading-[2.2]"></p>
+            </div>
+            
+            <div id="tafseer-loading" class="text-center py-8 hidden">
+                <div class="inline-block w-12 h-12 border-4 border-gold/30 border-t-gold rounded-full animate-spin mb-3"></div>
+                <p class="text-sm font-cairo text-gray-500">جاري جلب التفسير...</p>
+            </div>
+            
+            <div id="tafseer-content" class="tafseer-text-content px-2 pb-6"></div>
         </div>
     </div>
 
+    <div id="dhikr-modal-backdrop" class="fixed inset-0 bg-black/60 z-50 hidden opacity-0 transition-opacity duration-300" onclick="closeDhikrSelector()"></div>
+    <div id="dhikr-selector-sheet" class="dhikr-select-sheet"><div class="w-12 h-1.5 bg-gray-300 rounded-full mx-auto mb-5"></div><h3 class="text-xl font-bold mb-4 font-cairo text-gray-800 text-center border-b border-gray-100 pb-3">اختر ذكراً</h3><div id="dhikr-options-list"></div></div>
+    
     <div id="audio-player-bar" class="fixed bottom-0 inset-x-0 glass-player text-white rounded-t-3xl shadow-[0_-10px_40px_rgba(0,0,0,0.15)] z-[55] transform translate-y-full transition-transform duration-500">
         <div class="p-5">
             <div class="flex justify-between items-center mb-4">
@@ -437,7 +459,6 @@
         let currentScreen = 'home-screen'; 
         
         function showScreen(screenId, title = "") {
-            // أضفنا quran-search-screen لقائمة الإخفاء
             ['home-screen', 'quran-list-screen', 'quran-search-screen', 'quran-read-screen', 'audio-reciters-screen', 'audio-surahs-screen', 'hadith-categories-screen', 'hadith-list-screen', 'hadith-read-screen', 'adhkar-main-screen', 'adhkar-categories-screen', 'adhkar-list-screen', 'sibha-screen', 'calendar-screen', 'prayer-screen', 'qibla-screen', 'main-settings-screen'].forEach(id => { document.getElementById(id).classList.add('hidden'); });
             document.getElementById(screenId).classList.remove('hidden'); currentScreen = screenId;
             const titleEl = document.getElementById('header-title'); const backBtn = document.getElementById('back-btn'); const settingsBtn = document.getElementById('settings-btn');
@@ -562,7 +583,6 @@
             versesContainer.innerHTML = versesHtml; 
             document.getElementById('page-indicator').innerText = `صفحة ${currentPageIndex} من ${totalPages}`; 
             
-            // إضافة التمرير للآية المستهدفة (من محرك البحث)
             if (targetHighlightVerse) {
                 setTimeout(() => {
                     const verseEl = document.getElementById(`verse-${targetHighlightVerse}`);
@@ -582,7 +602,7 @@
         } 
         
         // ==========================================
-        // وظائف محرك البحث الذكي (مضافة حديثاً)
+        // البحث الذكي باستخدام (AlQuran Cloud API)
         // ==========================================
         function openQuranSearch() {
             showScreen('quran-search-screen');
@@ -607,12 +627,13 @@
             document.getElementById('smart-search-loading').classList.remove('hidden');
 
             try {
-                const res = await fetch(`https://api.quran.com/api/v4/search?q=${query}&size=30&language=ar`);
+                // استخدمت لك محرك بحث جبار ومخصص للعربي
+                const res = await fetch(`https://api.alquran.cloud/v1/search/${encodeURIComponent(query)}/all/quran-simple`);
                 const data = await res.json();
                 document.getElementById('smart-search-loading').classList.add('hidden');
 
-                if (data.search && data.search.results.length > 0) {
-                    renderQuranSearchResults(data.search.results);
+                if (data.code === 200 && data.data && data.data.matches && data.data.matches.length > 0) {
+                    renderQuranSearchResults(data.data.matches, query);
                 } else {
                     document.getElementById('smart-search-empty').classList.remove('hidden');
                 }
@@ -622,17 +643,22 @@
             }
         }
 
-        function renderQuranSearchResults(results) {
+        function renderQuranSearchResults(results, query) {
             const container = document.getElementById('smart-search-results');
             container.innerHTML = '';
             container.classList.remove('hidden');
 
-            results.forEach(item => {
-                const parts = item.verse_key.split(':');
-                const surahId = parseInt(parts[0]);
-                const verseNum = parseInt(parts[1]);
-                const surah = allSurahs.find(s => s.id === surahId);
-                const surahName = surah ? surah.name_arabic : "غير معروف";
+            // إظهار أول 30 نتيجة لسرعة الأداء
+            const limitedResults = results.slice(0, 30);
+
+            limitedResults.forEach(item => {
+                const surahId = item.surah.number;
+                const verseNum = item.numberInSurah;
+                const surahName = item.surah.name.replace('سُورَةُ ', '');
+
+                // تظليل كلمة البحث
+                const regex = new RegExp(`(${query})`, 'gi');
+                const highlightedText = item.text.replace(regex, '<b class="text-gold bg-gold/10 px-1 rounded">$1</b>');
 
                 const li = document.createElement('li');
                 li.className = "p-4 border-b border-gray-100 hover:bg-secondary/50 transition cursor-pointer";
@@ -643,7 +669,7 @@
                         <span class="text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded-md">سورة ${surahName}</span>
                         <span class="text-xs font-bold text-gray-500">آية ${toArabicNumber(verseNum)}</span>
                     </div>
-                    <p class="font-amiri text-xl text-gray-800 leading-loose text-right search-match-text">${item.text}</p>
+                    <p class="font-amiri text-xl text-gray-800 leading-loose text-right search-match-text">${highlightedText}</p>
                 `;
                 container.appendChild(li);
             });
@@ -656,14 +682,14 @@
         }
 
         // ==========================================
-        // وظائف التفسير (محدثة وتعمل بنجاح)
+        // دالة التفسير المحدثة (التفسير الميسر العربي)
         // ==========================================
         async function openTafseer(verseKey) {
             const verseObj = currentSurahVerses.find(v => v.verse_key === verseKey);
             const verseText = verseObj ? verseObj.text_uthmani : "الآية";
             const verseNum = verseKey.split(':')[1];
             
-            document.getElementById('tafseer-verse-text').innerHTML = verseText + ` <span class="text-gold mx-1">۝</span><span class="text-sm font-sans font-bold text-gold">${toArabicNumber(verseNum)}</span>`;
+            document.getElementById('tafseer-verse-text').innerHTML = verseText + ` <span class="text-gold mx-1">۝</span><span class="text-sm font-sans font-bold text-primary">${toArabicNumber(verseNum)}</span>`;
             document.getElementById('tafseer-content').innerHTML = "";
             document.getElementById('tafseer-loading').classList.remove('hidden');
             
@@ -674,18 +700,17 @@
             }, 10);
 
             try {
-                // تم تصحيح الرابط إلى tafsirs
-                const res = await fetch(`https://api.quran.com/api/v4/tafsirs/169/by_ayah/${verseKey}`);
+                // استخدمت الرقم 16 المخصص للتفسير الميسر باللغة العربية حصراً
+                const res = await fetch(`https://api.quran.com/api/v4/tafsirs/16/by_ayah/${verseKey}`);
                 const data = await res.json();
                 document.getElementById('tafseer-loading').classList.add('hidden');
                 
-                // استخراج التفسير بشكل آمن
                 const tafsirText = data.tafsir?.text || data.tafsirs?.[0]?.text || data.text;
                 
                 if(tafsirText) {
                     document.getElementById('tafseer-content').innerHTML = tafsirText;
                 } else {
-                    document.getElementById('tafseer-content').innerText = "عذراً، التفسير غير متوفر لهذه الآية حالياً.";
+                    document.getElementById('tafseer-content').innerHTML = "<p class='text-center text-gray-500'>عذراً، التفسير غير متوفر لهذه الآية حالياً.</p>";
                 }
             } catch (err) {
                 document.getElementById('tafseer-loading').classList.add('hidden');
