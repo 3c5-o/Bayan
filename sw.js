@@ -28,7 +28,7 @@ messaging.onBackgroundMessage((payload) => {
 });
 
 // --- بقية كود الحارس لتشغيل التطبيق أوفلاين ---
-const CACHE_VERSION = 'bayan-v1.6'; 
+const CACHE_VERSION = 'bayan-v1.7'; // حدثنا الإصدار حتى يسحب ملف index.html الكامل الجديد
 const STATIC_CACHE = `static-${CACHE_VERSION}`;
 const DYNAMIC_CACHE = `dynamic-${CACHE_VERSION}`;
 
