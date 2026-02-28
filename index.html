@@ -690,45 +690,60 @@
         document.getElementById('splash-dhikr').innerText = splashAdhkar[Math.floor(Math.random() * splashAdhkar.length)];
 
         window.onload = () => {
-            const savedDarkMode = localStorage.getItem('darkMode');
-            if (savedDarkMode === 'true') {
-                document.body.classList.add('dark-mode');
-                const toggleElement = document.getElementById('dark-mode-toggle');
-                if(toggleElement) toggleElement.checked = true;
-            }
-
-            const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            document.getElementById('gregorian-date').innerText = new Date().toLocaleDateString('ar-IQ', dateOptions);
-            const hijriDate = new Intl.DateTimeFormat('ar-TN-u-ca-islamic', {day: 'numeric', month: 'long', year : 'numeric'}).format(Date.now());
-            document.getElementById('hijri-date').innerHTML = `<i class="fa-regular fa-calendar ml-2"></i> ${hijriDate}`;
-            
-            initTopCalendarCards();
-            fetchSurahsList();
-            initSibha();
-            updateContinueReadingWidget(); 
-            updateBookmarkUI(); 
-            initNotifySystem(); // تفعيل نظام الإشعارات الذكي
-
-            // ربط ملف الـ sw.js الخاص بالـ PWA
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('sw.js')
-                    .then(reg => console.log('Service Worker Registered!'))
-                    .catch(err => console.error('Service Worker Registration Failed!', err));
-            }
-
+            // 1. إخفاء شاشة البداية دائماً (حماية للآيفون حتى لو صار خطأ)
             setTimeout(() => {
-                document.getElementById('splash-screen').classList.add('fade-out');
-                setTimeout(() => {
-                    document.getElementById('splash-screen').style.display = 'none';
-                    showScreen('home-screen');
-                    document.getElementById('app-header').classList.remove('hidden');
-                    document.getElementById('app-content').classList.remove('hidden');
+                const splash = document.getElementById('splash-screen');
+                if(splash) {
+                    splash.classList.add('fade-out');
                     setTimeout(() => {
-                        document.getElementById('app-header').classList.add('fade-in');
-                        document.getElementById('app-content').classList.add('fade-in');
-                    }, 50);
-                }, 800);
-            }, 3000); 
+                        splash.style.display = 'none';
+                        showScreen('home-screen');
+                        document.getElementById('app-header').classList.remove('hidden');
+                        document.getElementById('app-content').classList.remove('hidden');
+                        setTimeout(() => {
+                            document.getElementById('app-header').classList.add('fade-in');
+                            document.getElementById('app-content').classList.add('fade-in');
+                        }, 50);
+                    }, 800);
+                }
+            }, 3000);
+
+            // 2. باقي الأكواد بداخل try-catch حتى ما توقف التطبيق
+            try {
+                const savedDarkMode = localStorage.getItem('darkMode');
+                if (savedDarkMode === 'true') {
+                    document.body.classList.add('dark-mode');
+                    const toggleElement = document.getElementById('dark-mode-toggle');
+                    if(toggleElement) toggleElement.checked = true;
+                }
+
+                initTopCalendarCards();
+                fetchSurahsList();
+                initSibha();
+                updateContinueReadingWidget(); 
+                updateBookmarkUI(); 
+                initNotifySystem(); 
+
+                if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.register('sw.js')
+                        .then(reg => console.log('Service Worker Registered!'))
+                        .catch(err => console.error('Service Worker Registration Failed!', err));
+                }
+
+                // التاريخ بطريقة آمنة
+                const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                document.getElementById('gregorian-date').innerText = new Date().toLocaleDateString('ar-IQ', dateOptions);
+                
+                try {
+                    const hijriDate = new Intl.DateTimeFormat('ar-TN-u-ca-islamic', {day: 'numeric', month: 'long', year : 'numeric'}).format(Date.now());
+                    document.getElementById('hijri-date').innerHTML = `<i class="fa-regular fa-calendar ml-2"></i> ${hijriDate}`;
+                } catch(e) {
+                    document.getElementById('hijri-date').innerHTML = `<i class="fa-regular fa-calendar ml-2"></i> التقويم الهجري`;
+                }
+
+            } catch (error) {
+                console.error("حدث خطأ أثناء تحميل التطبيق:", error);
+            }
         };
 
         function saveCurrentBookmark() {
