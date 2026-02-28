@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'bayan-v1.3'; // غيرنا الإصدار حتى نجبر التليفون يحدث
+const CACHE_VERSION = 'bayan-v1.4'; // حدثنا الإصدار حتى المتصفح يسحب ميزة الإشعارات الجديدة
 const STATIC_CACHE = `static-${CACHE_VERSION}`;
 const DYNAMIC_CACHE = `dynamic-${CACHE_VERSION}`;
 
@@ -42,7 +42,7 @@ self.addEventListener('fetch', (event) => {
     const url = event.request.url;
 
     // استثناء الصوتيات حتى لا تنترس ذاكرة التليفون
-    if (url.includes('.mp3') || url.includes('mp3quran.net')) {
+    if (url.includes('.mp3') || url.includes('mp3quran.net') || url.includes('actions.google.com/sounds')) {
         event.respondWith(fetch(event.request));
         return;
     }
@@ -63,7 +63,7 @@ self.addEventListener('fetch', (event) => {
                 });
                 return networkResponse;
             }).catch(() => {
-                // السحر هنا: إذا فصل النت وطلب الصفحة الرئيسية، رجع الـ index من الذاكرة
+                // إذا فصل النت وطلب الصفحة الرئيسية، رجع الـ index من الذاكرة
                 if (event.request.mode === 'navigate' || event.request.headers.get('accept').includes('text/html')) {
                     return caches.match('./index.html');
                 }
