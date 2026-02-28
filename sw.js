@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'bayan-v1.4'; // حدثنا الإصدار حتى المتصفح يسحب ميزة الإشعارات الجديدة
+const CACHE_VERSION = 'bayan-v1.5'; // حدثنا الإصدار حتى المتصفح يمسح الكاش القديم ويسحب التحديث
 const STATIC_CACHE = `static-${CACHE_VERSION}`;
 const DYNAMIC_CACHE = `dynamic-${CACHE_VERSION}`;
 
