@@ -1,0 +1,24 @@
+{
+  "name": "تطبيق بيان",
+  "short_name": "بيان",
+  "description": "تطبيق بيان الإسلامي للقرآن الكريم والأذكار والمواقيت",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f6f3eb",
+  "theme_color": "#711c2e",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "https://k.top4top.io/p_37108rde31.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://k.top4top.io/p_37108rde31.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}
