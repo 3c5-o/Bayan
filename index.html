@@ -40,7 +40,7 @@
         
         /* تأثيرات الوضع الداكن الشاملة */
         body.dark-mode { background-color: #121212 !important; color: #e5e7eb !important; }
-        body.dark-mode .bg-cardbg, body.dark-mode .cat-card-modern, body.dark-mode .dhikr-card, body.dark-mode .sibha-header-card, body.dark-mode .prayer-card, body.dark-mode .qibla-compass-base, body.dark-mode .bg-white, body.dark-mode .hadith-card, body.dark-mode #custom-confirm-modal { background-color: #1e1e1e !important; border-color: #2d3748 !important; color: #e5e7eb !important; box-shadow: 0 4px 15px rgba(0,0,0,0.5) !important; }
+        body.dark-mode .bg-cardbg, body.dark-mode .cat-card-modern, body.dark-mode .dhikr-card, body.dark-mode .sibha-header-card, body.dark-mode .prayer-card, body.dark-mode .qibla-compass-base, body.dark-mode .bg-white, body.dark-mode .hadith-card, body.dark-mode #custom-confirm-modal, body.dark-mode #notify-modal-content { background-color: #1e1e1e !important; border-color: #2d3748 !important; color: #e5e7eb !important; box-shadow: 0 4px 15px rgba(0,0,0,0.5) !important; }
         body.dark-mode .text-gray-800, body.dark-mode #confirm-title { color: #f3f4f6 !important; }
         body.dark-mode .text-gray-700 { color: #e5e7eb !important; }
         body.dark-mode .text-gray-500, body.dark-mode .text-gray-400, body.dark-mode #confirm-message { color: #a0aec0 !important; }
@@ -248,6 +248,7 @@
         
         <main id="main-settings-screen" class="hidden w-full mt-4 pb-10">
             <h2 class="font-bold text-xl text-primary font-cairo mb-4 px-2">إعدادات التطبيق</h2>
+            
             <div class="bg-cardbg rounded-3xl p-5 mb-4 shadow-sm border border-gray-100 flex justify-between items-center transition-all">
                 <div class="flex items-center gap-4">
                     <div class="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary text-xl">
@@ -263,6 +264,47 @@
                     <span class="slider-rtl"></span>
                 </label>
             </div>
+
+            <h3 class="font-bold text-gray-500 text-sm font-cairo mb-3 mt-6 px-2">الإشعارات والتذكير</h3>
+            <div class="bg-cardbg rounded-3xl p-5 mb-4 shadow-sm border border-gray-100 space-y-4">
+                <div class="flex justify-between items-center border-b border-gray-100 pb-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary text-lg"><i class="fa-solid fa-mosque"></i></div>
+                        <div>
+                            <span class="font-bold text-gray-800 text-base font-cairo block mb-0.5">تنبيهات الأذان</span>
+                            <span class="text-[11px] text-gray-500 font-cairo">تنبيه صوتي عند دخول وقت الصلاة</span>
+                        </div>
+                    </div>
+                    <label class="switch-rtl ml-1"><input type="checkbox" id="notify-prayer-toggle" onchange="updateNotifySettings()"><span class="slider-rtl"></span></label>
+                </div>
+                <div class="flex justify-between items-center border-b border-gray-100 pb-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center text-gold text-lg"><i class="fa-solid fa-book-open-reader"></i></div>
+                        <div>
+                            <span class="font-bold text-gray-800 text-base font-cairo block mb-0.5">تذكير الختمة</span>
+                            <span class="text-[11px] text-gray-500 font-cairo">تذكير بوردك اليومي (كل 12 ساعة)</span>
+                        </div>
+                    </div>
+                    <label class="switch-rtl ml-1"><input type="checkbox" id="notify-khatma-toggle" onchange="updateNotifySettings()"><span class="slider-rtl"></span></label>
+                </div>
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center text-green-600 text-lg"><i class="fa-solid fa-leaf"></i></div>
+                        <div>
+                            <span class="font-bold text-gray-800 text-base font-cairo block mb-0.5">رسائل الطمأنينة</span>
+                            <span class="text-[11px] text-gray-500 font-cairo">آية، حديث، أو ذكر عشوائي</span>
+                        </div>
+                    </div>
+                    <select id="notify-dhikr-interval" onchange="updateNotifySettings()" class="bg-gray-100 border-none text-xs font-bold text-primary rounded-lg px-2 py-2 outline-none font-cairo">
+                        <option value="0">إيقاف</option>
+                        <option value="60">كل ساعة</option>
+                        <option value="120">كل ساعتين</option>
+                        <option value="180">كل 3 ساعات</option>
+                        <option value="360">كل 6 ساعات</option>
+                    </select>
+                </div>
+            </div>
+
             <h3 class="font-bold text-gray-500 text-sm font-cairo mb-3 mt-6 px-2">قيم وشارك</h3>
             <div class="bg-cardbg rounded-3xl p-5 mb-4 shadow-sm border border-gray-100">
                 <div class="flex items-center gap-4 mb-4">
@@ -278,6 +320,7 @@
                     <i class="fa-solid fa-share-from-square"></i> مشاركة التطبيق
                 </button>
             </div>
+            
             <h3 class="font-bold text-gray-500 text-sm font-cairo mb-3 mt-6 px-2">حول التطبيق</h3>
             <div class="bg-cardbg rounded-3xl p-5 shadow-sm border border-gray-100">
                 <div class="flex items-center gap-4 mb-6">
@@ -295,12 +338,12 @@
                         <span class="text-sm font-bold text-primary">حمد النزار</span>
                     </div>
                     <div class="flex justify-between items-center border-b border-gray-100 pb-3">
-                        <span class="text-xs text-gray-500 font-bold"><i class="fa-solid fa-calendar text-[10px] ml-1"></i> تاريخ التطوير</span>
-                        <span class="text-sm font-bold text-gray-800" dir="ltr">27 فبراير 2026</span>
+                        <span class="text-xs text-gray-500 font-bold"><i class="fa-solid fa-calendar text-[10px] ml-1"></i> تاريخ التحديث</span>
+                        <span class="text-sm font-bold text-gray-800" dir="ltr">28 فبراير 2026</span>
                     </div>
                     <div class="flex justify-between items-center">
                         <span class="text-xs text-gray-500 font-bold"><i class="fa-solid fa-layer-group text-[10px] ml-1"></i> إصدار التطبيق</span>
-                        <span class="text-sm font-bold text-gray-800">1.1.0</span>
+                        <span class="text-sm font-bold text-gray-800">1.4.0</span>
                     </div>
                 </div>
                 <a href="https://t.me/c_93n" target="_blank" class="w-full bg-gradient-to-r from-primary to-[#4a101d] text-white py-3.5 rounded-xl font-bold text-sm hover:shadow-lg transition-all flex justify-center items-center gap-2 block text-center shadow-md">
@@ -471,7 +514,6 @@
         <main id="quran-read-screen" class="hidden w-full mt-4">
             <div id="read-loading" class="text-center py-10 hidden bg-cardbg rounded-2xl shadow-sm border border-gray-100"><i class="fa-solid fa-spinner fa-spin text-4xl text-primary mb-3"></i></div>
             <div id="mushaf-container" class="mushaf-frame hidden">
-                
                 <div class="mushaf-header">
                     <div class="flex flex-col items-center justify-center w-1/4">
                         <span class="text-[11px] text-gray-500 mb-0.5 font-cairo">الجزء</span>
@@ -623,6 +665,26 @@
     <div id="modal-backdrop" class="fixed inset-0 bg-black/60 z-40 hidden opacity-0 transition-opacity duration-300" onclick="closeSettings()"></div>
     <div id="settings-modal" class="fixed inset-x-0 bottom-0 bg-cardbg rounded-t-3xl shadow-2xl z-50 transform translate-y-full transition-transform duration-300 p-6 border-t border-gray-200"><div class="w-12 h-1.5 bg-gray-300 rounded-full mx-auto mb-6"></div><h3 class="text-xl font-bold mb-6 font-cairo text-gray-800"><i class="fa-solid fa-sliders text-primary mr-2"></i> إعدادات القراءة</h3><div class="mb-6"><div class="flex justify-between items-center mb-2"><label class="font-semibold text-gray-700">حجم الخط</label><span id="font-size-label" class="text-sm text-gray-500">28px</span></div><input type="range" min="20" max="45" value="28" id="font-size-slider" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"></div><div class="mb-8"><label class="block font-semibold text-gray-700 mb-3">لون النص</label><div class="flex gap-4 justify-center"><button onclick="changeTextColor('#1f2937')" class="w-12 h-12 rounded-full bg-gray-800 border-4 border-white shadow-md"></button><button onclick="changeTextColor('#711c2e')" class="w-12 h-12 rounded-full bg-[#711c2e] border-4 border-white shadow-md"></button><button onclick="changeTextColor('#064e3b')" class="w-12 h-12 rounded-full bg-[#064e3b] border-4 border-white shadow-md"></button><button onclick="changeTextColor('#1e3a8a')" class="w-12 h-12 rounded-full bg-[#1e3a8a] border-4 border-white shadow-md"></button></div></div><button onclick="closeSettings()" class="w-full bg-primary text-white py-4 rounded-2xl font-bold text-lg hover:bg-red-900 transition-colors shadow-lg">إغلاق وتطبيق</button></div>
 
+    <div id="notification-permission-modal" class="fixed inset-0 bg-black/60 z-[120] hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-5">
+        <div class="bg-cardbg w-full max-w-sm rounded-3xl p-6 shadow-2xl border border-gray-100 transform scale-95 transition-transform duration-300" id="notify-modal-content">
+            <div class="text-center">
+                <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center text-primary text-4xl mx-auto mb-4 relative">
+                    <i class="fa-solid fa-bell animate-ping-slow absolute opacity-20"></i>
+                    <i class="fa-solid fa-bell relative z-10"></i>
+                </div>
+                <h3 class="text-xl font-bold font-cairo text-gray-800 mb-2">تفعيل الإشعارات</h3>
+                <p class="text-gray-500 font-cairo text-sm mb-6 leading-relaxed">اسمح لنا بتذكيرك بمواقيت الصلاة، الختمة، وإرسال رسائل طمأنينة من القرآن والسنة.</p>
+                <div class="flex gap-3">
+                    <button onclick="requestNotificationPermission()" class="flex-1 bg-primary text-white py-3.5 rounded-xl font-bold font-cairo hover:bg-[#4a101d] transition shadow-md">السماح</button>
+                    <button onclick="closeNotificationModal()" class="flex-1 bg-gray-100 text-gray-700 py-3.5 rounded-xl font-bold font-cairo hover:bg-gray-200 transition">ليس الآن</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <audio id="adhan-audio" src="https://server11.mp3quran.net/adhan/Ali_Molla.mp3" preload="none"></audio>
+    <audio id="ding-audio" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg" preload="none"></audio>
+
     <script>
         const splashAdhkar = ["صَلَّى اللَّهُ عَلَى مُحَمَّدٍ", "سُبْحَانَ اللَّهِ العَظِيمِ وَبِحَمْدِهِ", "اللَّهُ أَكْبَرُ كَبِيرًا", "أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ", "لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ", "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ"];
         document.getElementById('splash-dhikr').innerText = splashAdhkar[Math.floor(Math.random() * splashAdhkar.length)];
@@ -645,6 +707,14 @@
             initSibha();
             updateContinueReadingWidget(); 
             updateBookmarkUI(); 
+            initNotifySystem(); // تفعيل نظام الإشعارات الذكي
+
+            // ربط ملف الـ sw.js الخاص بالـ PWA
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('Service Worker Registered!'))
+                    .catch(err => console.error('Service Worker Registration Failed!', err));
+            }
 
             setTimeout(() => {
                 document.getElementById('splash-screen').classList.add('fade-out');
@@ -791,6 +861,7 @@
         let allKhatmas = JSON.parse(localStorage.getItem('allKhatmas')) || [];
 
         function openKhatmaSection() {
+            localStorage.setItem('lastKhatmaOpenTime', Date.now()); // لتحديث العداد مال الإشعارات
             showScreen('khatma-screen');
             switchKhatmaTab('active');
         }
@@ -1157,6 +1228,162 @@
         function calculateQiblaDirection(userLat, userLng) { const meccaLat = 21.422487 * (Math.PI / 180); const meccaLng = 39.826206 * (Math.PI / 180); const lat = userLat * (Math.PI / 180); const lng = userLng * (Math.PI / 180); const dLng = meccaLng - lng; const y = Math.sin(dLng); const x = Math.cos(lat) * Math.tan(meccaLat) - Math.sin(lat) * Math.cos(dLng); let qibla = Math.atan2(y, x) * (180 / Math.PI); return (qibla + 360) % 360; }
         function startCompassListener() { if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') { DeviceOrientationEvent.requestPermission().then(permissionState => { if (permissionState === 'granted') { window.addEventListener('deviceorientationabsolute', handleDeviceOrientation, true); window.addEventListener('deviceorientation', handleDeviceOrientation, true); } else { document.getElementById('qibla-status').innerText = "عذراً، يرجى إعطاء صلاحية المستشعر"; } }).catch(console.error); } else { window.addEventListener('deviceorientationabsolute', handleDeviceOrientation, true); window.addEventListener('deviceorientation', handleDeviceOrientation, true); } }
         function handleDeviceOrientation(event) { let heading = null; if (event.webkitCompassHeading) { heading = event.webkitCompassHeading; } else if (event.absolute && event.alpha !== null) { heading = 360 - event.alpha; } if (heading === null || isNaN(heading)) return; const kaabaArrow = document.getElementById('kaaba-arrow'); const kaabaGlow = document.getElementById('kaaba-icon-glow'); const statusText = document.getElementById('qibla-status'); let pointerRotation = qiblaBearing - heading; kaabaArrow.style.transform = `translate(-50%, -100%) rotate(${pointerRotation}deg)`; const diff = Math.abs((pointerRotation % 360 + 360) % 360); if (diff < 5 || diff > 355) { if (!kaabaGlow.classList.contains('qibla-pointer-active')) { kaabaGlow.classList.add('qibla-pointer-active'); statusText.innerHTML = "<span class='text-green-600'><i class='fa-solid fa-check-circle mr-1'></i> أنت متجه للقبلة الآن</span>"; statusText.classList.replace('text-gray-600', 'text-green-600'); if (navigator.vibrate) navigator.vibrate(50); } } else { if (kaabaGlow.classList.contains('qibla-pointer-active')) { kaabaGlow.classList.remove('qibla-pointer-active'); statusText.innerHTML = "قم بتدوير الهاتف حتى تضيء الكعبة باللون الأخضر"; statusText.classList.replace('text-green-600', 'text-gray-600'); } } }
+
+        // ================= نظام الإشعارات الذكي (المطور) =================
+        let notifySettings = { prayer: true, khatma: true, dhikrInterval: 120 }; 
+        let notifiedPrayers = JSON.parse(localStorage.getItem('notifiedPrayers')) || {};
+
+        function initNotifySystem() {
+            if(localStorage.getItem('notifySettings')) notifySettings = JSON.parse(localStorage.getItem('notifySettings'));
+            
+            const pToggle = document.getElementById('notify-prayer-toggle');
+            const kToggle = document.getElementById('notify-khatma-toggle');
+            const dSelect = document.getElementById('notify-dhikr-interval');
+            if(pToggle) pToggle.checked = notifySettings.prayer;
+            if(kToggle) kToggle.checked = notifySettings.khatma;
+            if(dSelect) dSelect.value = notifySettings.dhikrInterval;
+
+            if (Notification.permission === "default" && !localStorage.getItem('notifyModalDismissed')) {
+                setTimeout(showNotificationModal, 5000);
+            }
+
+            setInterval(checkNotificationsEngine, 60000);
+            checkNotificationsEngine();
+        }
+
+        function updateNotifySettings() {
+            notifySettings.prayer = document.getElementById('notify-prayer-toggle').checked;
+            notifySettings.khatma = document.getElementById('notify-khatma-toggle').checked;
+            notifySettings.dhikrInterval = parseInt(document.getElementById('notify-dhikr-interval').value);
+            localStorage.setItem('notifySettings', JSON.stringify(notifySettings));
+            showToast('تم حفظ إعدادات الإشعارات');
+            
+            if (Notification.permission === "default" && (notifySettings.prayer || notifySettings.khatma || notifySettings.dhikrInterval > 0)) {
+                showNotificationModal();
+            }
+        }
+
+        function showNotificationModal() {
+            const modal = document.getElementById('notification-permission-modal');
+            const content = document.getElementById('notify-modal-content');
+            modal.classList.remove('hidden');
+            setTimeout(() => { modal.classList.remove('opacity-0'); content.classList.remove('scale-95'); }, 10);
+        }
+
+        function closeNotificationModal() {
+            localStorage.setItem('notifyModalDismissed', 'true');
+            const modal = document.getElementById('notification-permission-modal');
+            const content = document.getElementById('notify-modal-content');
+            modal.classList.add('opacity-0'); content.classList.add('scale-95');
+            setTimeout(() => modal.classList.add('hidden'), 300);
+        }
+
+        function requestNotificationPermission() {
+            Notification.requestPermission().then(permission => {
+                if (permission === "granted") showToast('تم تفعيل الإشعارات بنجاح!');
+                else showToast('تم رفض الصلاحية، يمكنك تفعيلها من إعدادات المتصفح', 'error');
+                closeNotificationModal();
+            });
+        }
+
+        function sendAppNotification(title, body, playAdhan = false) {
+            if (Notification.permission === "granted" && navigator.serviceWorker) {
+                navigator.serviceWorker.ready.then(registration => {
+                    registration.showNotification(title, {
+                        body: body, icon: './icon.png', badge: './icon.png',
+                        vibrate: [200, 100, 200], dir: 'rtl'
+                    });
+                });
+            }
+            try {
+                if(playAdhan) document.getElementById('adhan-audio').play();
+                else document.getElementById('ding-audio').play();
+            } catch(e){}
+        }
+
+        // السحر الجديد: سحب الأذكار من الـ API الأصلي بناءً على الوقت
+        async function sendDynamicDhikrNotification() {
+            try {
+                // إذا الذاكرة فارغة، نسحب البيانات بصمت بالخلفية
+                if (Object.keys(allAzkarData).length === 0) {
+                    const res = await fetch('https://raw.githubusercontent.com/nawafalqari/azkar-api/56df51279ab6eb86dc2f6202c7de26c8948331c1/azkar.json');
+                    allAzkarData = await res.json();
+                }
+
+                const currentHour = new Date().getHours();
+                let selectedCategory = "";
+
+                // خوارزمية الوقت الذكية
+                if (currentHour >= 5 && currentHour < 11 && allAzkarData["أذكار الصباح"]) {
+                    selectedCategory = "أذكار الصباح";
+                } else if (currentHour >= 15 && currentHour < 20 && allAzkarData["أذكار المساء"]) {
+                    selectedCategory = "أذكار المساء";
+                } else {
+                    // اختيار قسم عشوائي
+                    const keys = Object.keys(allAzkarData);
+                    selectedCategory = keys[Math.floor(Math.random() * keys.length)];
+                }
+
+                const categoryData = allAzkarData[selectedCategory];
+                const randomItem = categoryData[Math.floor(Math.random() * categoryData.length)];
+                let rawText = randomItem.content || randomItem.zekr || randomItem.text || "";
+                let cleanText = cleanAzkarText(rawText);
+
+                // تقصير النص إذا كان طويل جداً حتى يتناسب مع الإشعار
+                if(cleanText.length > 150) cleanText = cleanText.substring(0, 147) + "...";
+
+                sendAppNotification(`رسالة طمأنينة | ${selectedCategory}`, cleanText);
+
+            } catch (e) {
+                // في حال عدم توفر الإنترنت مؤقتاً، نرسل ذكر سريع
+                sendAppNotification("تذكير بذكر الله", "سُبْحَانَ اللَّهِ العَظِيمِ وَبِحَمْدِهِ");
+            }
+        }
+
+        function checkNotificationsEngine() {
+            if (Notification.permission !== "granted") return;
+            const now = new Date();
+            const dateStr = now.toLocaleDateString();
+
+            if (notifySettings.prayer && Object.keys(todayPrayers).length > 0) {
+                prayerConfig.forEach(p => {
+                    if(p.id === 'Sunrise') return;
+                    const timeParts = todayPrayers[p.id].split(':');
+                    const pTime = new Date(); pTime.setHours(parseInt(timeParts[0]), parseInt(timeParts[1]), 0, 0);
+                    const diffMins = (now - pTime) / 60000;
+                    
+                    if (diffMins >= 0 && diffMins < 1 && notifiedPrayers[p.id] !== dateStr) {
+                        sendAppNotification(`حان الآن موعد أذان ${p.name}`, `الصلاة خير من النوم، حان وقت لقاء الله في ${userLocationName}`, true);
+                        notifiedPrayers[p.id] = dateStr;
+                        localStorage.setItem('notifiedPrayers', JSON.stringify(notifiedPrayers));
+                    }
+                });
+            }
+
+            if (notifySettings.khatma) {
+                const lastOpened = localStorage.getItem('lastKhatmaOpenTime') || now.getTime();
+                const hoursPassed = (now.getTime() - parseInt(lastOpened)) / (1000 * 60 * 60);
+                if (hoursPassed >= 12) {
+                    const lastNotified = localStorage.getItem('lastKhatmaNotifyTime');
+                    const notifyHoursPassed = lastNotified ? (now.getTime() - parseInt(lastNotified)) / (1000 * 60 * 60) : 12;
+                    if(notifyHoursPassed >= 12) {
+                        sendAppNotification("تذكير بوردك اليومي 📖", "لا تهجر القرآن، وردك بانتظارك لتكمل ختمتك.");
+                        localStorage.setItem('lastKhatmaNotifyTime', now.getTime());
+                    }
+                }
+            }
+
+            // إرسال الأذكار الحقيقية بدلاً من الوهمية
+            if (notifySettings.dhikrInterval > 0) {
+                const lastDhikr = localStorage.getItem('lastDhikrNotifyTime') || now.getTime();
+                const minsPassed = (now.getTime() - parseInt(lastDhikr)) / 60000;
+                if (minsPassed >= notifySettings.dhikrInterval) {
+                    sendDynamicDhikrNotification(); // استدعاء المحرك الذكي
+                    localStorage.setItem('lastDhikrNotifyTime', now.getTime());
+                }
+            }
+        }
+        // ================= نهاية نظام الإشعارات =================
     </script>
 </body>
 </html>
