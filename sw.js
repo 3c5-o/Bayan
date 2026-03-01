@@ -1,24 +1,24 @@
-const CACHE_NAME = 'bayan-cache-v2.0.0';
+const CACHE_NAME = 'bayan-cache-v2.0.1';
 
-// الملفات الأساسية اللي لازم تنحفظ بالجهاز حتى يشتغل أوفلاين
+// الملفات الأساسية اللي لازم تنحفظ بالجهاز فوراً
 const ASSETS_TO_CACHE = [
     './',
     './index.html',
     './manifest.json'
 ];
 
-// 1. حدث التثبيت (Install): حفظ الملفات الأساسية
+// 1. حدث التثبيت (Install)
 self.addEventListener('install', (event) => {
-    self.skipWaiting(); // تفعيل التحديث فوراً بدون انتظار
+    self.skipWaiting(); // تفعيل التحديث فوراً
     event.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
-            console.log('تم فتح الكاش وتخزين الملفات');
+            console.log('تم فتح الكاش وتخزين الملفات للإصدار 2.0.1');
             return cache.addAll(ASSETS_TO_CACHE);
         })
     );
 });
 
-// 2. حدث التفعيل (Activate): مسح الكاش القديم (مهم جداً حتى يظهر التحديث الجديد)
+// 2. حدث التفعيل (Activate): مسح الكاش القديم
 self.addEventListener('activate', (event) => {
     event.waitUntil(
         caches.keys().then((cacheNames) => {
@@ -32,20 +32,20 @@ self.addEventListener('activate', (event) => {
             );
         })
     );
-    self.clients.claim(); // السيطرة على كل الصفحات المفتوحة فوراً
+    self.clients.claim(); // السيطرة على المتصفح فوراً
 });
 
-// 3. حدث جلب البيانات (Fetch): استراتيجية (Stale-While-Revalidate) الذكية
+// 3. حدث جلب البيانات (Fetch): التخزين الذكي للصور والصوتيات
 self.addEventListener('fetch', (event) => {
-    // نتجاهل طلبات غير الـ GET (مثل POST)
+    // نتجاهل طلبات غير الـ GET
     if (event.request.method !== 'GET') return;
 
     event.respondWith(
         caches.match(event.request).then((cachedResponse) => {
             // جلب البيانات من الإنترنت لتحديث الكاش بالخلفية
             const fetchPromise = fetch(event.request).then((networkResponse) => {
-                // نخزن بس الملفات المحلية الصحيحة (نتجاهل الـ APIs الخارجية حتى ما يمتلئ الجهاز)
-                if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
+                // نخزن الملفات المحلية (basic) والملفات الخارجية مثل صورتك وصوتيات القرآن (opaque/cors)
+                if (networkResponse && (networkResponse.status === 200 || networkResponse.type === 'opaque')) {
                     const responseToCache = networkResponse.clone();
                     caches.open(CACHE_NAME).then((cache) => {
                         cache.put(event.request, responseToCache);
@@ -53,11 +53,11 @@ self.addEventListener('fetch', (event) => {
                 }
                 return networkResponse;
             }).catch(() => {
-                // إذا ماكو إنترنت، ما نسوي شي لأن راح نرجع النسخة المخبأة (cachedResponse)
+                // وضع عدم الاتصال (Offline)
                 console.log('أنت الآن في وضع عدم الاتصال (Offline Mode)');
             });
 
-            // نرجع النسخة المخبأة فوراً (للسرعة)، وإذا ماكو ننتظر الـ fetch
+            // نرجع النسخة المخبأة فوراً للسرعة، وإذا ماكو ننتظر الـ fetch
             return cachedResponse || fetchPromise;
         })
     );
