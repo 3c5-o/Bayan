@@ -1,31 +1,64 @@
-const CACHE_VERSION = 'bayan-v1.8';
-const STATIC_CACHE = `static-${CACHE_VERSION}`;
-const DYNAMIC_CACHE = `dynamic-${CACHE_VERSION}`;
+const CACHE_NAME = 'bayan-cache-v2.0.0';
 
-const STATIC_FILES = ['./', './index.html', './manifest.json', './icon.png'];
+// الملفات الأساسية اللي لازم تنحفظ بالجهاز حتى يشتغل أوفلاين
+const ASSETS_TO_CACHE = [
+    './',
+    './index.html',
+    './manifest.json'
+];
 
+// 1. حدث التثبيت (Install): حفظ الملفات الأساسية
 self.addEventListener('install', (event) => {
-    self.skipWaiting(); 
-    event.waitUntil(caches.open(STATIC_CACHE).then(cache => cache.addAll(STATIC_FILES)));
+    self.skipWaiting(); // تفعيل التحديث فوراً بدون انتظار
+    event.waitUntil(
+        caches.open(CACHE_NAME).then((cache) => {
+            console.log('تم فتح الكاش وتخزين الملفات');
+            return cache.addAll(ASSETS_TO_CACHE);
+        })
+    );
 });
 
+// 2. حدث التفعيل (Activate): مسح الكاش القديم (مهم جداً حتى يظهر التحديث الجديد)
 self.addEventListener('activate', (event) => {
-    event.waitUntil(caches.keys().then(keys => Promise.all(keys.map(key => { if (key !== STATIC_CACHE && key !== DYNAMIC_CACHE) return caches.delete(key); }))));
-    return self.clients.claim();
+    event.waitUntil(
+        caches.keys().then((cacheNames) => {
+            return Promise.all(
+                cacheNames.map((cache) => {
+                    if (cache !== CACHE_NAME) {
+                        console.log('تم مسح الكاش القديم:', cache);
+                        return caches.delete(cache);
+                    }
+                })
+            );
+        })
+    );
+    self.clients.claim(); // السيطرة على كل الصفحات المفتوحة فوراً
 });
 
+// 3. حدث جلب البيانات (Fetch): استراتيجية (Stale-While-Revalidate) الذكية
 self.addEventListener('fetch', (event) => {
-    const url = event.request.url;
-    if (url.includes('.mp3') || url.includes('mp3quran.net') || url.includes('actions.google.com/sounds')) {
-        event.respondWith(fetch(event.request)); return;
-    }
-    event.respondWith(caches.match(event.request).then(cachedRes => {
-        if (cachedRes) return cachedRes; 
-        return fetch(event.request).then(netRes => {
-            if (!netRes || netRes.status !== 200 || (netRes.type !== 'basic' && netRes.type !== 'cors')) return netRes;
-            const resClone = netRes.clone();
-            caches.open(DYNAMIC_CACHE).then(cache => cache.put(event.request, resClone));
-            return netRes;
-        }).catch(() => { if (event.request.mode === 'navigate') return caches.match('./index.html'); });
-    }));
+    // نتجاهل طلبات غير الـ GET (مثل POST)
+    if (event.request.method !== 'GET') return;
+
+    event.respondWith(
+        caches.match(event.request).then((cachedResponse) => {
+            // جلب البيانات من الإنترنت لتحديث الكاش بالخلفية
+            const fetchPromise = fetch(event.request).then((networkResponse) => {
+                // نخزن بس الملفات المحلية الصحيحة (نتجاهل الـ APIs الخارجية حتى ما يمتلئ الجهاز)
+                if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
+                    const responseToCache = networkResponse.clone();
+                    caches.open(CACHE_NAME).then((cache) => {
+                        cache.put(event.request, responseToCache);
+                    });
+                }
+                return networkResponse;
+            }).catch(() => {
+                // إذا ماكو إنترنت، ما نسوي شي لأن راح نرجع النسخة المخبأة (cachedResponse)
+                console.log('أنت الآن في وضع عدم الاتصال (Offline Mode)');
+            });
+
+            // نرجع النسخة المخبأة فوراً (للسرعة)، وإذا ماكو ننتظر الـ fetch
+            return cachedResponse || fetchPromise;
+        })
+    );
 });
