@@ -41,6 +41,7 @@
         body.dark-mode .khatma-item-card { background-color: #1e1e1e !important; border-color: #2d3748 !important; }
         body.dark-mode .tafseer-premium-modal { background: #1e1e1e !important; border-top-color: #b89247; }
         body.dark-mode .tafseer-verse-box { background: #121212 !important; border-color: #2d3748 !important; }
+        body.dark-mode .nine-books-card { background-color: #1e1e1e !important; border-color: #2d3748 !important; }
         
         .switch-rtl { position: relative; display: inline-block; width: 54px; height: 28px; }
         .switch-rtl input { opacity: 0; width: 0; height: 0; }
@@ -79,8 +80,6 @@
         
         .hadith-card { background-color: #FAF5E6; border-radius: 15px; border: 1px solid rgba(184, 146, 71, 0.3); overflow: hidden; margin-bottom: 20px;}
         .hadith-card-header { background: linear-gradient(135deg, #711c2e 0%, #4a101d 100%); color: white; padding: 12px 20px; font-weight: bold; display: flex; align-items: center; gap: 10px;}
-        
-        /* إضافة ستايل جديد لقسم الشرح والفوائد في الحديث */
         .hadith-explanation-box { background-color: #ffffff; border: 1px dashed rgba(184, 146, 71, 0.4); border-radius: 12px; padding: 15px; margin-top: 20px; box-shadow: inset 0 0 10px rgba(0,0,0,0.02); }
 
         .hub-card-modern { position: relative; border-radius: 28px; padding: 35px 25px; text-align: right; box-shadow: 0 10px 30px rgba(0,0,0,0.08); overflow: hidden; cursor: pointer; transition: transform 0.4s; display: flex; align-items: center; justify-content: space-between; border: 1px solid rgba(255,255,255,0.2); }
@@ -99,27 +98,48 @@
         #custom-toast { transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); z-index: 9999;}
         .toast-show { opacity: 1 !important; transform: translate(-50%, 0) !important; }
         
+        /* تنسيقات السبحة الفخمة والمصلحة */
         .sibha-tap-area { position: relative; width: 260px; height: 260px; display: flex; justify-content: center; align-items: center; user-select: none; touch-action: manipulation; -webkit-tap-highlight-color: transparent; margin: 0 auto;}
         .sibha-btn { position: relative; z-index: 10; width: 210px; height: 210px; background: linear-gradient(135deg, #711c2e 0%, #4a101d 100%); border-radius: 50%; display: flex; flex-direction: column; justify-content: center; align-items: center; box-shadow: inset 0 8px 20px rgba(255,255,255,0.1), inset 0 -8px 20px rgba(0,0,0,0.4), 0 15px 35px rgba(113, 28, 46, 0.4); border: 4px solid rgba(184, 146, 71, 0.8); cursor: pointer; transition: transform 0.1s; }
         .sibha-btn:active { transform: scale(0.95); }
         .sibha-svg-ring { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; transform: rotate(-90deg); pointer-events: none; }
         .sibha-circle-bg { fill: none; stroke: rgba(184, 146, 71, 0.15); stroke-width: 10; }
         .sibha-circle-progress { fill: none; stroke: #b89247; stroke-width: 10; stroke-linecap: round; stroke-dasharray: 754; stroke-dashoffset: 754; transition: stroke-dashoffset 0.3s ease-out; }
+        
+        /* أزرار السبحة (تم الإصلاح والتفخيم) */
+        .sibha-controls { display: flex; justify-content: center; align-items: center; gap: 25px; margin-top: 35px; padding: 0 20px; }
+        .sibha-control-btn { width: 60px; height: 60px; border-radius: 50%; background: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; box-shadow: 0 8px 20px rgba(0,0,0,0.06); border: 1px solid #f0f0f0; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; position: relative; overflow: hidden; }
+        .sibha-control-btn::after { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: currentColor; opacity: 0; transition: opacity 0.3s; border-radius: 50%; }
+        .sibha-control-btn:hover::after { opacity: 0.1; }
+        .sibha-control-btn:active { transform: scale(0.9); }
+        
         .dhikr-select-sheet { position: fixed; inset-x: 0; bottom: 0; background: #ffffff; border-radius: 30px 30px 0 0; box-shadow: 0 -10px 40px rgba(0,0,0,0.1); z-index: 55; transform: translateY(100%); transition: transform 0.3s ease-in-out; padding: 25px 20px; max-height: 70vh; overflow-y: auto; }
         .dhikr-select-item { padding: 15px; border-bottom: 1px solid #f0f0f0; font-family: 'Amiri', serif; font-size: 1.3rem; text-align: center; cursor: pointer; transition: background 0.2s; color: #4a5568; }
         
-        .cal-tab-active { background-color: #711c2e !important; color: white !important; box-shadow: 0 4px 10px rgba(113, 28, 46, 0.2); }
+        /* تنسيق التقويم (تم الإرجاع للفخامة) */
+        .cal-tab-active { background-color: #711c2e !important; color: white !important; box-shadow: 0 4px 10px rgba(113, 28, 46, 0.2); border-color: transparent !important; }
+        .calendar-card { background: #ffffff; border-radius: 24px; padding: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.03); border: 1px solid #f0f0f0; margin-bottom: 24px; }
+        .calendar-day-box { aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 16px; transition: all 0.3s; cursor: pointer; position: relative; }
+        
         .prayer-card { background: #ffffff; border-radius: 20px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #f0f0f0; box-shadow: 0 4px 15px rgba(0,0,0,0.02); transition: all 0.3s; margin-bottom: 12px;}
         .prayer-card.past { opacity: 0.6; background: #f9f9f9; }
         .prayer-card.next { border: 2px solid #b89247; transform: scale(1.02); box-shadow: 0 10px 25px rgba(184, 146, 71, 0.15); background: linear-gradient(to left, #ffffff, #FAF5E6); }
         .pulse-dot { width: 8px; height: 8px; background-color: #b89247; border-radius: 50%; box-shadow: 0 0 0 0 rgba(184, 146, 71, 0.7); animation: pulse 1.5s infinite; }
         @keyframes pulse { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(184, 146, 71, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(184, 146, 71, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(184, 146, 71, 0); } }
+        
         .qibla-compass-base { background-color: #ffffff; border-radius: 50%; box-shadow: inset 0 10px 30px rgba(0,0,0,0.03), 0 15px 35px rgba(113, 28, 46, 0.1); border: 8px solid #FAF5E6; display: flex; align-items: center; justify-content: center; }
         .qibla-pointer-active { filter: drop-shadow(0 0 20px #10b981) drop-shadow(0 0 10px #10b981) !important; transform: scale(1.05); }
         
         .khatma-progress-bar-container { width: 100%; background-color: rgba(113, 28, 46, 0.1); height: 12px; border-radius: 10px; overflow: hidden; margin-top: 15px;}
         .khatma-progress-bar-fill { height: 100%; background: linear-gradient(90deg, #b89247, #fde047); border-radius: 10px; transition: width 0.5s ease-out; width: 0%; }
         .khatma-item-card { background: #ffffff; border: 1px solid #f0f0f0; border-radius: 16px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); display: flex; justify-content: space-between; align-items: center;}
+
+        /* تنسيقات الكتب التسعة الجديدة */
+        .nine-books-card { background-color: #ffffff; border-radius: 20px; padding: 20px 15px; border: 1px solid #f0f0f0; box-shadow: 0 5px 15px rgba(0,0,0,0.03); display: flex; flex-direction: column; align-items: center; text-align: center; cursor: pointer; transition: all 0.3s; position: relative; overflow: hidden; }
+        .nine-books-card:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(184, 146, 71, 0.15); border-color: rgba(184, 146, 71, 0.4); }
+        .nine-books-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #711c2e, #b89247); opacity: 0; transition: opacity 0.3s; }
+        .nine-books-card:hover::before { opacity: 1; }
+        .book-icon-wrapper { width: 50px; height: 50px; background: rgba(184, 146, 71, 0.1); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: #b89247; font-size: 1.5rem; margin-bottom: 12px; border: 1px solid rgba(184, 146, 71, 0.2); }
     </style>
 </head>
 <body class="text-gray-800 pb-28 relative">
@@ -164,11 +184,11 @@
             <div class="w-10"><div id="settings-btn" class="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center cursor-pointer backdrop-blur-sm transition"><i class="fa-solid fa-gear text-lg"></i></div></div>
         </div>
         <div id="header-extra-home" class="transition-all mt-4">
-            <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl py-2 px-4 mb-3 text-center mx-auto w-max">
+            <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl py-2 px-4 mb-3 text-center mx-auto w-max shadow-sm">
                 <p id="hijri-date" class="text-sm font-semibold"><i class="fa-regular fa-calendar mr-2"></i> جاري التحميل...</p>
                 <p id="gregorian-date" class="text-xs font-light mt-1 opacity-80"></p>
             </div>
-            <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-full py-2 px-4 text-center mx-auto mt-2 flex items-center justify-center gap-3">
+            <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-full py-2 px-4 text-center mx-auto mt-2 flex items-center justify-center gap-3 shadow-sm">
                 <i class="fa-solid fa-star-and-crescent text-xs text-yellow-200"></i>
                 <span class="font-amiri text-lg">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</span>
                 <i class="fa-solid fa-star-and-crescent text-xs text-yellow-200"></i>
@@ -188,6 +208,10 @@
         </div>
         <div id="header-extra-adhkar" class="hidden relative mt-4">
             <input type="text" id="search-adhkar-input" placeholder="ابحث في الأقسام..." class="w-full bg-white/10 border border-white/20 text-white placeholder-white/70 rounded-xl py-2.5 px-4 pr-10 outline-none focus:bg-white/20 transition text-sm">
+            <i class="fa-solid fa-magnifying-glass absolute top-1/2 right-4 -translate-y-1/2 text-white/70 text-sm"></i>
+        </div>
+        <div id="header-extra-nine-books" class="hidden relative mt-4">
+            <input type="text" id="search-nine-books-input" placeholder="ابحث عن كتاب أو راوي..." class="w-full bg-white/10 border border-white/20 text-white placeholder-white/70 rounded-xl py-2.5 px-4 pr-10 outline-none focus:bg-white/20 transition text-sm">
             <i class="fa-solid fa-magnifying-glass absolute top-1/2 right-4 -translate-y-1/2 text-white/70 text-sm"></i>
         </div>
     </header>
@@ -210,7 +234,7 @@
                 <div class="flex justify-between items-center"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center text-green-600 text-lg"><i class="fa-solid fa-leaf"></i></div><div><span class="font-bold text-gray-800 text-base font-cairo block mb-0.5">رسائل الطمأنينة</span></div></div><select id="notify-dhikr-interval" onchange="updateNotifySettings()" class="bg-gray-100 border-none text-xs font-bold text-primary rounded-lg px-2 py-2 outline-none font-cairo"><option value="0">إيقاف</option><option value="60">كل ساعة</option><option value="120">كل ساعتين</option><option value="180">كل 3 ساعات</option><option value="360">كل 6 ساعات</option></select></div>
             </div>
             <h3 class="font-bold text-gray-500 text-sm font-cairo mb-3 mt-6 px-2">حول التطبيق</h3>
-            <div class="bg-cardbg rounded-3xl p-5 shadow-sm border border-gray-100"><div class="space-y-4 mb-6"><div class="flex justify-between items-center border-b border-gray-100 pb-3"><span class="text-xs text-gray-500 font-bold">المطور</span><span class="text-sm font-bold text-primary">حمد النزار</span></div><div class="flex justify-between items-center"><span class="text-xs text-gray-500 font-bold">إصدار التطبيق</span><span class="text-sm font-bold text-gray-800">2.1.0 المستقر</span></div></div><a href="https://t.me/c_93n" target="_blank" class="w-full bg-gradient-to-r from-primary to-[#4a101d] text-white py-3.5 rounded-xl font-bold text-sm hover:shadow-lg transition-all flex justify-center items-center gap-2 block text-center shadow-md"><i class="fa-brands fa-telegram text-lg"></i> الدعم الفني والمساعدة</a></div>
+            <div class="bg-cardbg rounded-3xl p-5 shadow-sm border border-gray-100"><div class="space-y-4 mb-6"><div class="flex justify-between items-center border-b border-gray-100 pb-3"><span class="text-xs text-gray-500 font-bold">المطور</span><span class="text-sm font-bold text-primary">حمد النزار</span></div><div class="flex justify-between items-center"><span class="text-xs text-gray-500 font-bold">إصدار التطبيق</span><span class="text-sm font-bold text-gray-800">3.0.0 (الكتب التسعة)</span></div></div><a href="https://t.me/c_93n" target="_blank" class="w-full bg-gradient-to-r from-primary to-[#4a101d] text-white py-3.5 rounded-xl font-bold text-sm hover:shadow-lg transition-all flex justify-center items-center gap-2 block text-center shadow-md"><i class="fa-brands fa-telegram text-lg"></i> الدعم الفني والمساعدة</a></div>
         </main>
 
         <main id="home-screen" class="grid grid-cols-2 gap-4 hidden">
@@ -230,13 +254,29 @@
             <div onclick="showScreen('quran-list-screen')" class="bg-cardbg rounded-3xl p-5 shadow-sm border border-gray-100 flex flex-col items-center justify-center cursor-pointer hover:-translate-y-1 hover:shadow-md transition-all group"><div class="premium-icon"><i class="fa-solid fa-book-quran group-hover:scale-110 transition-transform"></i></div><span class="font-bold text-gray-800 text-sm">القرآن الكريم</span></div>
             <div onclick="openAudioSection()" class="bg-cardbg rounded-3xl p-5 shadow-sm border border-gray-100 flex flex-col items-center justify-center cursor-pointer hover:-translate-y-1 hover:shadow-md transition-all group"><div class="premium-icon"><i class="fa-solid fa-headphones-simple group-hover:scale-110 transition-transform"></i></div><span class="font-bold text-gray-800 text-sm">صوتيات</span></div>
 
-            <div onclick="openHadithSection()" class="bg-cardbg rounded-3xl p-5 shadow-sm border border-gray-100 flex flex-col items-center justify-center cursor-pointer hover:-translate-y-1 hover:shadow-md transition-all group"><div class="premium-icon"><i class="fa-solid fa-book-open group-hover:scale-110 transition-transform"></i></div><span class="font-bold text-gray-800 text-sm">مكتبة الحديث</span></div>
+            <div onclick="openNineBooksSection()" class="col-span-2 bg-gradient-to-r from-[#2a0810] to-[#5a1625] rounded-3xl p-6 shadow-[0_10px_30px_rgba(113,28,46,0.2)] border border-gold/30 flex items-center justify-between cursor-pointer hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(113,28,46,0.3)] transition-all group relative overflow-hidden">
+                <div class="absolute left-0 top-0 w-40 h-40 bg-gold/10 rounded-full filter blur-[40px]"></div>
+                <div class="flex items-center gap-4 relative z-10">
+                    <div class="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 shadow-inner group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-book-bookmark text-3xl text-gold drop-shadow-md"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold font-amiri text-2xl text-white mb-1">الكتب التسعة</h3>
+                        <p class="text-xs font-cairo text-white/70">الموسوعة الشاملة للحديث النبوي</p>
+                    </div>
+                </div>
+                <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gold relative z-10">
+                    <i class="fa-solid fa-chevron-left text-sm"></i>
+                </div>
+            </div>
+
+            <div onclick="openHadithSection()" class="bg-cardbg rounded-3xl p-5 shadow-sm border border-gray-100 flex flex-col items-center justify-center cursor-pointer hover:-translate-y-1 hover:shadow-md transition-all group"><div class="premium-icon"><i class="fa-solid fa-book-open group-hover:scale-110 transition-transform"></i></div><span class="font-bold text-gray-800 text-sm text-center">أحاديث وفوائد</span></div>
             <div onclick="openAdhkarMainHub()" class="bg-cardbg rounded-3xl p-5 shadow-sm border border-gray-100 flex flex-col items-center justify-center cursor-pointer hover:-translate-y-1 hover:shadow-md transition-all group"><div class="premium-icon"><i class="fa-solid fa-hands-praying group-hover:scale-110 transition-transform"></i></div><span class="font-bold text-gray-800 text-sm">الأذكار والأدعية</span></div>
 
             <div onclick="openPrayerTimesSection()" class="bg-cardbg rounded-3xl p-5 shadow-sm border border-gray-100 flex flex-col items-center justify-center cursor-pointer hover:-translate-y-1 hover:shadow-md transition-all group relative overflow-hidden"><div class="absolute -right-2 -top-2 opacity-5 text-7xl text-primary"><i class="fa-solid fa-mosque"></i></div><div class="premium-icon w-14 h-14"><i class="fa-regular fa-clock group-hover:scale-110 transition-transform"></i></div><span class="font-bold text-gray-800 text-sm">المواقيت</span></div>
             <div onclick="openQiblaSection()" class="bg-cardbg rounded-3xl p-5 shadow-sm border border-gray-100 flex flex-col items-center justify-center cursor-pointer hover:-translate-y-1 hover:shadow-md transition-all group relative overflow-hidden"><div class="absolute -left-2 -bottom-2 opacity-5 text-7xl text-primary"><i class="fa-solid fa-kaaba"></i></div><div class="premium-icon w-14 h-14"><i class="fa-solid fa-compass group-hover:scale-110 transition-transform"></i></div><span class="font-bold text-gray-800 text-sm text-center">اتجاه القبلة</span></div>
 
-            <div onclick="openKhatmaSection()" class="bg-cardbg rounded-3xl p-5 shadow-sm border border-gray-100 flex flex-col items-center justify-center cursor-pointer hover:-translate-y-1 hover:shadow-md transition-all group"><div class="premium-icon"><i class="fa-solid fa-book-bookmark group-hover:scale-110 transition-transform"></i></div><span class="font-bold text-gray-800 text-sm text-center">متابعة الختمة</span></div>
+            <div onclick="openKhatmaSection()" class="bg-cardbg rounded-3xl p-5 shadow-sm border border-gray-100 flex flex-col items-center justify-center cursor-pointer hover:-translate-y-1 hover:shadow-md transition-all group"><div class="premium-icon"><i class="fa-solid fa-book-medical group-hover:scale-110 transition-transform"></i></div><span class="font-bold text-gray-800 text-sm text-center">متابعة الختمة</span></div>
             <div onclick="openSibhaSection()" class="bg-cardbg rounded-3xl p-5 shadow-sm border border-gray-100 flex flex-col items-center justify-center cursor-pointer hover:-translate-y-1 hover:shadow-md transition-all group"><div class="premium-icon"><i class="fa-solid fa-fingerprint group-hover:scale-110 transition-transform"></i></div><span class="font-bold text-gray-800 text-sm text-center">السبحة الإلكترونية</span></div>
 
             <div onclick="openCalendarSection()" class="col-span-2 bg-cardbg rounded-3xl p-5 shadow-sm border border-gray-100 flex items-center justify-center gap-4 cursor-pointer hover:-translate-y-1 hover:shadow-md transition-all group relative overflow-hidden"><div class="absolute -left-2 -bottom-2 opacity-5 text-7xl text-primary"><i class="fa-solid fa-calendar-days"></i></div><div class="premium-icon w-14 h-14 !mb-0"><i class="fa-regular fa-calendar group-hover:scale-110 transition-transform"></i></div><span class="font-bold text-gray-800 text-sm">التقويم الهجري والميلادي</span></div>
@@ -279,6 +319,40 @@
         <main id="audio-reciters-screen" class="hidden w-full mt-4"><div class="flex bg-gray-200/50 rounded-2xl p-1 mb-4 border border-gray-100"><button id="tab-all-reciters" onclick="switchRecitersTab('all')" class="flex-1 py-2.5 rounded-xl font-bold text-sm transition-all bg-primary text-white shadow-md">جميع القراء</button><button id="tab-fav-reciters" onclick="switchRecitersTab('fav')" class="flex-1 py-2.5 rounded-xl font-bold text-sm transition-all text-gray-500 hover:text-gray-800">قائمتي المفضلة</button></div><div id="reciters-loading" class="text-center py-10"><i class="fa-solid fa-spinner fa-spin text-4xl text-primary mb-3"></i></div><div id="reciters-list" class="grid grid-cols-1 gap-3 hidden"></div></main>
         <main id="audio-surahs-screen" class="hidden w-full mt-4"><div class="relative bg-gradient-to-l from-primary to-[#4a101d] rounded-[2rem] p-5 mb-6 shadow-lg flex items-center gap-4 overflow-hidden border border-white/10"><i class="fa-solid fa-microphone-lines absolute -left-4 -bottom-4 text-white opacity-5 text-7xl transform -rotate-12"></i><div class="w-16 h-16 rounded-full bg-white/10 border-2 border-gold/40 flex items-center justify-center text-gold text-2xl shadow-xl flex-shrink-0 z-10"><i class="fa-solid fa-user-tie"></i></div><div class="z-10 flex-1"><h3 id="selected-reciter-name" class="font-bold text-white text-xl mb-1.5 drop-shadow-md">اسم القارئ</h3><p id="selected-reciter-rewaya" class="text-xs text-gold font-bold bg-black/20 px-3 py-1 rounded-full inline-flex items-center gap-1 shadow-inner"></p></div></div><ul id="audio-surah-list" class="bg-cardbg rounded-2xl shadow-sm border border-gray-100 overflow-hidden"></ul></main>
         
+        <main id="nine-books-main-screen" class="hidden w-full mt-4">
+            <div class="bg-cardbg rounded-3xl p-6 shadow-sm border border-gold/40 mb-6 text-center relative overflow-hidden">
+                <i class="fa-solid fa-book-open absolute top-4 right-4 text-3xl text-gold/20"></i>
+                <h2 class="font-amiri font-bold text-2xl text-primary mb-2">الكتب التسعة</h2>
+                <p class="font-cairo text-sm text-gray-500 font-semibold leading-relaxed">أمهات كتب الحديث النبوي الشريف التي تمثل المرجعية الأساسية في السُّنَّة المطهّرة.</p>
+            </div>
+            <div id="nine-books-loading" class="text-center py-10 hidden"><i class="fa-solid fa-spinner fa-spin text-4xl text-primary mb-3"></i></div>
+            <div id="nine-books-grid" class="grid grid-cols-2 gap-4 pb-8">
+                </div>
+        </main>
+
+        <main id="nine-books-chapters-screen" class="hidden w-full mt-4">
+            <div class="bg-primary/10 border border-primary/20 rounded-2xl p-4 mb-4 flex items-center gap-3">
+                <div class="w-12 h-12 rounded-full bg-primary text-gold flex items-center justify-center text-xl shadow-md"><i class="fa-solid fa-book-journal-whills"></i></div>
+                <div><h3 id="selected-book-name" class="font-bold text-primary text-lg font-amiri tracking-wide">اسم الكتاب</h3><p class="text-[11px] text-gray-600 font-semibold font-cairo">اختر باباً للقراءة</p></div>
+            </div>
+            <div id="chapters-loading" class="text-center py-10 hidden"><i class="fa-solid fa-spinner fa-spin text-3xl text-primary mb-3"></i></div>
+            <ul id="chapters-list" class="bg-cardbg rounded-2xl shadow-sm border border-gray-100 overflow-hidden pb-4"></ul>
+        </main>
+
+        <main id="nine-books-hadiths-screen" class="hidden w-full mt-4">
+            <div class="bg-gradient-to-l from-primary to-[#4a101d] rounded-2xl p-4 mb-4 text-white shadow-md border border-gold/30">
+                <p class="text-xs text-gold font-cairo mb-1"><i class="fa-solid fa-folder-open ml-1"></i> الباب الحالي:</p>
+                <h3 id="selected-chapter-name" class="font-bold text-lg font-amiri">اسم الباب</h3>
+            </div>
+            <div id="hadiths-list-loading" class="text-center py-10 hidden"><i class="fa-solid fa-spinner fa-spin text-3xl text-primary mb-3"></i></div>
+            <div id="hadiths-container" class="pb-10 space-y-4"></div>
+            <div class="flex justify-center mt-4 mb-10 gap-4" id="pagination-controls">
+                <button id="btn-prev-page" onclick="changeHadithPage(-1)" class="px-5 py-2.5 bg-primary/10 text-primary font-bold rounded-xl hover:bg-primary hover:text-white transition shadow-sm hidden"><i class="fa-solid fa-arrow-right ml-1"></i> السابق</button>
+                <span id="page-indicator-text" class="px-4 py-2.5 bg-gray-100 text-gray-700 font-bold rounded-xl border border-gray-200 text-sm hidden"></span>
+                <button id="btn-next-page" onclick="changeHadithPage(1)" class="px-5 py-2.5 bg-primary/10 text-primary font-bold rounded-xl hover:bg-primary hover:text-white transition shadow-sm hidden">التالي <i class="fa-solid fa-arrow-left mr-1"></i></button>
+            </div>
+        </main>
+
         <main id="hadith-categories-screen" class="hidden w-full mt-4"><div id="hadith-cat-loading" class="text-center py-10"><i class="fa-solid fa-spinner fa-spin text-4xl text-primary mb-3"></i></div><div id="hadith-cat-list" class="grid grid-cols-2 gap-3 hidden"></div></main>
         <main id="hadith-list-screen" class="hidden w-full mt-4"><div class="bg-primary/10 border border-primary/20 rounded-2xl p-4 mb-4 flex items-center gap-3"><div class="w-12 h-12 rounded-full bg-primary text-gold flex items-center justify-center text-xl shadow-md"><i class="fa-solid fa-book-open-reader"></i></div><div><h3 id="selected-hadith-category" class="font-bold text-primary text-lg">اسم القسم</h3><p class="text-xs text-gray-600 font-semibold">اختر حديثاً للقراءة</p></div></div><div id="hadith-items-loading" class="text-center py-10 hidden"><i class="fa-solid fa-spinner fa-spin text-3xl text-primary mb-3"></i></div><ul id="hadith-items-list" class="bg-cardbg rounded-2xl shadow-sm border border-gray-100 overflow-hidden"></ul></main>
         <main id="hadith-read-screen" class="hidden w-full mt-4">
@@ -291,13 +365,11 @@
                         <div class="border-t border-gray-200 pt-3 mt-3 text-center"><span id="hadith-attribution" class="text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded-full inline-block"></span></div>
                     </div>
                 </div>
-                
                 <div id="hadith-explanation-section" class="hadith-explanation-box hidden mb-6">
                     <h4 class="font-bold text-primary text-sm mb-2 flex items-center gap-2 font-cairo"><i class="fa-solid fa-lightbulb text-gold"></i> الشرح والفوائد:</h4>
                     <p id="hadith-explanation-text" class="text-sm text-gray-700 leading-relaxed font-cairo mb-3"></p>
                     <ul id="hadith-hints-list" class="list-disc list-inside text-xs text-gray-600 space-y-2 font-semibold"></ul>
                 </div>
-
                 <div class="flex gap-3 mb-10"><button onclick="copyHadithFull()" class="flex-1 bg-white text-primary border-2 border-primary/20 py-3.5 rounded-2xl font-bold text-md hover:bg-primary/5 transition-all shadow-sm flex justify-center items-center gap-2"><i class="fa-regular fa-copy"></i> نسخ الحديث</button><button onclick="shareHadithFull()" class="flex-1 bg-gradient-to-l from-gold to-[#9a7a3b] text-white py-3.5 rounded-2xl font-bold text-md hover:shadow-lg transition-all shadow-md flex justify-center items-center gap-2"><i class="fa-solid fa-share-nodes"></i> مشاركة</button></div>
             </div>
         </main>
@@ -306,9 +378,36 @@
         <main id="adhkar-categories-screen" class="hidden w-full mt-4"><div class="mb-4 text-gray-500 text-sm font-semibold flex items-center gap-2"><i class="fa-solid fa-bars-staggered"></i> اختر قسماً للبدء:</div><div id="adhkar-cat-list" class="grid grid-cols-2 gap-4"></div></main>
         <main id="adhkar-list-screen" class="hidden w-full mt-4"><div class="bg-gradient-to-l from-primary to-[#4a101d] rounded-[24px] p-5 mb-8 shadow-xl border border-white/10 text-white relative overflow-hidden"><div class="absolute -right-4 -top-4 text-6xl opacity-5"><i id="adhkar-bg-icon" class="fa-solid fa-hands-praying"></i></div><div class="flex items-center gap-4 relative z-10"><div class="w-14 h-14 rounded-2xl bg-white/10 text-gold flex items-center justify-center text-2xl border border-white/20 backdrop-blur-md shadow-inner"><i id="adhkar-header-icon" class="fa-solid fa-hands-praying"></i></div><div class="flex-1"><h3 id="selected-adhkar-category" class="font-bold text-xl font-amiri tracking-wide mb-1">القسم</h3><p class="text-[11px] text-white/70 font-cairo">اضغط على نص البطاقة للسبحة</p></div><div class="text-center bg-black/20 rounded-xl px-3 py-2 border border-white/10"><span id="adhkar-progress-text" class="block text-xl font-bold font-sans text-gold">0%</span></div></div><div class="progress-bar-container relative z-10"><div id="adhkar-progress-bar-fill" class="progress-bar-fill"></div></div></div><div id="adhkar-items-list" class="pb-10"></div></main>
         
-        <main id="sibha-screen" class="hidden w-full mt-4"><div class="sibha-container"><div class="sibha-header-card"><h2 id="sibha-current-text" class="font-amiri text-3xl font-bold text-primary mb-3 leading-relaxed">سُبْحَانَ اللَّهِ</h2><div class="flex justify-between items-center px-4 border-t border-gray-100 pt-3 mt-2"><div class="text-center"><span class="block text-xs text-gray-400 font-bold mb-1">عدد الدورات</span><span id="sibha-cycles-display" class="font-sans text-xl font-bold text-gold bg-gold/10 px-3 py-0.5 rounded-lg border border-gold/30">0</span></div><div class="text-center"><span class="block text-xs text-gray-400 font-bold mb-1">المجموع الكلي</span><span id="sibha-total-display" class="font-sans text-xl font-bold text-primary bg-primary/5 px-3 py-0.5 rounded-lg border border-primary/20">0</span></div></div></div><div class="sibha-tap-area" onclick="incrementSibha()"><svg class="sibha-svg-ring" viewBox="0 0 260 260"><circle class="sibha-circle-bg" cx="130" cy="130" r="120"></circle><circle id="sibha-progress-circle" class="sibha-circle-progress" cx="130" cy="130" r="120"></circle></svg><div id="sibha-main-btn" class="sibha-btn"><span id="sibha-count-display" class="text-white text-7xl font-bold font-sans tracking-wider drop-shadow-lg mb-2">0</span><span class="text-gold/90 text-xs font-cairo font-bold tracking-widest uppercase"><i class="fa-solid fa-fingerprint mr-1"></i> اضغط للتسبيح</span></div></div><div class="sibha-controls"><button onclick="confirmResetSibha()" class="sibha-control-btn text-red-500 hover:text-red-700 hover:bg-red-50" title="تصفير العداد"><i class="fa-solid fa-rotate-left"></i></button><button onclick="openDhikrSelector()" class="sibha-control-btn text-primary hover:text-[#4a101d]" title="تغيير الذكر"><i class="fa-solid fa-list-ul"></i></button><button onclick="toggleSibhaSound()" id="sibha-sound-btn" class="sibha-control-btn text-gray-500 hover:text-gray-800" title="كتم/تفعيل الاهتزاز"><i class="fa-solid fa-mobile-screen"></i></button></div></div></main>
+        <main id="sibha-screen" class="hidden w-full mt-4"><div class="sibha-container"><div class="sibha-header-card bg-cardbg rounded-3xl p-5 shadow-sm border border-gray-100 text-center mb-8"><h2 id="sibha-current-text" class="font-amiri text-3xl font-bold text-primary mb-3 leading-relaxed">سُبْحَانَ اللَّهِ</h2><div class="flex justify-between items-center px-4 border-t border-gray-100 pt-3 mt-2"><div class="text-center"><span class="block text-xs text-gray-400 font-bold mb-1">عدد الدورات</span><span id="sibha-cycles-display" class="font-sans text-xl font-bold text-gold bg-gold/10 px-3 py-0.5 rounded-lg border border-gold/30">0</span></div><div class="text-center"><span class="block text-xs text-gray-400 font-bold mb-1">المجموع الكلي</span><span id="sibha-total-display" class="font-sans text-xl font-bold text-primary bg-primary/5 px-3 py-0.5 rounded-lg border border-primary/20">0</span></div></div></div><div class="sibha-tap-area" onclick="incrementSibha()"><svg class="sibha-svg-ring" viewBox="0 0 260 260"><circle class="sibha-circle-bg" cx="130" cy="130" r="120"></circle><circle id="sibha-progress-circle" class="sibha-circle-progress" cx="130" cy="130" r="120"></circle></svg><div id="sibha-main-btn" class="sibha-btn"><span id="sibha-count-display" class="text-white text-7xl font-bold font-sans tracking-wider drop-shadow-lg mb-2">0</span><span class="text-gold/90 text-xs font-cairo font-bold tracking-widest uppercase"><i class="fa-solid fa-fingerprint mr-1"></i> اضغط للتسبيح</span></div></div>
         
-        <main id="calendar-screen" class="hidden w-full mt-4"><div class="bg-cardbg rounded-[24px] p-5 mb-6 shadow-sm border border-gray-100 relative overflow-hidden"><div class="absolute -left-6 -bottom-6 text-gold opacity-10 text-8xl"><i class="fa-solid fa-calendar-days"></i></div><div class="flex flex-col gap-3 relative z-10"><div class="bg-gradient-to-r from-primary to-[#4a101d] rounded-2xl p-4 text-white flex items-center justify-between shadow-lg"><div class="flex items-center gap-3"><div class="w-11 h-11 bg-white/10 rounded-xl flex items-center justify-center text-2xl backdrop-blur-sm border border-white/20"><i class="fa-regular fa-moon text-gold"></i></div><div><p class="text-[11px] text-white/70 font-cairo mb-0.5">تاريخ اليوم الهجري</p><h3 id="cal-today-hijri" class="font-bold font-amiri text-xl tracking-wide">جاري التحميل...</h3></div></div></div><div class="bg-white rounded-2xl p-4 text-gray-800 flex items-center justify-between shadow-sm border border-gray-100"><div class="flex items-center gap-3"><div class="w-11 h-11 bg-gray-50 rounded-xl flex items-center justify-center text-xl border border-gray-200"><i class="fa-regular fa-calendar text-primary"></i></div><div><p class="text-[11px] text-gray-500 font-cairo mb-0.5">تاريخ اليوم الميلادي</p><h3 id="cal-today-gregorian" class="font-bold font-cairo text-sm">جاري التحميل...</h3></div></div></div></div></div><div class="flex bg-gray-200/50 rounded-2xl p-1 mb-6 border border-gray-100"><button id="tab-hijri" onclick="switchCalendarView('hijri')" class="flex-1 py-3 rounded-xl font-bold text-sm transition-all cal-tab-active">التقويم الهجري</button><button id="tab-gregorian" onclick="switchCalendarView('gregorian')" class="flex-1 py-3 rounded-xl font-bold text-sm transition-all text-gray-500 hover:text-gray-800">التقويم الميلادي</button></div><div class="bg-cardbg rounded-[24px] p-5 shadow-sm border border-gray-100"><div class="flex justify-between items-center mb-6 px-1"><button onclick="changeMonth(-1)" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-primary hover:bg-gray-200 transition shadow-inner"><i class="fa-solid fa-chevron-right text-sm"></i></button><h2 id="calendar-month-year" class="font-bold text-xl font-amiri text-primary tracking-wide">...</h2><button onclick="changeMonth(1)" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-primary hover:bg-gray-200 transition shadow-inner"><i class="fa-solid fa-chevron-left text-sm"></i></button></div><div class="grid grid-cols-7 gap-1 text-center mb-3"><div class="text-xs font-bold text-gray-400">ح</div><div class="text-xs font-bold text-gray-400">ن</div><div class="text-xs font-bold text-gray-400">ث</div><div class="text-xs font-bold text-gray-400">ر</div><div class="text-xs font-bold text-gray-400">خ</div><div class="text-xs font-bold text-gray-400">ج</div><div class="text-xs font-bold text-gray-400">س</div></div><div id="calendar-grid" class="grid grid-cols-7 gap-y-3 gap-x-1 text-center min-h-[250px] relative"><div class="absolute inset-0 flex items-center justify-center"><i class="fa-solid fa-spinner fa-spin text-primary text-3xl"></i></div></div></div></main>
+        <div class="sibha-controls">
+            <button onclick="confirmResetSibha()" class="sibha-control-btn text-red-500 hover:text-red-700" title="تصفير العداد"><i class="fa-solid fa-rotate-left"></i></button>
+            <button onclick="openDhikrSelector()" class="sibha-control-btn text-primary hover:text-[#4a101d]" title="تغيير الذكر" style="width: 75px; height: 75px; font-size: 1.6rem; border: 2px solid #b89247; box-shadow: 0 10px 25px rgba(184, 146, 71, 0.2);"><i class="fa-solid fa-list-ul"></i></button>
+            <button onclick="toggleSibhaSound()" id="sibha-sound-btn" class="sibha-control-btn text-gray-500 hover:text-gray-800" title="كتم/تفعيل الاهتزاز"><i class="fa-solid fa-mobile-screen"></i></button>
+        </div>
+        </div></main>
+        
+        <main id="calendar-screen" class="hidden w-full mt-4">
+            <div class="flex flex-col gap-4 mb-6">
+                <div class="calendar-card !bg-gradient-to-r !from-primary !to-[#4a101d] !text-white !border-gold/30 relative overflow-hidden group">
+                    <div class="absolute -left-4 -bottom-4 opacity-10 text-7xl transform -rotate-12 group-hover:scale-110 transition-transform duration-500"><i class="fa-solid fa-moon"></i></div>
+                    <div class="flex items-center gap-4 relative z-10">
+                        <div class="w-14 h-14 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center text-3xl border border-white/20 shadow-inner"><i class="fa-regular fa-moon text-gold"></i></div>
+                        <div><p class="text-[11px] text-white/70 font-cairo mb-1">تاريخ اليوم الهجري</p><h3 id="cal-today-hijri" class="font-bold font-amiri text-2xl tracking-wide drop-shadow-md">جاري التحميل...</h3></div>
+                    </div>
+                </div>
+                <div class="calendar-card relative overflow-hidden group">
+                    <div class="absolute -right-4 -bottom-4 opacity-5 text-7xl text-primary transform rotate-12 group-hover:scale-110 transition-transform duration-500"><i class="fa-regular fa-calendar-days"></i></div>
+                    <div class="flex items-center gap-4 relative z-10">
+                        <div class="w-14 h-14 bg-gray-50 rounded-2xl flex items-center justify-center text-2xl border border-gray-200"><i class="fa-regular fa-calendar text-primary"></i></div>
+                        <div><p class="text-[11px] text-gray-500 font-cairo mb-1">تاريخ اليوم الميلادي</p><h3 id="cal-today-gregorian" class="font-bold font-cairo text-lg text-gray-800">جاري التحميل...</h3></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex bg-gray-200/50 rounded-2xl p-1 mb-6 border border-gray-100"><button id="tab-hijri" onclick="switchCalendarView('hijri')" class="flex-1 py-3 rounded-xl font-bold text-sm transition-all cal-tab-active">التقويم الهجري</button><button id="tab-gregorian" onclick="switchCalendarView('gregorian')" class="flex-1 py-3 rounded-xl font-bold text-sm transition-all text-gray-500 hover:text-gray-800">التقويم الميلادي</button></div>
+            <div class="bg-cardbg rounded-[24px] p-5 shadow-sm border border-gray-100"><div class="flex justify-between items-center mb-6 px-1"><button onclick="changeMonth(-1)" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-primary hover:bg-gray-200 transition shadow-inner"><i class="fa-solid fa-chevron-right text-sm"></i></button><h2 id="calendar-month-year" class="font-bold text-xl font-amiri text-primary tracking-wide">...</h2><button onclick="changeMonth(1)" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-primary hover:bg-gray-200 transition shadow-inner"><i class="fa-solid fa-chevron-left text-sm"></i></button></div><div class="grid grid-cols-7 gap-1 text-center mb-3"><div class="text-xs font-bold text-gray-400">ح</div><div class="text-xs font-bold text-gray-400">ن</div><div class="text-xs font-bold text-gray-400">ث</div><div class="text-xs font-bold text-gray-400">ر</div><div class="text-xs font-bold text-gray-400">خ</div><div class="text-xs font-bold text-gray-400">ج</div><div class="text-xs font-bold text-gray-400">س</div></div><div id="calendar-grid" class="grid grid-cols-7 gap-y-3 gap-x-1 text-center min-h-[250px] relative"><div class="absolute inset-0 flex items-center justify-center"><i class="fa-solid fa-spinner fa-spin text-primary text-3xl"></i></div></div></div>
+        </main>
         
         <main id="prayer-screen" class="hidden w-full mt-4"><div class="relative bg-gradient-to-br from-[#2a0810] to-[#5a1625] rounded-[24px] p-6 mb-6 shadow-[0_15px_40px_rgba(113,28,46,0.3)] border border-gold/20 text-white overflow-hidden text-center min-h-[200px] flex flex-col justify-center"><div class="absolute top-0 right-0 w-32 h-32 bg-gold rounded-full filter blur-[70px] opacity-20"></div><i class="fa-solid fa-mosque absolute -right-6 -bottom-6 text-8xl opacity-10 text-gold"></i><div id="prayer-header-loading" class="relative z-10 py-5"><i class="fa-solid fa-spinner fa-spin text-3xl text-gold mb-3"></i><p class="text-sm font-cairo text-white/80">جاري تحديد موقعك والمواقيت...</p></div><div id="prayer-header-content" class="hidden relative z-10 flex flex-col items-center"><h3 class="font-amiri text-[16px] md:text-[19px] whitespace-nowrap text-gold mb-3 drop-shadow-md">﴿ إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَّوْقُوتًا ﴾</h3><div class="w-16 h-[1px] bg-gradient-to-r from-transparent via-gold/50 to-transparent mb-4"></div><p class="text-sm font-cairo text-white/80 mb-1">الصلاة القادمة</p><h2 id="next-prayer-name" class="text-4xl font-amiri font-bold text-white mb-2 drop-shadow-lg">...</h2><div class="font-sans text-5xl font-bold tracking-widest mb-2 drop-shadow-md text-gold" id="prayer-countdown" dir="ltr">00:00:00</div><p class="text-xs text-white/80 font-cairo mt-3 bg-white/5 backdrop-blur-md inline-block px-4 py-1.5 rounded-full border border-white/10 shadow-inner"><i class="fa-solid fa-location-dot text-gold ml-1"></i> <span id="location-text">...</span></p></div></div><h3 class="font-bold text-gray-800 text-lg mb-3 font-cairo px-1">جدول الصلوات</h3><div id="prayers-list-container" class="flex flex-col gap-0 pb-10"></div></main>
         <main id="qibla-screen" class="hidden w-full mt-4 text-center"><div class="bg-cardbg rounded-[24px] p-6 mb-6 shadow-sm border border-gray-100"><h2 class="font-bold text-xl text-primary font-cairo mb-2">اتجاه القبلة</h2><p class="text-xs text-gray-500 mb-8 font-cairo">ضع هاتفك بشكل مسطح على راحة يدك وقم بتدويره حتى تضيء الكعبة</p><div class="relative w-64 h-64 mx-auto mb-10 qibla-compass-base"><div class="absolute inset-3 border-[2px] border-dashed border-gold/40 rounded-full"></div><div id="kaaba-arrow" class="absolute top-1/2 left-1/2 origin-bottom w-1 h-[100px] bg-transparent transition-transform duration-200 ease-out" style="transform: translate(-50%, -100%)"><div id="kaaba-icon-glow" class="absolute -top-12 left-1/2 transform -translate-x-1/2 text-center transition-all duration-300 filter drop-shadow-[0_5px_10px_rgba(0,0,0,0.3)]"><i class="fa-solid fa-kaaba text-[50px] text-[#1a1a1a]"></i><div class="w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[12px] border-t-gold mx-auto mt-1"></div></div></div><div class="w-5 h-5 bg-primary rounded-full border-4 border-white shadow-md z-10 relative"></div></div><div class="bg-secondary rounded-2xl p-4 border border-gray-200"><p id="qibla-status" class="text-sm font-bold text-gray-600 font-cairo transition-colors duration-300">جاري البحث عن الإشارة...</p><p id="qibla-info" class="text-xs text-gray-400 mt-2 font-sans font-bold"></p></div><button onclick="initQibla()" class="mt-6 text-primary text-xs font-bold bg-primary/10 px-4 py-2 rounded-full hover:bg-primary hover:text-white transition"><i class="fa-solid fa-rotate-right ml-1"></i> إعادة معايرة البوصلة</button></div></main>
@@ -327,19 +426,6 @@
                     <button onclick="requestLocalNotificationPermission()" class="flex-1 bg-primary text-white py-3.5 rounded-xl font-bold font-cairo hover:bg-[#4a101d] transition shadow-md">السماح</button>
                     <button onclick="closeNotificationModal()" class="flex-1 bg-gray-100 text-gray-700 py-3.5 rounded-xl font-bold font-cairo hover:bg-gray-200 transition">ليس الآن</button>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="tafseer-modal-backdrop" class="fixed inset-0 bg-black/60 z-[100] hidden opacity-0 transition-opacity duration-300" onclick="closeTafseer()"></div>
-    <div id="tafseer-modal" class="tafseer-premium-modal fixed inset-x-0 bottom-0 z-[110] rounded-t-3xl transform translate-y-full transition-transform duration-300 flex flex-col max-h-[85vh]">
-        <div class="w-12 h-1.5 bg-gray-300 rounded-full mx-auto my-3 opacity-50"></div>
-        <div class="tafseer-premium-header px-6 py-5 rounded-t-3xl flex justify-between items-center"><div class="flex items-center gap-3"><div class="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center backdrop-blur-sm border border-white/20"><i class="fa-solid fa-book-open text-gold"></i></div><div><h3 class="font-bold font-cairo text-white text-lg leading-none mb-1">التفسير الميسر</h3><p class="text-[10px] text-white/70 font-cairo">تفسير مجمع الملك فهد</p></div></div><button onclick="closeTafseer()" class="w-8 h-8 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition-colors"><i class="fa-solid fa-xmark"></i></button></div>
-        <div class="p-6 overflow-y-auto flex-1">
-            <div id="tafseer-loading" class="text-center py-10 hidden"><i class="fa-solid fa-spinner fa-spin text-4xl text-gold mb-3"></i><p class="text-gray-500 font-cairo text-sm mt-2">جاري استحضار المعاني...</p></div>
-            <div id="tafseer-content-area">
-                <div class="tafseer-verse-box"><p id="tafseer-verse-text" class="font-amiri text-2xl leading-loose text-primary text-center"></p></div>
-                <div class="mt-6 px-2"><p class="text-xs text-gold font-bold mb-3 flex items-center gap-2"><i class="fa-solid fa-pen-fancy"></i> المعنى والتفسير:</p><p id="tafseer-content" class="tafseer-text-content"></p></div>
             </div>
         </div>
     </div>
@@ -395,16 +481,16 @@
 
         let currentScreen = 'home-screen'; 
         function showScreen(screenId, title = "") { 
-            ['home-screen', 'khatma-screen', 'quran-list-screen', 'quran-search-screen', 'quran-read-screen', 'audio-reciters-screen', 'audio-surahs-screen', 'hadith-categories-screen', 'hadith-list-screen', 'hadith-read-screen', 'adhkar-main-screen', 'adhkar-categories-screen', 'adhkar-list-screen', 'sibha-screen', 'calendar-screen', 'prayer-screen', 'qibla-screen', 'main-settings-screen'].forEach(id => document.getElementById(id).classList.add('hidden')); 
+            ['home-screen', 'khatma-screen', 'quran-list-screen', 'quran-search-screen', 'quran-read-screen', 'audio-reciters-screen', 'audio-surahs-screen', 'nine-books-main-screen', 'nine-books-chapters-screen', 'nine-books-hadiths-screen', 'hadith-categories-screen', 'hadith-list-screen', 'hadith-read-screen', 'adhkar-main-screen', 'adhkar-categories-screen', 'adhkar-list-screen', 'sibha-screen', 'calendar-screen', 'prayer-screen', 'qibla-screen', 'main-settings-screen'].forEach(id => document.getElementById(id).classList.add('hidden')); 
             document.getElementById(screenId).classList.remove('hidden'); currentScreen = screenId; 
             const titleEl = document.getElementById('header-title'); const backBtn = document.getElementById('back-btn'); const settingsBtn = document.getElementById('settings-btn'); 
-            ['header-extra-home', 'header-extra-quran', 'header-extra-audio', 'header-extra-audio-surahs', 'header-extra-adhkar'].forEach(id => document.getElementById(id).classList.add('hidden')); 
+            ['header-extra-home', 'header-extra-quran', 'header-extra-audio', 'header-extra-audio-surahs', 'header-extra-adhkar', 'header-extra-nine-books'].forEach(id => document.getElementById(id).classList.add('hidden')); 
             backBtn.classList.remove('hidden'); settingsBtn.classList.add('hidden'); 
             
-            if (screenId === 'home-screen') { titleEl.innerText = "الرئيسية"; backBtn.classList.add('hidden'); document.getElementById('header-extra-home').classList.remove('hidden'); settingsBtn.classList.remove('hidden'); settingsBtn.onclick = () => showScreen('main-settings-screen'); settingsBtn.innerHTML = '<i class="fa-solid fa-gear text-lg"></i>'; updateContinueReadingWidget(); } else if (screenId === 'khatma-screen') { titleEl.innerText = "متابعة الختمة"; } else if (screenId === 'quran-list-screen') { titleEl.innerText = "القرآن الكريم"; document.getElementById('header-extra-quran').classList.remove('hidden'); } else if (screenId === 'quran-read-screen') { titleEl.innerText = title; } else if (screenId === 'main-settings-screen') { titleEl.innerText = "الإعدادات"; } else if (screenId === 'audio-reciters-screen') { titleEl.innerText = "المكتبة الصوتية"; document.getElementById('header-extra-audio').classList.remove('hidden'); } else if (screenId === 'audio-surahs-screen') { titleEl.innerText = "قائمة السور"; document.getElementById('header-extra-audio-surahs').classList.remove('hidden');} else if (screenId === 'hadith-categories-screen') { titleEl.innerText = "مكتبة الحديث"; } else if (screenId === 'hadith-list-screen') { titleEl.innerText = "قائمة الأحاديث"; } else if (screenId === 'hadith-read-screen') { titleEl.innerText = "الموسوعة الحديثية"; } else if (screenId === 'adhkar-main-screen') { titleEl.innerText = "الأذكار والأدعية"; } else if (screenId === 'adhkar-categories-screen') { titleEl.innerText = title; document.getElementById('header-extra-adhkar').classList.remove('hidden'); } else if (screenId === 'adhkar-list-screen') { titleEl.innerText = "قراءة الأذكار"; } else if (screenId === 'sibha-screen') { titleEl.innerText = "السبحة الإلكترونية"; } else if (screenId === 'calendar-screen') { titleEl.innerText = "التقويم"; } else if (screenId === 'prayer-screen') { titleEl.innerText = "مواقيت الصلاة"; } else if (screenId === 'qibla-screen') { titleEl.innerText = "اتجاه القبلة"; } 
+            if (screenId === 'home-screen') { titleEl.innerText = "الرئيسية"; backBtn.classList.add('hidden'); document.getElementById('header-extra-home').classList.remove('hidden'); settingsBtn.classList.remove('hidden'); settingsBtn.onclick = () => showScreen('main-settings-screen'); settingsBtn.innerHTML = '<i class="fa-solid fa-gear text-lg"></i>'; updateContinueReadingWidget(); } else if (screenId === 'khatma-screen') { titleEl.innerText = "متابعة الختمة"; } else if (screenId === 'quran-list-screen') { titleEl.innerText = "القرآن الكريم"; document.getElementById('header-extra-quran').classList.remove('hidden'); } else if (screenId === 'quran-read-screen') { titleEl.innerText = title; } else if (screenId === 'main-settings-screen') { titleEl.innerText = "الإعدادات"; } else if (screenId === 'audio-reciters-screen') { titleEl.innerText = "المكتبة الصوتية"; document.getElementById('header-extra-audio').classList.remove('hidden'); } else if (screenId === 'audio-surahs-screen') { titleEl.innerText = "قائمة السور"; document.getElementById('header-extra-audio-surahs').classList.remove('hidden');} else if (screenId === 'nine-books-main-screen') { titleEl.innerText = "الكتب التسعة"; document.getElementById('header-extra-nine-books').classList.remove('hidden'); } else if (screenId === 'nine-books-chapters-screen') { titleEl.innerText = "فهرس الكتاب"; } else if (screenId === 'nine-books-hadiths-screen') { titleEl.innerText = "قراءة الأحاديث"; } else if (screenId === 'hadith-categories-screen') { titleEl.innerText = "أحاديث وفوائد"; } else if (screenId === 'hadith-list-screen') { titleEl.innerText = "قائمة الأحاديث"; } else if (screenId === 'hadith-read-screen') { titleEl.innerText = "الموسوعة الحديثية"; } else if (screenId === 'adhkar-main-screen') { titleEl.innerText = "الأذكار والأدعية"; } else if (screenId === 'adhkar-categories-screen') { titleEl.innerText = title; document.getElementById('header-extra-adhkar').classList.remove('hidden'); } else if (screenId === 'adhkar-list-screen') { titleEl.innerText = "قراءة الأذكار"; } else if (screenId === 'sibha-screen') { titleEl.innerText = "السبحة الإلكترونية"; } else if (screenId === 'calendar-screen') { titleEl.innerText = "التقويم"; } else if (screenId === 'prayer-screen') { titleEl.innerText = "مواقيت الصلاة"; } else if (screenId === 'qibla-screen') { titleEl.innerText = "اتجاه القبلة"; } 
             window.scrollTo({ top: 0, behavior: 'smooth' }); 
         } 
-        function goBack() { if (currentScreen === 'quran-read-screen' || currentScreen === 'quran-search-screen') showScreen('quran-list-screen'); else if (currentScreen === 'audio-surahs-screen') showScreen('audio-reciters-screen'); else if (currentScreen === 'hadith-list-screen') showScreen('hadith-categories-screen'); else if (currentScreen === 'hadith-read-screen') showScreen('hadith-list-screen'); else if (currentScreen === 'adhkar-categories-screen') showScreen('adhkar-main-screen'); else if (currentScreen === 'adhkar-list-screen') showScreen('adhkar-categories-screen', document.getElementById('header-title').dataset.parentTitle); else showScreen('home-screen'); } 
+        function goBack() { if (currentScreen === 'quran-read-screen' || currentScreen === 'quran-search-screen') showScreen('quran-list-screen'); else if (currentScreen === 'audio-surahs-screen') showScreen('audio-reciters-screen'); else if (currentScreen === 'nine-books-chapters-screen') showScreen('nine-books-main-screen'); else if (currentScreen === 'nine-books-hadiths-screen') showScreen('nine-books-chapters-screen'); else if (currentScreen === 'hadith-list-screen') showScreen('hadith-categories-screen'); else if (currentScreen === 'hadith-read-screen') showScreen('hadith-list-screen'); else if (currentScreen === 'adhkar-categories-screen') showScreen('adhkar-main-screen'); else if (currentScreen === 'adhkar-list-screen') showScreen('adhkar-categories-screen', document.getElementById('header-title').dataset.parentTitle); else showScreen('home-screen'); } 
         function toggleDarkMode() { const isDark = document.body.classList.toggle('dark-mode'); localStorage.setItem('darkMode', isDark); document.getElementById('dark-mode-toggle').checked = isDark; showToast(isDark ? 'تم تفعيل الوضع الداكن' : 'تم تفعيل الوضع الفاتح'); } 
         function shareApp() { if (navigator.share) navigator.share({ title: 'تطبيق بيان', text: 'حمل تطبيق بيان الإسلامي من تطوير حمد النزار.', url: 'https://t.me/c_93n' }).catch(console.error); } 
 
@@ -445,9 +531,6 @@
         function updateBookmarkUI() { const bookmark = JSON.parse(localStorage.getItem('bayan_bookmark')); const card = document.getElementById('bookmark-card'); if (bookmark && card) { card.classList.remove('hidden'); document.getElementById('bookmark-surah-name').innerText = 'سورة ' + bookmark.surahName; document.getElementById('bookmark-page-num').innerText = 'صفحة ' + bookmark.page; } else if (card) { card.classList.add('hidden'); } }
         function openSavedBookmark() { const bookmark = JSON.parse(localStorage.getItem('bayan_bookmark')); if (bookmark) loadSurahData(bookmark.surahId, bookmark.page); }
 
-        // ================== التفسير ==================
-        async function openTafseer(verseKey) { const verseObj = currentSurahVerses.find(v => v.verse_key === verseKey); const verseNum = verseKey.split(':')[1]; document.getElementById('tafseer-verse-text').innerHTML = `${verseObj ? verseObj.text_uthmani : "الآية"} <span class="text-gold mx-1">۝</span><span class="text-sm font-sans font-bold text-primary">${toArabicNumber(verseNum)}</span>`; document.getElementById('tafseer-content').innerHTML = ""; document.getElementById('tafseer-loading').classList.remove('hidden'); document.getElementById('tafseer-modal-backdrop').classList.remove('hidden'); setTimeout(() => { document.getElementById('tafseer-modal-backdrop').classList.remove('opacity-0'); document.getElementById('tafseer-modal').classList.remove('translate-y-full'); }, 10); try { const res = await fetch(`https://api.quran.com/api/v4/tafsirs/16/by_ayah/${verseKey}`); const data = await res.json(); document.getElementById('tafseer-loading').classList.add('hidden'); document.getElementById('tafseer-content').innerHTML = data.tafsir?.text || data.tafsirs?.[0]?.text || data.text || "عذراً، التفسير غير متوفر."; } catch (err) { document.getElementById('tafseer-loading').classList.add('hidden'); document.getElementById('tafseer-content').innerHTML = "حدث خطأ أثناء جلب التفسير."; } } function closeTafseer() { document.getElementById('tafseer-modal').classList.add('translate-y-full'); document.getElementById('tafseer-modal-backdrop').classList.add('opacity-0'); setTimeout(() => document.getElementById('tafseer-modal-backdrop').classList.add('hidden'), 300); } 
-
         // ================== الصوتيات العامة ==================
         function setMediaSession(title, artist) { if ('mediaSession' in navigator) { navigator.mediaSession.metadata = new MediaMetadata({ title: title, artist: artist, album: 'تطبيق بيان للقرآن الكريم', artwork: [{ src: APP_ICON_URL, sizes: '512x512', type: 'image/jpeg' }] }); } }
         let allReciters = []; let currentAudioServer = ""; let currentAudioReciterName = ""; let currentPlayingChapterId = null; let currentAvailableSurahs = []; let isRepeatMode = false; let currentRecitersTab = 'all'; const audioEl = document.getElementById('quran-audio'); const playPauseBtn = document.getElementById('play-pause-btn'); const seekSlider = document.getElementById('seek-slider'); const currentTimeEl = document.getElementById('current-time'); const totalTimeEl = document.getElementById('total-time'); const playerIcon = document.getElementById('player-icon');
@@ -465,8 +548,145 @@
         function playPrevSurah() { if (!currentPlayingChapterId || currentAvailableSurahs.length === 0) return; const idx = currentAvailableSurahs.indexOf(currentPlayingChapterId); if (idx > 0) playSurahAudio(currentAvailableSurahs[idx - 1], allSurahs.find(s => s.id === currentAvailableSurahs[idx - 1])?.name_arabic); } 
         audioEl.addEventListener('timeupdate', () => { if(isNaN(audioEl.duration)) return; seekSlider.value = (audioEl.currentTime / audioEl.duration) * 100; const formatTime = (sec) => `${Math.floor(sec / 60)}:${Math.floor(sec % 60).toString().padStart(2, '0')}`; currentTimeEl.innerText = formatTime(audioEl.currentTime); totalTimeEl.innerText = formatTime(audioEl.duration); }); seekSlider.addEventListener('input', () => audioEl.currentTime = audioEl.duration * (seekSlider.value / 100)); audioEl.addEventListener('ended', () => isRepeatMode ? audioEl.play() : playNextSurah()); 
 
-        // ================== الحديث النبوي (تمت إضافة الشرح والفوائد) ==================
-        let hadithCategories = []; async function openHadithSection() { showScreen('hadith-categories-screen'); if (hadithCategories.length > 0) return; try { const res = await fetch('https://hadeethenc.com/api/v1/categories/list/?language=ar'); hadithCategories = await res.json(); document.getElementById('hadith-cat-loading').classList.add('hidden'); const container = document.getElementById('hadith-cat-list'); container.classList.remove('hidden'); hadithCategories.forEach(cat => { const div = document.createElement('div'); div.className = "bg-cardbg rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col items-center justify-center text-center cursor-pointer hover:-translate-y-1 hover:shadow-md transition"; div.onclick = () => openHadithList(cat.id, cat.title); div.innerHTML = `<div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary text-xl mb-2"><i class="fa-solid fa-book-journal-whills"></i></div><h3 class="font-bold text-gray-800 text-sm font-cairo">${cat.title}</h3><span class="text-[10px] text-gray-500 mt-1">${cat.hadeeths_count} حديث</span>`; container.appendChild(div); }); } catch (err) {} } async function openHadithList(categoryId, categoryName) { document.getElementById('selected-hadith-category').innerText = categoryName; showScreen('hadith-list-screen'); const container = document.getElementById('hadith-items-list'); container.innerHTML = ''; document.getElementById('hadith-items-loading').classList.remove('hidden'); try { const res = await fetch(`https://hadeethenc.com/api/v1/hadeeths/list/?language=ar&category_id=${categoryId}&page=1&per_page=100`); const data = await res.json(); document.getElementById('hadith-items-loading').classList.add('hidden'); data.data.forEach(item => { const li = document.createElement('li'); li.className = "p-4 border-b border-gray-100 hover:bg-secondary/50 transition cursor-pointer"; li.onclick = () => openHadithDetail(item.id); li.innerHTML = `<p class="font-cairo text-gray-800 font-semibold leading-relaxed line-clamp-2">${item.title}</p><div class="flex justify-between items-center mt-2"><span class="text-xs text-primary font-bold"><i class="fa-solid fa-book-open text-[10px] ml-1"></i> افتح الشرح والفوائد</span><i class="fa-solid fa-chevron-left text-gray-400 text-xs"></i></div>`; container.appendChild(li); }); } catch (err) {} } 
+        // ================== الكتب التسعة (القسم الجديد والحصري) ==================
+        const nineBooksList = [
+            { id: 'bukhari', name: 'صحيح البخاري', count: 7008, icon: 'fa-book-quran' },
+            { id: 'muslim', name: 'صحيح مسلم', count: 5362, icon: 'fa-book-open' },
+            { id: 'abudawud', name: 'سنن أبي داود', count: 3996, icon: 'fa-book' },
+            { id: 'tirmidzi', name: 'سنن الترمذي', count: 3956, icon: 'fa-book-journal-whills' },
+            { id: 'nasai', name: 'سنن النسائي', count: 5662, icon: 'fa-bookmark' },
+            { id: 'ibnumajah', name: 'سنن ابن ماجه', count: 4341, icon: 'fa-scroll' },
+            { id: 'ahmad', name: 'مسند أحمد', count: 28199, icon: 'fa-layer-group' },
+            { id: 'malik', name: 'موطأ مالك', count: 1594, icon: 'fa-file-lines' },
+            { id: 'darimi', name: 'سنن الدارمي', count: 3367, icon: 'fa-book-bookmark' }
+        ];
+        
+        const HADITHS_PER_PAGE = 50; 
+        let currentNineBookId = ''; let currentNineBookName = ''; let currentHadithRangeStart = 1; let currentTotalHadiths = 0;
+
+        function openNineBooksSection() { 
+            showScreen('nine-books-main-screen'); 
+            const container = document.getElementById('nine-books-grid'); container.innerHTML = '';
+            nineBooksList.forEach(book => {
+                const div = document.createElement('div');
+                div.className = "nine-books-card";
+                div.onclick = () => openNineBookChapters(book.id, book.name, book.count);
+                div.innerHTML = `
+                    <div class="book-icon-wrapper"><i class="fa-solid ${book.icon}"></i></div>
+                    <h3 class="font-bold font-amiri text-lg text-gray-800 mb-1">${book.name}</h3>
+                    <span class="text-[11px] font-cairo font-semibold text-gray-500 bg-gray-100 px-3 py-1 rounded-full border border-gray-200">${book.count} حديث</span>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        document.getElementById('search-nine-books-input').addEventListener('input', (e) => {
+            const term = e.target.value.trim();
+            const filtered = term === '' ? nineBooksList : nineBooksList.filter(b => b.name.includes(term));
+            const container = document.getElementById('nine-books-grid'); container.innerHTML = '';
+            filtered.forEach(book => {
+                const div = document.createElement('div'); div.className = "nine-books-card"; div.onclick = () => openNineBookChapters(book.id, book.name, book.count);
+                div.innerHTML = `<div class="book-icon-wrapper"><i class="fa-solid ${book.icon}"></i></div><h3 class="font-bold font-amiri text-lg text-gray-800 mb-1">${book.name}</h3><span class="text-[11px] font-cairo font-semibold text-gray-500 bg-gray-100 px-3 py-1 rounded-full border border-gray-200">${book.count} حديث</span>`;
+                container.appendChild(div);
+            });
+        });
+
+        function openNineBookChapters(bookId, bookName, totalHadiths) {
+            currentNineBookId = bookId; currentNineBookName = bookName; currentTotalHadiths = totalHadiths;
+            document.getElementById('selected-book-name').innerText = bookName;
+            showScreen('nine-books-chapters-screen');
+            const container = document.getElementById('chapters-list'); container.innerHTML = '';
+            
+            // تقسيم الكتاب إلى أجزاء لتسهيل التصفح وعدم تعليق التطبيق
+            const totalParts = Math.ceil(totalHadiths / HADITHS_PER_PAGE);
+            for (let i = 0; i < totalParts; i++) {
+                const start = (i * HADITHS_PER_PAGE) + 1;
+                const end = Math.min((i + 1) * HADITHS_PER_PAGE, totalHadiths);
+                const li = document.createElement('li');
+                li.className = "p-4 border-b border-gray-100 hover:bg-secondary/50 transition cursor-pointer flex justify-between items-center";
+                li.onclick = () => loadNineBookHadiths(start, end, `الجزء ${i + 1} (من ${start} إلى ${end})`);
+                li.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-xs">${i + 1}</div>
+                        <div>
+                            <h4 class="font-bold text-gray-800 font-amiri text-lg">الجزء ${toArabicNumber(i + 1)}</h4>
+                            <p class="text-[10px] text-gray-500 font-cairo mt-0.5">الأحاديث: ${start} - ${end}</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-left text-gray-300 text-sm"></i>
+                `;
+                container.appendChild(li);
+            }
+        }
+
+        async function loadNineBookHadiths(start, end, chapterName) {
+            document.getElementById('selected-chapter-name').innerText = chapterName;
+            showScreen('nine-books-hadiths-screen');
+            const container = document.getElementById('hadiths-container'); container.innerHTML = '';
+            document.getElementById('hadiths-list-loading').classList.remove('hidden');
+            document.getElementById('pagination-controls').classList.add('hidden');
+            currentHadithRangeStart = start;
+
+            try {
+                // استخدام API مجاني وسريع للكتب التسعة
+                const res = await fetch(`https://api.hadith.gading.dev/books/${currentNineBookId}?range=${start}-${end}`);
+                const data = await res.json();
+                document.getElementById('hadiths-list-loading').classList.add('hidden');
+                
+                if (data.data && data.data.hadiths) {
+                    data.data.hadiths.forEach(h => {
+                        const div = document.createElement('div');
+                        div.className = "bg-cardbg rounded-2xl p-5 shadow-sm border border-gray-100";
+                        const cleanHadithText = h.arab.replace(/<[^>]*>?/gm, ''); // تنظيف النص من أكواد الـ HTML
+                        let safeText = cleanHadithText.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+                        div.innerHTML = `
+                            <div class="flex justify-between items-center mb-4 border-b border-gray-100 pb-3">
+                                <span class="bg-gold/10 text-gold font-bold px-3 py-1 rounded-full text-xs font-sans">رقم الحديث: ${h.number}</span>
+                                <span class="text-xs text-primary font-bold"><i class="fa-solid fa-book-open"></i> ${currentNineBookName}</span>
+                            </div>
+                            <p class="font-amiri text-2xl leading-loose text-gray-800 text-justify mb-4">${cleanHadithText}</p>
+                            <div class="flex gap-2">
+                                <button onclick="copyTextHandler('${safeText}', '${currentNineBookName} - حديث رقم ${h.number}', event)" class="flex-1 bg-gray-50 text-gray-600 hover:text-primary py-2.5 rounded-xl font-bold text-sm border border-gray-200 transition"><i class="fa-regular fa-copy"></i> نسخ</button>
+                                <button onclick="shareTextHandler('حديث شريف', '${safeText}', '${currentNineBookName} - حديث رقم ${h.number}', event)" class="flex-1 bg-gray-50 text-gray-600 hover:text-gold py-2.5 rounded-xl font-bold text-sm border border-gray-200 transition"><i class="fa-solid fa-share-nodes"></i> مشاركة</button>
+                            </div>
+                        `;
+                        container.appendChild(div);
+                    });
+
+                    // التحكم بالتنقل بين الصفحات
+                    const btnPrev = document.getElementById('btn-prev-page');
+                    const btnNext = document.getElementById('btn-next-page');
+                    const pageText = document.getElementById('page-indicator-text');
+                    
+                    document.getElementById('pagination-controls').classList.remove('hidden');
+                    
+                    if (start > 1) { btnPrev.classList.remove('hidden'); } else { btnPrev.classList.add('hidden'); }
+                    if (end < currentTotalHadiths) { btnNext.classList.remove('hidden'); } else { btnNext.classList.add('hidden'); }
+                    
+                    pageText.classList.remove('hidden');
+                    pageText.innerText = `ص ${Math.ceil(end / HADITHS_PER_PAGE)} / ${Math.ceil(currentTotalHadiths / HADITHS_PER_PAGE)}`;
+                }
+            } catch (err) {
+                document.getElementById('hadiths-list-loading').classList.add('hidden');
+                showToast('حدث خطأ في جلب الأحاديث، تأكد من الإنترنت', 'error');
+            }
+        }
+
+        function changeHadithPage(step) {
+            let newStart;
+            if (step === 1) { newStart = currentHadithRangeStart + HADITHS_PER_PAGE; } 
+            else { newStart = currentHadithRangeStart - HADITHS_PER_PAGE; }
+            
+            if (newStart < 1 || newStart > currentTotalHadiths) return;
+            const newEnd = Math.min(newStart + HADITHS_PER_PAGE - 1, currentTotalHadiths);
+            const partNum = Math.ceil(newStart / HADITHS_PER_PAGE);
+            loadNineBookHadiths(newStart, newEnd, `الجزء ${partNum} (من ${newStart} إلى ${newEnd})`);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+
+        // ================== الحديث النبوي القديم (مكتبة الفوائد) ==================
+        let hadithCategories = []; async function openHadithSection() { showScreen('hadith-categories-screen'); if (hadithCategories.length > 0) return; try { const res = await fetch('https://hadeethenc.com/api/v1/categories/list/?language=ar'); hadithCategories = await res.json(); document.getElementById('hadith-cat-loading').classList.add('hidden'); const container = document.getElementById('hadith-cat-list'); container.classList.remove('hidden'); hadithCategories.forEach(cat => { const div = document.createElement('div'); div.className = "bg-cardbg rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col items-center justify-center text-center cursor-pointer hover:-translate-y-1 hover:shadow-md transition"; div.onclick = () => openHadithList(cat.id, cat.title); div.innerHTML = `<div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary text-xl mb-2"><i class="fa-solid fa-lightbulb"></i></div><h3 class="font-bold text-gray-800 text-sm font-cairo">${cat.title}</h3><span class="text-[10px] text-gray-500 mt-1">${cat.hadeeths_count} فائدة</span>`; container.appendChild(div); }); } catch (err) {} } async function openHadithList(categoryId, categoryName) { document.getElementById('selected-hadith-category').innerText = categoryName; showScreen('hadith-list-screen'); const container = document.getElementById('hadith-items-list'); container.innerHTML = ''; document.getElementById('hadith-items-loading').classList.remove('hidden'); try { const res = await fetch(`https://hadeethenc.com/api/v1/hadeeths/list/?language=ar&category_id=${categoryId}&page=1&per_page=100`); const data = await res.json(); document.getElementById('hadith-items-loading').classList.add('hidden'); data.data.forEach(item => { const li = document.createElement('li'); li.className = "p-4 border-b border-gray-100 hover:bg-secondary/50 transition cursor-pointer"; li.onclick = () => openHadithDetail(item.id); li.innerHTML = `<p class="font-cairo text-gray-800 font-semibold leading-relaxed line-clamp-2">${item.title}</p><div class="flex justify-between items-center mt-2"><span class="text-xs text-primary font-bold"><i class="fa-solid fa-book-open text-[10px] ml-1"></i> افتح الشرح والفوائد</span><i class="fa-solid fa-chevron-left text-gray-400 text-xs"></i></div>`; container.appendChild(li); }); } catch (err) {} } 
         async function openHadithDetail(hadithId) { 
             showScreen('hadith-read-screen'); document.getElementById('hadith-detail-container').classList.add('hidden'); document.getElementById('hadith-explanation-section').classList.add('hidden'); document.getElementById('hadith-detail-loading').classList.remove('hidden'); 
             try { 
@@ -474,7 +694,6 @@
                 document.getElementById('hadith-detail-loading').classList.add('hidden'); document.getElementById('hadith-detail-container').classList.remove('hidden'); 
                 document.getElementById('hadith-text-content').innerText = data.hadeeth || "غير متوفر"; document.getElementById('hadith-attribution').innerText = data.attribution || "بدون إسناد"; document.getElementById('hadith-grade').innerText = data.grade || "غير محدد"; 
                 
-                // إضافة قسم الشرح والفوائد اللي طلبته
                 const explanation = data.explanation || ''; const hints = data.hints || [];
                 if (explanation || hints.length > 0) {
                     document.getElementById('hadith-explanation-section').classList.remove('hidden');
@@ -499,7 +718,7 @@
         function decrementDhikr(index) { if (currentAzkarList[index].currentCount > 0) { currentAzkarList[index].currentCount--; const counterElement = document.getElementById(`counter-${index}`); const cardElement = counterElement.parentElement.parentElement; if (currentAzkarList[index].currentCount === 0) { counterElement.innerHTML = '<i class="fa-solid fa-check"></i>'; cardElement.classList.add('completed'); if (navigator.vibrate) navigator.vibrate([30, 50, 30]); } else { counterElement.innerText = currentAzkarList[index].currentCount; counterElement.style.transform = 'scale(1.15)'; if (navigator.vibrate) navigator.vibrate(20); setTimeout(() => counterElement.style.transform = 'scale(1)', 150); } updateAdhkarProgress(); } } 
         function updateAdhkarProgress() { let totalInitial = 0; let totalRemaining = 0; currentAzkarList.forEach(dhikr => { totalInitial += dhikr.initialCount; totalRemaining += dhikr.currentCount; }); const completed = totalInitial - totalRemaining; const percentage = totalInitial === 0 ? 100 : Math.round((completed / totalInitial) * 100); document.getElementById('adhkar-progress-text').innerText = `${percentage}%`; if(document.getElementById('adhkar-progress-bar-fill')) document.getElementById('adhkar-progress-bar-fill').style.width = `${percentage}%`; } 
 
-        // ================== السبحة الإلكترونية (تم الإصلاح) ==================
+        // ================== السبحة الإلكترونية ==================
         let sibhaCount = 0; let sibhaTotal = 0; let sibhaCycles = 0; let sibhaSoundEnabled = true; let currentSibhaDhikr = "سُبْحَانَ اللَّهِ"; const CIRCLE_CIRCUMFERENCE = 754; const quickDhikrs = [ "سُبْحَانَ اللَّهِ", "الْحَمْدُ لِلَّهِ", "اللَّهُ أَكْبَرُ", "لَا إِلَهَ إِلَّا اللَّهُ", "أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ", "لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ", "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ", "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ", "حَسْبِيَ اللَّهُ وَنِعْمَ الْوَكِيلُ" ]; 
         function initSibha() { 
             if(localStorage.getItem('sibhaCount')) sibhaCount = parseInt(localStorage.getItem('sibhaCount')); if(localStorage.getItem('sibhaTotal')) sibhaTotal = parseInt(localStorage.getItem('sibhaTotal')); if(localStorage.getItem('sibhaCycles')) sibhaCycles = parseInt(localStorage.getItem('sibhaCycles')); if(localStorage.getItem('currentSibhaDhikr')) currentSibhaDhikr = localStorage.getItem('currentSibhaDhikr'); if(localStorage.getItem('sibhaSoundEnabled') !== null) sibhaSoundEnabled = localStorage.getItem('sibhaSoundEnabled') === 'true'; 
@@ -516,14 +735,13 @@
         function closeDhikrSelector() { document.getElementById('dhikr-selector-sheet').style.transform = 'translateY(100%)'; } 
         
         function renderDhikrOptions() { 
-            // إصلاح مشكلة تكرار قائمة المسبحة
             if (document.getElementById('dhikr-selector-sheet')) return;
             const list = document.createElement('div'); list.id = 'dhikr-selector-sheet'; list.className = 'dhikr-select-sheet'; document.body.appendChild(list); 
             const closeBtn = document.createElement('div'); closeBtn.className = 'w-12 h-1 bg-gray-300 rounded-full mx-auto mb-4 cursor-pointer'; closeBtn.onclick = closeDhikrSelector; list.appendChild(closeBtn); 
             quickDhikrs.forEach(text => { const div = document.createElement('div'); div.className = 'dhikr-select-item'; div.innerText = text; div.onclick = () => { currentSibhaDhikr = text; saveSibhaState(); updateSibhaUI(); closeDhikrSelector(); showToast('تم تغيير الذكر'); }; list.appendChild(div); }); 
         } 
 
-        // ================== التقويم (تم إصلاح الميلادي) ==================
+        // ================== التقويم ==================
         let currentCalView = 'hijri'; let viewGDate = new Date(); let viewHMonth = 1; let viewHYear = 1445; const todayDate = new Date(); const dd = String(todayDate.getDate()).padStart(2, '0'); const mm = String(todayDate.getMonth() + 1).padStart(2, '0'); const yyyy = todayDate.getFullYear(); let todayGStr = `${dd}-${mm}-${yyyy}`; 
         async function initTopCalendarCards() { try { const res = await fetch(`https://api.aladhan.com/v1/gToH?date=${todayGStr}`); const data = await res.json(); if(data.code !== 200) throw new Error('API Error'); const hijri = data.data.hijri; document.getElementById('cal-today-hijri').innerText = `${toArabicNumber(hijri.day)} ${hijri.month.ar} ${toArabicNumber(hijri.year)}`; viewHMonth = parseInt(hijri.month.number); viewHYear = parseInt(hijri.year); viewGDate = new Date(); } catch(e) {} } 
         function openCalendarSection() { showScreen('calendar-screen'); renderCalendarGrid(); } 
@@ -532,7 +750,6 @@
         
         async function renderCalendarGrid() { 
             const grid = document.getElementById('calendar-grid'); const title = document.getElementById('calendar-month-year'); grid.innerHTML = '<div class="absolute inset-0 flex items-center justify-center"><i class="fa-solid fa-spinner fa-spin text-primary text-3xl"></i></div>'; 
-            // إصلاح الـ API الخاص بالتقويم الميلادي
             let apiMonth = currentCalView === 'gregorian' ? viewGDate.getMonth() + 1 : viewHMonth;
             let apiYear = currentCalView === 'gregorian' ? viewGDate.getFullYear() : viewHYear;
             let apiURL = currentCalView === 'gregorian' ? `https://api.aladhan.com/v1/gToHCalendar/${apiMonth}/${apiYear}` : `https://api.aladhan.com/v1/hToGCalendar/${apiMonth}/${apiYear}`; 
@@ -555,7 +772,7 @@
             } catch (err) { grid.innerHTML = '<div class="absolute inset-0 flex items-center justify-center"><p class="text-red-500 text-sm bg-red-50 px-4 py-2 rounded-lg">تعذر جلب التقويم، تحقق من اتصالك</p></div>'; } 
         } 
 
-        // ================== مواقيت الصلاة والقبلة والختمة (شغالة بدون مشاكل) ==================
+        // ================== مواقيت الصلاة والقبلة والختمة ==================
         let prayerInterval; let todayPrayers = {}; let userLocationName = "العاصمة بغداد"; const defaultLat = 33.3152; const defaultLng = 44.3661; const prayerConfig = [ { id: 'Fajr', name: 'الفجر', icon: 'fa-cloud-moon' }, { id: 'Sunrise', name: 'الشروق', icon: 'fa-sun text-yellow-500' }, { id: 'Dhuhr', name: 'الظهر', icon: 'fa-sun text-orange-500' }, { id: 'Asr', name: 'العصر', icon: 'fa-cloud-sun' }, { id: 'Maghrib', name: 'المغرب', icon: 'fa-cloud-sun text-red-400' }, { id: 'Isha', name: 'العشاء', icon: 'fa-moon text-blue-300' } ]; function openPrayerTimesSection() { showScreen('prayer-screen'); fetchPrayerTimes(); } async function fetchPrayerTimes() { document.getElementById('prayer-header-loading').classList.remove('hidden'); document.getElementById('prayer-header-content').classList.add('hidden'); if (navigator.geolocation) { navigator.geolocation.getCurrentPosition( (pos) => getCityNameAndPrayers(pos.coords.latitude, pos.coords.longitude), (err) => { showToast('تم استخدام بغداد كافتراضي.', 'error'); fetchPrayersFromAPI(defaultLat, defaultLng, "العاصمة بغداد"); } ); } else { fetchPrayersFromAPI(defaultLat, defaultLng, "العاصمة بغداد"); } } async function getCityNameAndPrayers(lat, lng) { try { const geoRes = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}&localityLanguage=ar`); const geoData = await geoRes.json(); userLocationName = geoData.city || geoData.locality || "موقعك الحالي"; fetchPrayersFromAPI(lat, lng, userLocationName); } catch (e) { fetchPrayersFromAPI(lat, lng, "موقعك الحالي"); } } async function fetchPrayersFromAPI(lat, lng, cityName) { try { const res = await fetch(`https://api.aladhan.com/v1/timings/${todayGStr}?latitude=${lat}&longitude=${lng}&method=4`); const data = await res.json(); if(data.code === 200) { todayPrayers = data.data.timings; document.getElementById('location-text').innerText = cityName; document.getElementById('prayer-header-loading').classList.add('hidden'); document.getElementById('prayer-header-content').classList.remove('hidden'); updatePrayerUI(); if(prayerInterval) clearInterval(prayerInterval); prayerInterval = setInterval(updatePrayerUI, 1000); } } catch (error) { showToast('تعذر جلب المواقيت', 'error'); } } function updatePrayerUI() { const now = new Date(); let nextPrayer = null; let nextTime = null; let isTomorrow = false; for (let p of prayerConfig) { if (!todayPrayers[p.id]) continue; const t = todayPrayers[p.id].split(':'); const pTime = new Date(); pTime.setHours(t[0], t[1], 0, 0); if (pTime > now) { nextPrayer = p; nextTime = pTime; break; } } if (!nextPrayer) { nextPrayer = prayerConfig[0]; nextTime = new Date(); nextTime.setDate(now.getDate() + 1); const t = todayPrayers[nextPrayer.id].split(':'); nextTime.setHours(t[0], t[1], 0, 0); isTomorrow = true; } document.getElementById('next-prayer-name').innerText = nextPrayer.name; const diff = nextTime - now; document.getElementById('prayer-countdown').innerText = `${String(Math.floor((diff / 3600000) % 24)).padStart(2, '0')}:${String(Math.floor((diff / 60000) % 60)).padStart(2, '0')}:${String(Math.floor((diff / 1000) % 60)).padStart(2, '0')}`; const container = document.getElementById('prayers-list-container'); container.innerHTML = ''; prayerConfig.forEach(p => { const t = todayPrayers[p.id].split(':'); const pTime = new Date(); pTime.setHours(t[0], t[1], 0, 0); const isPast = pTime < now && !isTomorrow; const isNext = p.id === nextPrayer.id && !isTomorrow; let hours = pTime.getHours(); const ampm = hours >= 12 ? 'م' : 'ص'; hours = hours % 12 || 12; container.innerHTML += `<div class="prayer-card ${isPast ? 'past' : ''} ${isNext ? 'next' : ''}"><div class="flex items-center"><div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-xl ml-3 ${isPast ? 'text-gray-400' : (isNext ? 'text-gold' : 'text-primary/70')} shadow-inner"><i class="fa-solid ${p.icon}"></i></div><span class="font-bold font-cairo text-lg ${isPast ? 'text-gray-500' : 'text-gray-800'}">${p.name}</span></div><div class="flex items-center">${isNext ? '<div class="pulse-dot ml-3"></div>' : ''}<span class="font-bold font-sans tracking-wide ${isPast ? 'text-gray-500' : 'text-primary'} text-lg" dir="ltr">${hours}:${t[1]} ${ampm}</span></div></div>`; }); } 
 
         let qiblaBearing = 0; function openQiblaSection() { showScreen('qibla-screen'); initQibla(); } function initQibla() { document.getElementById('qibla-status').innerText = "جاري تحديد الموقع..."; document.getElementById('qibla-info').innerText = ""; document.getElementById('kaaba-icon-glow').classList.remove('qibla-pointer-active'); if (navigator.geolocation) { navigator.geolocation.getCurrentPosition( (pos) => { qiblaBearing = calculateQiblaDirection(pos.coords.latitude, pos.coords.longitude); document.getElementById('qibla-status').innerText = "تم تحديد الموقع، جاري معايرة البوصلة..."; document.getElementById('qibla-info').innerText = `الزاوية نحو مكة: ${Math.round(qiblaBearing)} درجة`; startCompassListener(); }, (err) => { document.getElementById('qibla-status').innerText = "فشل تحديد الموقع!"; showToast('يرجى تفعيل الموقع لمعرفة القبلة', 'error'); }, { enableHighAccuracy: true } ); } else { showToast('متصفحك لا يدعم تحديد الموقع', 'error'); } } function calculateQiblaDirection(userLat, userLng) { const meccaLat = 21.422487 * (Math.PI / 180); const meccaLng = 39.826206 * (Math.PI / 180); const lat = userLat * (Math.PI / 180); const lng = userLng * (Math.PI / 180); const dLng = meccaLng - lng; const y = Math.sin(dLng); const x = Math.cos(lat) * Math.tan(meccaLat) - Math.sin(lat) * Math.cos(dLng); let qibla = Math.atan2(y, x) * (180 / Math.PI); return (qibla + 360) % 360; } function startCompassListener() { if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') { DeviceOrientationEvent.requestPermission().then(permissionState => { if (permissionState === 'granted') { window.addEventListener('deviceorientationabsolute', handleDeviceOrientation, true); window.addEventListener('deviceorientation', handleDeviceOrientation, true); } else { document.getElementById('qibla-status').innerText = "يرجى إعطاء صلاحية المستشعر"; } }).catch(console.error); } else { window.addEventListener('deviceorientationabsolute', handleDeviceOrientation, true); window.addEventListener('deviceorientation', handleDeviceOrientation, true); } } function handleDeviceOrientation(event) { let heading = null; if (event.webkitCompassHeading) heading = event.webkitCompassHeading; else if (event.absolute && event.alpha !== null) heading = 360 - event.alpha; if (heading === null || isNaN(heading)) return; const kaabaArrow = document.getElementById('kaaba-arrow'); const kaabaGlow = document.getElementById('kaaba-icon-glow'); const statusText = document.getElementById('qibla-status'); let pointerRotation = qiblaBearing - heading; kaabaArrow.style.transform = `translate(-50%, -100%) rotate(${pointerRotation}deg)`; const diff = Math.abs((pointerRotation % 360 + 360) % 360); if (diff < 5 || diff > 355) { if (!kaabaGlow.classList.contains('qibla-pointer-active')) { kaabaGlow.classList.add('qibla-pointer-active'); statusText.innerHTML = "<span class='text-green-600'><i class='fa-solid fa-check-circle mr-1'></i> أنت متجه للقبلة الآن</span>"; statusText.classList.replace('text-gray-600', 'text-green-600'); if (navigator.vibrate) navigator.vibrate(50); } } else { if (kaabaGlow.classList.contains('qibla-pointer-active')) { kaabaGlow.classList.remove('qibla-pointer-active'); statusText.innerHTML = "قم بتدوير الهاتف حتى تضيء الكعبة باللون الأخضر"; statusText.classList.replace('text-green-600', 'text-gray-600'); } } }
