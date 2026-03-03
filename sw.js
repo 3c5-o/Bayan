@@ -1,4 +1,4 @@
-const CACHE_NAME = 'bayan-cache-v2.0.1'; // تغيير داخلي بسيط جداً لتحديث الكاش فقط
+const CACHE_NAME = 'bayan-cache-v2.0.2'; // تحديث داخلي للكاش لضمان سحب التعديلات الجديدة (التفسير، الختمة، الصوتيات)
 
 // الملفات الأساسية اللي لازم تنحفظ بالجهاز
 const ASSETS_TO_CACHE = [
@@ -12,7 +12,7 @@ self.addEventListener('install', (event) => {
     self.skipWaiting(); // تفعيل التحديث فوراً
     event.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
-            console.log('تم فتح الكاش وتخزين الملفات للتحديث الجديد');
+            console.log('تم فتح الكاش وتخزين الملفات للتحديث v2.0.2');
             return cache.addAll(ASSETS_TO_CACHE);
         })
     );
