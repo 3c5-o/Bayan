@@ -25,7 +25,7 @@
         .fade-in { opacity: 1 !important; transition: opacity 0.5s ease-in; }
         
         body.dark-mode { background-color: #121212 !important; color: #e5e7eb !important; }
-        body.dark-mode .bg-cardbg, body.dark-mode .cat-card-modern, body.dark-mode .dhikr-card, body.dark-mode .sibha-header-card, body.dark-mode .prayer-card, body.dark-mode .qibla-compass-base, body.dark-mode .bg-white, body.dark-mode .hadith-card, body.dark-mode #custom-confirm-modal, body.dark-mode #notify-modal-content, body.dark-mode #tafseer-modal { background-color: #1e1e1e !important; border-color: #2d3748 !important; color: #e5e7eb !important; box-shadow: 0 4px 15px rgba(0,0,0,0.5) !important; }
+        body.dark-mode .bg-cardbg, body.dark-mode .cat-card-modern, body.dark-mode .dhikr-card, body.dark-mode .sibha-header-card, body.dark-mode .prayer-card, body.dark-mode .qibla-compass-base, body.dark-mode .bg-white, body.dark-mode .hadith-card, body.dark-mode #custom-confirm-modal, body.dark-mode #notify-modal-content, body.dark-mode #tafseer-modal, body.dark-mode #khatma-edit-modal { background-color: #1e1e1e !important; border-color: #2d3748 !important; color: #e5e7eb !important; box-shadow: 0 4px 15px rgba(0,0,0,0.5) !important; }
         body.dark-mode .text-gray-800, body.dark-mode #confirm-title { color: #f3f4f6 !important; }
         body.dark-mode .text-gray-700 { color: #e5e7eb !important; }
         body.dark-mode .text-gray-500, body.dark-mode .text-gray-400 { color: #a0aec0 !important; }
@@ -73,21 +73,13 @@
         .verse-symbol { font-size: 2.3rem; font-family: 'Amiri', serif; line-height: 1; opacity: 0.9; }
         .verse-digit { position: absolute; font-size: 0.85rem; font-family: 'Cairo', sans-serif; font-weight: bold; margin-top: 3px; color: #b89247; }
 
-        .tafseer-premium-modal { background: linear-gradient(to bottom, #fcfbf8, #f6f3eb); border-top: 3px solid #b89247; box-shadow: 0 -15px 40px rgba(113, 28, 46, 0.15); }
-        .tafseer-premium-header { background: linear-gradient(135deg, #711c2e 0%, #4a101d 100%); color: #b89247; border-bottom: 2px solid rgba(184, 146, 71, 0.3); position: relative; overflow: hidden; }
-        .tafseer-verse-box { background: #ffffff; border: 1px solid rgba(184, 146, 71, 0.3); border-radius: 15px; padding: 25px 20px; margin-bottom: 20px; box-shadow: inset 0 0 20px rgba(184, 146, 71, 0.05); position: relative; }
-        
         .glass-player { background: rgba(113, 28, 46, 0.95); backdrop-filter: blur(10px); border-top: 1px solid rgba(184, 146, 71, 0.3); }
         input[type=range] { accent-color: #b89247; outline: none; }
         
         .hadith-card { background-color: #FAF5E6; border-radius: 15px; border: 1px solid rgba(184, 146, 71, 0.3); overflow: hidden; margin-bottom: 20px;}
         .hadith-card-header { background: linear-gradient(135deg, #711c2e 0%, #4a101d 100%); color: white; padding: 12px 20px; font-weight: bold; display: flex; align-items: center; justify-content: space-between; gap: 10px;}
-        
-        /* التنسيق الجديد لفصل الشرح والفوائد */
         .hadith-explanation-box { background-color: #f0f7ff; border: 1px solid #cce4ff; border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: inset 0 0 10px rgba(0,0,0,0.01); }
         .hadith-hints-box { background-color: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-shadow: inset 0 0 10px rgba(0,0,0,0.01); }
-        
-        /* تنسيق بطاقات البحث المتقدم للأحاديث */
         .search-hadith-result-card { background: #fff; border-radius: 16px; padding: 16px; margin-bottom: 12px; border: 1px solid #f0f0f0; box-shadow: 0 4px 10px rgba(0,0,0,0.02); transition: all 0.3s; }
         .search-hadith-result-card:hover { border-color: #b89247; box-shadow: 0 5px 15px rgba(184, 146, 71, 0.1); }
         .hadith-meta-badge { background: #f3f4f6; color: #4b5563; font-size: 0.7rem; padding: 4px 8px; border-radius: 6px; font-weight: bold; display: inline-flex; align-items: center; gap: 4px; margin-bottom: 4px; border: 1px solid #e5e7eb; }
@@ -166,6 +158,46 @@
                 <button id="confirm-yes-btn" class="flex-1 bg-red-500 text-white py-3 rounded-xl font-bold font-cairo hover:bg-red-600 transition shadow-md">نعم، متأكد</button>
                 <button onclick="closeCustomConfirm()" class="flex-1 bg-gray-100 text-gray-700 py-3 rounded-xl font-bold font-cairo hover:bg-gray-200 transition">إلغاء</button>
             </div>
+        </div>
+    </div>
+
+    <div id="tafseer-modal-backdrop" class="fixed inset-0 bg-black/60 z-[120] hidden opacity-0 transition-opacity duration-300" onclick="closeTafseer()"></div>
+    <div id="tafseer-modal" class="fixed bottom-0 left-0 right-0 bg-cardbg rounded-t-3xl z-[130] hidden transform translate-y-full transition-transform duration-300 max-h-[85vh] flex flex-col shadow-[0_-10px_40px_rgba(0,0,0,0.3)] border-t border-gold/30">
+        <div class="p-4 border-b border-gray-100 flex justify-between items-center bg-gradient-to-r from-primary to-[#4a101d] rounded-t-3xl text-white">
+            <h3 id="tafseer-title" class="font-bold font-amiri text-xl flex items-center gap-2"><i class="fa-solid fa-book-open text-gold"></i> تفسير الآية</h3>
+            <button onclick="closeTafseer()" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="p-5 overflow-y-auto flex-1">
+            <div id="tafseer-loading" class="text-center py-10"><i class="fa-solid fa-spinner fa-spin text-3xl text-primary"></i></div>
+            <div id="tafseer-content" class="hidden">
+                <p id="tafseer-verse-text" class="font-amiri text-2xl leading-loose text-center text-primary mb-5 p-4 bg-primary/5 rounded-xl border border-primary/20"></p>
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-4 border border-gray-100 shadow-sm">
+                    <h4 class="font-bold text-gray-800 mb-3 font-cairo text-sm border-b border-gray-100 pb-2 flex items-center gap-2"><i class="fa-solid fa-feather-pointed text-gold"></i> التفسير الميسر:</h4>
+                    <p id="tafseer-text" class="font-cairo text-gray-700 leading-relaxed text-justify text-sm"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="khatma-edit-backdrop" class="fixed inset-0 bg-black/60 z-[100] hidden opacity-0 transition-opacity duration-300"></div>
+    <div id="khatma-edit-modal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-cardbg w-[90%] max-w-sm rounded-3xl p-6 z-[110] hidden opacity-0 transition-all duration-300 scale-95 shadow-2xl border border-gold/30">
+        <div class="flex items-center gap-3 mb-4 border-b border-gray-100 pb-3">
+            <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary text-lg"><i class="fa-solid fa-pen-to-square"></i></div>
+            <h3 class="text-xl font-bold font-cairo text-gray-800">تعديل الختمة</h3>
+        </div>
+        <div class="space-y-4 mb-6">
+            <div>
+                <label class="block text-xs font-bold text-gray-500 mb-1">اسم الختمة (اختياري)</label>
+                <input type="text" id="edit-khatma-name" placeholder="مثال: ختمة رمضان" class="w-full bg-white border border-gray-200 text-gray-800 rounded-xl py-3 px-4 outline-none focus:border-gold transition font-cairo font-semibold text-sm">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-gray-500 mb-1">تعديل مدة الختمة (بالأيام)</label>
+                <input type="number" id="edit-khatma-days" min="1" max="365" class="w-full bg-white border border-gray-200 text-gray-800 rounded-xl py-3 px-4 outline-none focus:border-gold transition font-cairo font-bold text-center text-lg">
+            </div>
+        </div>
+        <div class="flex gap-3">
+            <button onclick="saveKhatmaEdit()" class="flex-1 bg-gradient-to-l from-primary to-[#4a101d] text-white py-3.5 rounded-xl font-bold font-cairo hover:shadow-lg transition shadow-md">حفظ التعديلات</button>
+            <button onclick="closeKhatmaEditModal()" class="flex-1 bg-gray-100 text-gray-700 py-3.5 rounded-xl font-bold font-cairo hover:bg-gray-200 transition">إلغاء</button>
         </div>
     </div>
 
@@ -294,7 +326,25 @@
             <div class="flex bg-gray-200/50 rounded-2xl p-1 mb-6 border border-gray-100"><button id="tab-khatma-active" onclick="switchKhatmaTab('active')" class="flex-1 py-2.5 rounded-xl font-bold text-sm transition-all bg-primary text-white shadow-md">الختمة الحالية</button><button id="tab-khatma-history" onclick="switchKhatmaTab('history')" class="flex-1 py-2.5 rounded-xl font-bold text-sm transition-all text-gray-500 hover:text-gray-800">سجل الختمات</button></div>
             <div id="khatma-active-container">
                 <div id="khatma-setup" class="bg-cardbg rounded-[24px] p-6 shadow-sm border border-gray-100 text-center"><div class="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center text-3xl mx-auto mb-4"><i class="fa-solid fa-book-medical"></i></div><h3 class="font-bold text-xl text-gray-800 font-cairo mb-2">إنشاء ختمة جديدة</h3><div class="grid grid-cols-3 gap-3 mb-5 mt-6"><button onclick="startKhatma(15)" class="bg-secondary border border-gray-200 py-3 rounded-xl font-bold text-gray-700 hover:bg-gold hover:text-white transition">15 يوم</button><button onclick="startKhatma(30)" class="bg-primary border border-primary py-3 rounded-xl font-bold text-white shadow-md transform scale-105">30 يوم</button><button onclick="startKhatma(60)" class="bg-secondary border border-gray-200 py-3 rounded-xl font-bold text-gray-700 hover:bg-gold hover:text-white transition">60 يوم</button></div><div class="relative mt-6 border-t border-gray-100 pt-6"><p class="text-xs font-bold text-gray-400 mb-3">أو أدخل فترة مخصصة (بالأيام)</p><div class="flex gap-2"><input type="number" id="custom-khatma-days" min="1" max="365" placeholder="مثال: 45" class="w-2/3 bg-white border border-gray-200 text-gray-800 rounded-xl py-3 px-4 outline-none focus:border-gold text-center font-bold"><button onclick="startCustomKhatma()" class="w-1/3 bg-gold text-white rounded-xl font-bold hover:bg-[#9a7a3b] transition">البدء</button></div></div></div>
-                <div id="khatma-active-status" class="hidden"><div class="bg-cardbg rounded-[24px] p-6 shadow-sm border border-gray-100 mb-4"><div class="flex justify-between items-center mb-6 border-b border-gray-100 pb-4"><div><p class="text-xs text-gray-500 font-bold mb-1">التقدم الكلي للختمة</p><h3 id="khatma-current-day" class="font-bold text-xl text-primary font-cairo"></h3></div><div class="text-left"><span id="khatma-progress-text" class="text-2xl font-bold font-sans text-gold block">0%</span></div></div><div class="mb-6"><div class="bg-primary/5 border border-primary/20 rounded-xl p-5 text-center relative overflow-hidden"><i class="fa-solid fa-book-open text-primary/10 text-6xl absolute -left-2 -bottom-2 transform -rotate-12"></i><p class="text-sm text-gray-500 font-bold mb-2">مستوى قراءتك الآن</p><p id="khatma-pages" class="text-2xl font-bold text-primary font-cairo leading-relaxed mb-1">الصفحة 1 من 604</p><p id="khatma-target" class="text-xs text-gray-500 font-bold"></p></div></div><div class="khatma-progress-bar-container mb-8"><div id="khatma-progress-bar" class="khatma-progress-bar-fill"></div></div><button id="btn-continue-khatma" onclick="continueKhatmaReading()" class="w-full bg-gradient-to-l from-primary to-[#4a101d] text-white py-4 rounded-2xl font-bold text-lg shadow-lg flex justify-center items-center gap-2 hover:shadow-xl transition transform hover:-translate-y-1 border border-gold/30"><i class="fa-solid fa-book-open-reader text-gold"></i> متابعة القراءة بالقرآن</button><button id="btn-finish-khatma" onclick="completeKhatmaFinal()" class="hidden w-full bg-gradient-to-l from-green-600 to-green-800 text-white py-4 rounded-2xl font-bold text-lg shadow-lg flex justify-center items-center gap-2 hover:shadow-xl transition transform hover:-translate-y-1 border border-green-400"><i class="fa-solid fa-check-circle text-white"></i> إتمام الختمة ونقلها للسجل</button></div><button onclick="confirmCancelKhatma()" class="w-full text-red-500 py-3 font-bold text-sm hover:bg-red-50 rounded-xl transition"><i class="fa-solid fa-trash-can mr-1"></i> إلغاء الختمة الحالية</button></div>
+                <div id="khatma-active-status" class="hidden">
+                    <div class="bg-cardbg rounded-[24px] p-6 shadow-sm border border-gray-100 mb-4">
+                        <div class="flex justify-between items-start mb-6 border-b border-gray-100 pb-4">
+                            <div>
+                                <h3 id="khatma-active-name" class="font-bold text-lg text-primary font-cairo mb-1">الختمة الحالية</h3>
+                                <p class="text-xs text-gray-500 font-bold" id="khatma-current-day"></p>
+                            </div>
+                            <div class="flex flex-col items-end">
+                                <span id="khatma-progress-text" class="text-2xl font-bold font-sans text-gold block mb-2">0%</span>
+                                <button onclick="openKhatmaEditModal()" class="text-xs bg-gray-100 text-gray-600 px-3 py-1.5 rounded-lg hover:bg-gray-200 font-bold transition"><i class="fa-solid fa-pen mr-1"></i> تعديل</button>
+                            </div>
+                        </div>
+                        <div class="mb-6"><div class="bg-primary/5 border border-primary/20 rounded-xl p-5 text-center relative overflow-hidden"><i class="fa-solid fa-book-open text-primary/10 text-6xl absolute -left-2 -bottom-2 transform -rotate-12"></i><p class="text-sm text-gray-500 font-bold mb-2">مستوى قراءتك الآن</p><p id="khatma-pages" class="text-2xl font-bold text-primary font-cairo leading-relaxed mb-1">الصفحة 1 من 604</p><p id="khatma-target" class="text-xs text-gray-500 font-bold"></p></div></div>
+                        <div class="khatma-progress-bar-container mb-8"><div id="khatma-progress-bar" class="khatma-progress-bar-fill"></div></div>
+                        <button id="btn-continue-khatma" onclick="continueKhatmaReading()" class="w-full bg-gradient-to-l from-primary to-[#4a101d] text-white py-4 rounded-2xl font-bold text-lg shadow-lg flex justify-center items-center gap-2 hover:shadow-xl transition transform hover:-translate-y-1 border border-gold/30"><i class="fa-solid fa-book-open-reader text-gold"></i> متابعة القراءة بالقرآن</button>
+                        <button id="btn-finish-khatma" onclick="completeKhatmaFinal()" class="hidden w-full bg-gradient-to-l from-green-600 to-green-800 text-white py-4 rounded-2xl font-bold text-lg shadow-lg flex justify-center items-center gap-2 hover:shadow-xl transition transform hover:-translate-y-1 border border-green-400"><i class="fa-solid fa-check-circle text-white"></i> إتمام الختمة ونقلها للسجل</button>
+                    </div>
+                    <button onclick="confirmCancelKhatma()" class="w-full text-red-500 py-3 font-bold text-sm hover:bg-red-50 rounded-xl transition"><i class="fa-solid fa-trash-can mr-1"></i> إلغاء الختمة الحالية</button>
+                </div>
             </div>
             <div id="khatma-history-container" class="hidden"><div id="khatma-history-list" class="flex flex-col gap-3"></div><div id="khatma-history-empty" class="text-center py-10 hidden"><i class="fa-solid fa-box-open text-4xl text-gray-300 mb-3"></i><p class="text-gray-500 font-cairo">لا يوجد ختمات مكتملة أو سابقة حتى الآن.</p></div></div>
         </main>
@@ -332,11 +382,9 @@
                 <h2 class="font-amiri font-bold text-2xl text-primary mb-2">الكتب التسعة</h2>
                 <p class="font-cairo text-sm text-gray-500 font-semibold leading-relaxed">أمهات كتب الحديث النبوي الشريف التي تمثل المرجعية الأساسية في السُّنَّة المطهّرة.</p>
             </div>
-            
             <button onclick="openHadithAdvancedSearch()" class="w-full bg-gradient-to-l from-primary to-[#4a101d] text-white py-3.5 rounded-2xl font-bold text-md shadow-md flex justify-center items-center gap-2 hover:shadow-lg transition border border-gold/30 mb-6">
                 <i class="fa-solid fa-magnifying-glass text-gold"></i> البحث الشامل في الحديث النبوي
             </button>
-
             <div id="nine-books-loading" class="text-center py-10 hidden"><i class="fa-solid fa-spinner fa-spin text-4xl text-primary mb-3"></i></div>
             <div id="nine-books-grid" class="grid grid-cols-2 gap-4 pb-8"></div>
         </main>
@@ -412,16 +460,16 @@
                 </div>
                 
                 <div id="hadith-explanation-section" class="hadith-explanation-box hidden">
-                    <h4 class="font-bold text-blue-800 text-sm mb-2 flex items-center gap-2 font-cairo"><i class="fa-solid fa-book-open text-blue-500"></i> شرح الحديث:</h4>
-                    <p id="hadith-explanation-text" class="text-sm text-gray-800 leading-relaxed font-cairo font-semibold text-justify"></p>
+                    <h4 class="font-bold text-blue-800 dark:text-blue-300 text-sm mb-2 flex items-center gap-2 font-cairo"><i class="fa-solid fa-book-open text-blue-500"></i> شرح الحديث:</h4>
+                    <p id="hadith-explanation-text" class="text-sm text-gray-800 dark:text-gray-200 leading-relaxed font-cairo font-semibold text-justify"></p>
                 </div>
                 
                 <div id="hadith-hints-section" class="hadith-hints-box hidden">
-                    <h4 class="font-bold text-green-800 text-sm mb-3 flex items-center gap-2 font-cairo"><i class="fa-solid fa-lightbulb text-green-500"></i> من فوائد الحديث:</h4>
-                    <ul id="hadith-hints-list" class="list-disc list-inside text-sm text-gray-800 space-y-2 font-semibold font-cairo leading-relaxed"></ul>
+                    <h4 class="font-bold text-green-800 dark:text-green-300 text-sm mb-3 flex items-center gap-2 font-cairo"><i class="fa-solid fa-lightbulb text-green-500"></i> من فوائد الحديث:</h4>
+                    <ul id="hadith-hints-list" class="list-disc list-inside text-sm text-gray-800 dark:text-gray-200 space-y-2 font-semibold font-cairo leading-relaxed"></ul>
                 </div>
 
-                <div class="flex gap-3 mb-10"><button onclick="copyHadithFull()" class="flex-1 bg-white text-primary border-2 border-primary/20 py-3.5 rounded-2xl font-bold text-md hover:bg-primary/5 transition-all shadow-sm flex justify-center items-center gap-2"><i class="fa-regular fa-copy"></i> نسخ الحديث</button><button onclick="shareHadithFull()" class="flex-1 bg-gradient-to-l from-gold to-[#9a7a3b] text-white py-3.5 rounded-2xl font-bold text-md hover:shadow-lg transition-all shadow-md flex justify-center items-center gap-2"><i class="fa-solid fa-share-nodes"></i> مشاركة</button></div>
+                <div class="flex gap-3 mb-10"><button onclick="copyHadithFull()" class="flex-1 bg-white dark:bg-gray-800 text-primary border-2 border-primary/20 py-3.5 rounded-2xl font-bold text-md hover:bg-primary/5 transition-all shadow-sm flex justify-center items-center gap-2"><i class="fa-regular fa-copy"></i> نسخ الحديث</button><button onclick="shareHadithFull()" class="flex-1 bg-gradient-to-l from-gold to-[#9a7a3b] text-white py-3.5 rounded-2xl font-bold text-md hover:shadow-lg transition-all shadow-md flex justify-center items-center gap-2"><i class="fa-solid fa-share-nodes"></i> مشاركة</button></div>
             </div>
         </main>
         
@@ -440,10 +488,10 @@
                         <div><p class="text-[11px] text-white/70 font-cairo mb-1">تاريخ اليوم الهجري</p><h3 id="cal-today-hijri" class="font-bold font-amiri text-2xl tracking-wide drop-shadow-md">جاري التحميل...</h3></div>
                     </div>
                 </div>
-                <div class="calendar-card relative overflow-hidden group">
-                    <div class="absolute -right-4 -bottom-4 opacity-5 text-7xl text-primary transform rotate-12 group-hover:scale-110 transition-transform duration-500"><i class="fa-regular fa-calendar-days"></i></div>
+                <div class="calendar-card !bg-gradient-to-r !from-secondary !to-white dark:!from-gray-800 dark:!to-gray-900 !border-gold/40 relative overflow-hidden group">
+                    <div class="absolute -right-4 -bottom-4 opacity-[0.03] dark:opacity-[0.08] text-7xl text-gold transform rotate-12 group-hover:scale-110 transition-transform duration-500"><i class="fa-regular fa-calendar-days"></i></div>
                     <div class="flex items-center gap-4 relative z-10">
-                        <div class="w-14 h-14 bg-gray-50 rounded-2xl flex items-center justify-center text-2xl border border-gray-200"><i class="fa-regular fa-calendar text-primary"></i></div>
+                        <div class="w-14 h-14 bg-gold/10 rounded-2xl flex items-center justify-center text-2xl border border-gold/30 shadow-inner"><i class="fa-regular fa-calendar text-gold"></i></div>
                         <div><p class="text-[11px] text-gray-500 font-cairo mb-1">تاريخ اليوم الميلادي</p><h3 id="cal-today-gregorian" class="font-bold font-cairo text-lg text-gray-800">جاري التحميل...</h3></div>
                     </div>
                 </div>
@@ -495,6 +543,7 @@
         const APP_ICON_URL = "https://k.top4top.io/p_37108rde31.jpg";
         const splashAdhkar = ["صَلَّى اللَّهُ عَلَى مُحَمَّدٍ", "سُبْحَانَ اللَّهِ العَظِيمِ وَبِحَمْدِهِ", "اللَّهُ أَكْبَرُ كَبِيرًا", "أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ"];
         document.getElementById('splash-dhikr').innerText = splashAdhkar[Math.floor(Math.random() * splashAdhkar.length)];
+        const gregorianMonthsAr = ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"];
 
         window.onload = () => {
             setTimeout(() => {
@@ -568,13 +617,54 @@
         
         let touchstartX = 0, touchendX = 0; mushafContainer.addEventListener('touchstart', e => touchstartX = e.changedTouches[0].screenX, {passive: true}); mushafContainer.addEventListener('touchend', e => { if (isTransitioning) return; touchendX = e.changedTouches[0].screenX; const dist = touchendX - touchstartX; if (dist > 60 && currentPageIndex < totalPages) { currentPageIndex++; renderMushafPage(); } else if (dist > 60 && currentSurahId < 114) { loadSurahData(currentSurahId + 1, 1); } else if (dist < -60 && currentPageIndex > 1) { currentPageIndex--; renderMushafPage(); } else if (dist < -60 && currentSurahId > 1) { loadSurahData(currentSurahId - 1, -1); } }, {passive: true}); 
 
+        // نافذة التفسير الميسر للآيات (تم الاسترجاع والإصلاح)
+        async function openTafseer(verseKey) {
+            document.getElementById('tafseer-modal-backdrop').classList.remove('hidden');
+            const modal = document.getElementById('tafseer-modal');
+            modal.classList.remove('hidden');
+            setTimeout(() => { document.getElementById('tafseer-modal-backdrop').classList.remove('opacity-0'); modal.classList.remove('translate-y-full'); }, 10);
+            
+            document.getElementById('tafseer-content').classList.add('hidden');
+            document.getElementById('tafseer-loading').classList.remove('hidden');
+            
+            try {
+                const textRes = await fetch(`https://api.quran.com/api/v4/verses/by_key/${verseKey}?language=ar&words=false&fields=text_uthmani`);
+                const textData = await textRes.json();
+                document.getElementById('tafseer-verse-text').innerText = textData.verse.text_uthmani;
+                
+                // 169 هو معرف التفسير الميسر
+                const tafseerRes = await fetch(`https://api.quran.com/api/v4/quran/tafseers/169?verse_key=${verseKey}`);
+                const tafseerData = await tafseerRes.json();
+                document.getElementById('tafseer-text').innerHTML = tafseerData.tafseers[0].text.replace(/<[^>]*>?/gm, '');
+                
+                document.getElementById('tafseer-loading').classList.add('hidden');
+                document.getElementById('tafseer-content').classList.remove('hidden');
+            } catch (err) {
+                document.getElementById('tafseer-loading').classList.add('hidden'); showToast('حدث خطأ في جلب التفسير', 'error');
+            }
+        }
+        function closeTafseer() {
+            const modal = document.getElementById('tafseer-modal'); const backdrop = document.getElementById('tafseer-modal-backdrop');
+            backdrop.classList.add('opacity-0'); modal.classList.add('translate-y-full');
+            setTimeout(() => { backdrop.classList.add('hidden'); modal.classList.add('hidden'); }, 300);
+        }
+
         function openQuranSearch() { showScreen('quran-search-screen'); setTimeout(() => document.getElementById('smart-search-input').focus(), 100); } let searchTimeout; document.getElementById('smart-search-input').addEventListener('input', (e) => { clearTimeout(searchTimeout); const query = e.target.value.trim(); if (query.length < 2) { document.getElementById('smart-search-results').classList.add('hidden'); document.getElementById('smart-search-empty').classList.add('hidden'); return; } searchTimeout = setTimeout(() => performQuranSearch(query), 800); }); async function performQuranSearch(query) { document.getElementById('smart-search-results').classList.add('hidden'); document.getElementById('smart-search-empty').classList.add('hidden'); document.getElementById('smart-search-loading').classList.remove('hidden'); try { const res = await fetch(`https://api.alquran.cloud/v1/search/${encodeURIComponent(query)}/all/quran-simple-clean`); const data = await res.json(); document.getElementById('smart-search-loading').classList.add('hidden'); if (data.code === 200 && data.data && data.data.matches && data.data.matches.length > 0) renderQuranSearchResults(data.data.matches, query); else document.getElementById('smart-search-empty').classList.remove('hidden'); } catch (err) { document.getElementById('smart-search-loading').classList.add('hidden'); showToast('حدث خطأ أثناء البحث', 'error'); } } function renderQuranSearchResults(results, query) { const container = document.getElementById('smart-search-results'); container.innerHTML = ''; container.classList.remove('hidden'); results.slice(0, 30).forEach(item => { const surahId = item.surah.number; const verseNum = item.numberInSurah; const surahName = item.surah.name.replace('سُورَةُ ', ''); const regex = new RegExp(`(${query})`, 'gi'); const highlightedText = item.text.replace(regex, '<b class="text-gold bg-gold/10 px-1 rounded">$1</b>'); const li = document.createElement('li'); li.className = "p-4 border-b border-gray-100 hover:bg-secondary/50 transition cursor-pointer"; li.onclick = () => { targetHighlightVerse = `${surahId}:${verseNum}`; loadSurahData(surahId, Math.ceil(verseNum / VERSES_PER_PAGE)); }; li.innerHTML = `<div class="flex justify-between items-center mb-2"><span class="text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded-md">سورة ${surahName}</span><span class="text-xs font-bold text-gray-500">آية ${toArabicNumber(verseNum)}</span></div><p class="font-amiri text-xl text-gray-800 leading-loose text-right search-match-text">${highlightedText}</p>`; container.appendChild(li); }); }
         function saveCurrentBookmark() { if (!currentSurahId || !currentPageIndex) return; localStorage.setItem('bayan_bookmark', JSON.stringify({surahId: currentSurahId, page: currentPageIndex, surahName: allSurahs.find(s => s.id === currentSurahId)?.name_arabic || ''})); showToast('تم حفظ العلامة المرجعية بنجاح'); updateBookmarkUI(); }
         function updateBookmarkUI() { const bookmark = JSON.parse(localStorage.getItem('bayan_bookmark')); const card = document.getElementById('bookmark-card'); if (bookmark && card) { card.classList.remove('hidden'); document.getElementById('bookmark-surah-name').innerText = 'سورة ' + bookmark.surahName; document.getElementById('bookmark-page-num').innerText = 'صفحة ' + bookmark.page; } else if (card) { card.classList.add('hidden'); } }
         function openSavedBookmark() { const bookmark = JSON.parse(localStorage.getItem('bayan_bookmark')); if (bookmark) loadSurahData(bookmark.surahId, bookmark.page); }
 
-        // ================== الصوتيات العامة ==================
-        function setMediaSession(title, artist) { if ('mediaSession' in navigator) { navigator.mediaSession.metadata = new MediaMetadata({ title: title, artist: artist, album: 'تطبيق بيان للقرآن الكريم', artwork: [{ src: APP_ICON_URL, sizes: '512x512', type: 'image/jpeg' }] }); } }
+        // ================== الصوتيات العامة (دعم الخلفية) ==================
+        function setMediaSession(title, artist) { 
+            if ('mediaSession' in navigator) { 
+                navigator.mediaSession.metadata = new MediaMetadata({ title: title, artist: artist, album: 'تطبيق بيان', artwork: [{ src: APP_ICON_URL, sizes: '512x512', type: 'image/jpeg' }] }); 
+                // تفعيل الأزرار عند إغلاق التطبيق والخروج للخلفية
+                navigator.mediaSession.setActionHandler('play', togglePlayPause);
+                navigator.mediaSession.setActionHandler('pause', togglePlayPause);
+                navigator.mediaSession.setActionHandler('previoustrack', playPrevSurah);
+                navigator.mediaSession.setActionHandler('nexttrack', playNextSurah);
+            } 
+        }
         let allReciters = []; let currentAudioServer = ""; let currentAudioReciterName = ""; let currentPlayingChapterId = null; let currentAvailableSurahs = []; let isRepeatMode = false; let currentRecitersTab = 'all'; const audioEl = document.getElementById('quran-audio'); const playPauseBtn = document.getElementById('play-pause-btn'); const seekSlider = document.getElementById('seek-slider'); const currentTimeEl = document.getElementById('current-time'); const totalTimeEl = document.getElementById('total-time'); const playerIcon = document.getElementById('player-icon');
         async function openAudioSection() { showScreen('audio-reciters-screen'); if(allReciters.length > 0) { switchRecitersTab('all'); return; } try { const res = await fetch('https://mp3quran.net/api/v3/reciters?language=ar'); const data = await res.json(); allReciters = data.reciters; document.getElementById('reciters-loading').classList.add('hidden'); document.getElementById('reciters-list').classList.remove('hidden'); switchRecitersTab('all'); } catch(e){} } 
         function switchRecitersTab(tab) { currentRecitersTab = tab; document.getElementById('tab-all-reciters').className = tab === 'all' ? "flex-1 py-2.5 rounded-xl font-bold text-sm bg-primary text-white shadow-md" : "flex-1 py-2.5 rounded-xl font-bold text-sm text-gray-500 hover:text-gray-800"; document.getElementById('tab-fav-reciters').className = tab === 'fav' ? "flex-1 py-2.5 rounded-xl font-bold text-sm bg-primary text-white shadow-md" : "flex-1 py-2.5 rounded-xl font-bold text-sm text-gray-500 hover:text-gray-800"; renderReciters(tab === 'all' ? allReciters : allReciters.filter(r => (JSON.parse(localStorage.getItem('favoriteReciters')) || []).includes(r.id))); } 
@@ -697,7 +787,7 @@
             const rawQuery = document.getElementById('adv-hadith-search-input').value.trim();
             if (!rawQuery) return showToast('يرجى إدخال نص للبحث', 'error');
             
-            // إزالة الحركات لتسهيل البحث (الدرر السنية تقبل بدون حركات أفضل)
+            // إزالة الحركات لتسهيل البحث
             const query = rawQuery.replace(/[\u064B-\u065F]/g, '');
             
             document.getElementById('adv-hadith-search-results').innerHTML = '';
@@ -850,9 +940,19 @@
             quickDhikrs.forEach(text => { const div = document.createElement('div'); div.className = 'dhikr-select-item'; div.innerText = text; div.onclick = () => { currentSibhaDhikr = text; saveSibhaState(); updateSibhaUI(); closeDhikrSelector(); showToast('تم تغيير الذكر'); }; list.appendChild(div); }); 
         } 
 
-        // ================== التقويم ==================
+        // ================== التقويم (إصلاح الميلادي) ==================
         let currentCalView = 'hijri'; let viewGDate = new Date(); let viewHMonth = 1; let viewHYear = 1445; const todayDate = new Date(); const dd = String(todayDate.getDate()).padStart(2, '0'); const mm = String(todayDate.getMonth() + 1).padStart(2, '0'); const yyyy = todayDate.getFullYear(); let todayGStr = `${dd}-${mm}-${yyyy}`; 
-        async function initTopCalendarCards() { try { const res = await fetch(`https://api.aladhan.com/v1/gToH?date=${todayGStr}`); const data = await res.json(); if(data.code !== 200) throw new Error('API Error'); const hijri = data.data.hijri; document.getElementById('cal-today-hijri').innerText = `${toArabicNumber(hijri.day)} ${hijri.month.ar} ${toArabicNumber(hijri.year)}`; viewHMonth = parseInt(hijri.month.number); viewHYear = parseInt(hijri.year); viewGDate = new Date(); } catch(e) {} } 
+        async function initTopCalendarCards() { 
+            try { 
+                const res = await fetch(`https://api.aladhan.com/v1/gToH?date=${todayGStr}`); const data = await res.json(); if(data.code !== 200) throw new Error('API Error'); 
+                const hijri = data.data.hijri; 
+                document.getElementById('cal-today-hijri').innerText = `${toArabicNumber(hijri.day)} ${hijri.month.ar} ${toArabicNumber(hijri.year)}`; 
+                viewHMonth = parseInt(hijri.month.number); viewHYear = parseInt(hijri.year); viewGDate = new Date(); 
+                
+                // تحديث التاريخ الميلادي بالبطاقة
+                document.getElementById('cal-today-gregorian').innerText = `${toArabicNumber(viewGDate.getDate())} ${gregorianMonthsAr[viewGDate.getMonth()]} ${toArabicNumber(viewGDate.getFullYear())}`;
+            } catch(e) {} 
+        } 
         function openCalendarSection() { showScreen('calendar-screen'); renderCalendarGrid(); } 
         function switchCalendarView(view) { currentCalView = view; document.getElementById('tab-hijri').className = view === 'hijri' ? "flex-1 py-3 rounded-xl font-bold text-sm cal-tab-active" : "flex-1 py-3 rounded-xl font-bold text-sm text-gray-500 hover:text-gray-800"; document.getElementById('tab-gregorian').className = view === 'gregorian' ? "flex-1 py-3 rounded-xl font-bold text-sm cal-tab-active" : "flex-1 py-3 rounded-xl font-bold text-sm text-gray-500 hover:text-gray-800"; renderCalendarGrid(); } 
         function changeMonth(step) { if(currentCalView === 'gregorian') { viewGDate.setMonth(viewGDate.getMonth() + step); } else { viewHMonth += step; if(viewHMonth > 12) { viewHMonth = 1; viewHYear++; } else if(viewHMonth < 1) { viewHMonth = 12; viewHYear--; } } renderCalendarGrid(); } 
@@ -866,7 +966,6 @@
             try { 
                 const res = await fetch(apiURL); const data = await res.json(); if(data.code !== 200) throw new Error('API Error'); const days = data.data; grid.innerHTML = ''; 
                 if (currentCalView === 'gregorian') { 
-                    const gregorianMonthsAr = ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"]; 
                     title.innerText = `${gregorianMonthsAr[viewGDate.getMonth()]} ${toArabicNumber(viewGDate.getFullYear())}`; 
                 } else { title.innerText = `${days[0].hijri.month.ar} ${toArabicNumber(viewHYear)}`; } 
                 
@@ -881,12 +980,73 @@
             } catch (err) { grid.innerHTML = '<div class="absolute inset-0 flex items-center justify-center"><p class="text-red-500 text-sm bg-red-50 px-4 py-2 rounded-lg">تعذر جلب التقويم، تحقق من اتصالك</p></div>'; } 
         } 
 
-        // ================== مواقيت الصلاة والقبلة والختمة ==================
+        // ================== مواقيت الصلاة والقبلة ==================
         let prayerInterval; let todayPrayers = {}; let userLocationName = "العاصمة بغداد"; const defaultLat = 33.3152; const defaultLng = 44.3661; const prayerConfig = [ { id: 'Fajr', name: 'الفجر', icon: 'fa-cloud-moon' }, { id: 'Sunrise', name: 'الشروق', icon: 'fa-sun text-yellow-500' }, { id: 'Dhuhr', name: 'الظهر', icon: 'fa-sun text-orange-500' }, { id: 'Asr', name: 'العصر', icon: 'fa-cloud-sun' }, { id: 'Maghrib', name: 'المغرب', icon: 'fa-cloud-sun text-red-400' }, { id: 'Isha', name: 'العشاء', icon: 'fa-moon text-blue-300' } ]; function openPrayerTimesSection() { showScreen('prayer-screen'); fetchPrayerTimes(); } async function fetchPrayerTimes() { document.getElementById('prayer-header-loading').classList.remove('hidden'); document.getElementById('prayer-header-content').classList.add('hidden'); if (navigator.geolocation) { navigator.geolocation.getCurrentPosition( (pos) => getCityNameAndPrayers(pos.coords.latitude, pos.coords.longitude), (err) => { showToast('تم استخدام بغداد كافتراضي.', 'error'); fetchPrayersFromAPI(defaultLat, defaultLng, "العاصمة بغداد"); } ); } else { fetchPrayersFromAPI(defaultLat, defaultLng, "العاصمة بغداد"); } } async function getCityNameAndPrayers(lat, lng) { try { const geoRes = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}&localityLanguage=ar`); const geoData = await geoRes.json(); userLocationName = geoData.city || geoData.locality || "موقعك الحالي"; fetchPrayersFromAPI(lat, lng, userLocationName); } catch (e) { fetchPrayersFromAPI(lat, lng, "موقعك الحالي"); } } async function fetchPrayersFromAPI(lat, lng, cityName) { try { const res = await fetch(`https://api.aladhan.com/v1/timings/${todayGStr}?latitude=${lat}&longitude=${lng}&method=4`); const data = await res.json(); if(data.code === 200) { todayPrayers = data.data.timings; document.getElementById('location-text').innerText = cityName; document.getElementById('prayer-header-loading').classList.add('hidden'); document.getElementById('prayer-header-content').classList.remove('hidden'); updatePrayerUI(); if(prayerInterval) clearInterval(prayerInterval); prayerInterval = setInterval(updatePrayerUI, 1000); } } catch (error) { showToast('تعذر جلب المواقيت', 'error'); } } function updatePrayerUI() { const now = new Date(); let nextPrayer = null; let nextTime = null; let isTomorrow = false; for (let p of prayerConfig) { if (!todayPrayers[p.id]) continue; const t = todayPrayers[p.id].split(':'); const pTime = new Date(); pTime.setHours(t[0], t[1], 0, 0); if (pTime > now) { nextPrayer = p; nextTime = pTime; break; } } if (!nextPrayer) { nextPrayer = prayerConfig[0]; nextTime = new Date(); nextTime.setDate(now.getDate() + 1); const t = todayPrayers[nextPrayer.id].split(':'); nextTime.setHours(t[0], t[1], 0, 0); isTomorrow = true; } document.getElementById('next-prayer-name').innerText = nextPrayer.name; const diff = nextTime - now; document.getElementById('prayer-countdown').innerText = `${String(Math.floor((diff / 3600000) % 24)).padStart(2, '0')}:${String(Math.floor((diff / 60000) % 60)).padStart(2, '0')}:${String(Math.floor((diff / 1000) % 60)).padStart(2, '0')}`; const container = document.getElementById('prayers-list-container'); container.innerHTML = ''; prayerConfig.forEach(p => { const t = todayPrayers[p.id].split(':'); const pTime = new Date(); pTime.setHours(t[0], t[1], 0, 0); const isPast = pTime < now && !isTomorrow; const isNext = p.id === nextPrayer.id && !isTomorrow; let hours = pTime.getHours(); const ampm = hours >= 12 ? 'م' : 'ص'; hours = hours % 12 || 12; container.innerHTML += `<div class="prayer-card ${isPast ? 'past' : ''} ${isNext ? 'next' : ''}"><div class="flex items-center"><div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-xl ml-3 ${isPast ? 'text-gray-400' : (isNext ? 'text-gold' : 'text-primary/70')} shadow-inner"><i class="fa-solid ${p.icon}"></i></div><span class="font-bold font-cairo text-lg ${isPast ? 'text-gray-500' : 'text-gray-800'}">${p.name}</span></div><div class="flex items-center">${isNext ? '<div class="pulse-dot ml-3"></div>' : ''}<span class="font-bold font-sans tracking-wide ${isPast ? 'text-gray-500' : 'text-primary'} text-lg" dir="ltr">${hours}:${t[1]} ${ampm}</span></div></div>`; }); } 
 
         let qiblaBearing = 0; function openQiblaSection() { showScreen('qibla-screen'); initQibla(); } function initQibla() { document.getElementById('qibla-status').innerText = "جاري تحديد الموقع..."; document.getElementById('qibla-info').innerText = ""; document.getElementById('kaaba-icon-glow').classList.remove('qibla-pointer-active'); if (navigator.geolocation) { navigator.geolocation.getCurrentPosition( (pos) => { qiblaBearing = calculateQiblaDirection(pos.coords.latitude, pos.coords.longitude); document.getElementById('qibla-status').innerText = "تم تحديد الموقع، جاري معايرة البوصلة..."; document.getElementById('qibla-info').innerText = `الزاوية نحو مكة: ${Math.round(qiblaBearing)} درجة`; startCompassListener(); }, (err) => { document.getElementById('qibla-status').innerText = "فشل تحديد الموقع!"; showToast('يرجى تفعيل الموقع لمعرفة القبلة', 'error'); }, { enableHighAccuracy: true } ); } else { showToast('متصفحك لا يدعم تحديد الموقع', 'error'); } } function calculateQiblaDirection(userLat, userLng) { const meccaLat = 21.422487 * (Math.PI / 180); const meccaLng = 39.826206 * (Math.PI / 180); const lat = userLat * (Math.PI / 180); const lng = userLng * (Math.PI / 180); const dLng = meccaLng - lng; const y = Math.sin(dLng); const x = Math.cos(lat) * Math.tan(meccaLat) - Math.sin(lat) * Math.cos(dLng); let qibla = Math.atan2(y, x) * (180 / Math.PI); return (qibla + 360) % 360; } function startCompassListener() { if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') { DeviceOrientationEvent.requestPermission().then(permissionState => { if (permissionState === 'granted') { window.addEventListener('deviceorientationabsolute', handleDeviceOrientation, true); window.addEventListener('deviceorientation', handleDeviceOrientation, true); } else { document.getElementById('qibla-status').innerText = "يرجى إعطاء صلاحية المستشعر"; } }).catch(console.error); } else { window.addEventListener('deviceorientationabsolute', handleDeviceOrientation, true); window.addEventListener('deviceorientation', handleDeviceOrientation, true); } } function handleDeviceOrientation(event) { let heading = null; if (event.webkitCompassHeading) heading = event.webkitCompassHeading; else if (event.absolute && event.alpha !== null) heading = 360 - event.alpha; if (heading === null || isNaN(heading)) return; const kaabaArrow = document.getElementById('kaaba-arrow'); const kaabaGlow = document.getElementById('kaaba-icon-glow'); const statusText = document.getElementById('qibla-status'); let pointerRotation = qiblaBearing - heading; kaabaArrow.style.transform = `translate(-50%, -100%) rotate(${pointerRotation}deg)`; const diff = Math.abs((pointerRotation % 360 + 360) % 360); if (diff < 5 || diff > 355) { if (!kaabaGlow.classList.contains('qibla-pointer-active')) { kaabaGlow.classList.add('qibla-pointer-active'); statusText.innerHTML = "<span class='text-green-600'><i class='fa-solid fa-check-circle mr-1'></i> أنت متجه للقبلة الآن</span>"; statusText.classList.replace('text-gray-600', 'text-green-600'); if (navigator.vibrate) navigator.vibrate(50); } } else { if (kaabaGlow.classList.contains('qibla-pointer-active')) { kaabaGlow.classList.remove('qibla-pointer-active'); statusText.innerHTML = "قم بتدوير الهاتف حتى تضيء الكعبة باللون الأخضر"; statusText.classList.replace('text-green-600', 'text-gray-600'); } } }
 
-        let allKhatmas = JSON.parse(localStorage.getItem('allKhatmas')) || []; function openKhatmaSection() { localStorage.setItem('lastKhatmaOpenTime', Date.now()); showScreen('khatma-screen'); switchKhatmaTab('active'); } function switchKhatmaTab(tab) { document.getElementById('tab-khatma-active').className = tab === 'active' ? "flex-1 py-2.5 rounded-xl font-bold text-sm bg-primary text-white" : "flex-1 py-2.5 rounded-xl font-bold text-sm text-gray-500"; document.getElementById('tab-khatma-history').className = tab === 'history' ? "flex-1 py-2.5 rounded-xl font-bold text-sm bg-primary text-white" : "flex-1 py-2.5 rounded-xl font-bold text-sm text-gray-500"; document.getElementById('khatma-active-container').classList.toggle('hidden', tab !== 'active'); document.getElementById('khatma-history-container').classList.toggle('hidden', tab !== 'history'); if(tab === 'active') renderActiveKhatma(); else renderKhatmaHistory(); } function renderActiveKhatma() { const activeKhatma = allKhatmas.find(k => k.status === 'active'); if (!activeKhatma) { document.getElementById('khatma-setup').classList.remove('hidden'); document.getElementById('khatma-active-status').classList.add('hidden'); } else { document.getElementById('khatma-setup').classList.add('hidden'); document.getElementById('khatma-active-status').classList.remove('hidden'); let savedPage = parseInt(localStorage.getItem('lastReadPage')) || 1; let progress = Math.round((savedPage / 604) * 100); let daysPassed = Math.max(1, Math.ceil((Date.now() - new Date(activeKhatma.startDate)) / 86400000)); let target = Math.min(604, daysPassed * Math.ceil(604 / activeKhatma.totalDays)); document.getElementById('khatma-current-day').innerText = `اليوم ${daysPassed} من ${activeKhatma.totalDays}`; document.getElementById('khatma-pages').innerText = `وصلت إلى الصفحة ${savedPage}`; document.getElementById('khatma-target').innerHTML = savedPage >= target ? `<span class='text-green-600'><i class='fa-solid fa-check-circle'></i> لقد أتممت هدفك لهذا اليوم! (الهدف: صـ ${target})</span>` : `هدفك اليوم الوصول إلى الصفحة: ${target}`; document.getElementById('khatma-progress-text').innerText = `${progress}%`; document.getElementById('khatma-progress-bar').style.width = `${progress}%`; document.getElementById('btn-continue-khatma').classList.toggle('hidden', savedPage >= 604); document.getElementById('btn-finish-khatma').classList.toggle('hidden', savedPage < 604); } } function startKhatma(days) { if(allKhatmas.find(k => k.status === 'active')) return showToast('يوجد ختمة نشطة!', 'error'); allKhatmas.push({ id: Date.now(), totalDays: parseInt(days), status: 'active', startDate: new Date().toISOString() }); localStorage.setItem('allKhatmas', JSON.stringify(allKhatmas)); renderActiveKhatma(); showToast('تم بدء الختمة بنجاح!'); continueReading(); } function startCustomKhatma() { const d = document.getElementById('custom-khatma-days').value; if(d > 0) startKhatma(d); } function continueKhatmaReading() { continueReading(); } function completeKhatmaFinal() { const k = allKhatmas.find(k => k.status === 'active'); if (k) { k.status = 'completed'; k.endDate = new Date().toLocaleDateString('ar-IQ'); localStorage.setItem('allKhatmas', JSON.stringify(allKhatmas)); showToast('تم إتمام الختمة ونقلها للسجل.'); switchKhatmaTab('history'); } } function confirmCancelKhatma() { showCustomConfirm('إلغاء الختمة', 'هل أنت متأكد؟', () => { allKhatmas = allKhatmas.filter(k => k.status !== 'active'); localStorage.setItem('allKhatmas', JSON.stringify(allKhatmas)); renderActiveKhatma(); }); } function renderKhatmaHistory() { const container = document.getElementById('khatma-history-list'); container.innerHTML = ''; const completed = allKhatmas.filter(k => k.status === 'completed'); document.getElementById('khatma-history-empty').classList.toggle('hidden', completed.length > 0); completed.forEach(k => { container.innerHTML += `<div class="khatma-item-card"><div class="flex items-center gap-4"><div class="w-12 h-12 bg-gold/10 text-gold rounded-full flex items-center justify-center text-xl"><i class="fa-solid fa-medal"></i></div><div><h4 class="font-bold text-gray-800 font-cairo">ختمة مكتملة</h4><p class="text-xs text-gray-500 font-bold mt-1">${new Date(k.startDate).toLocaleDateString('ar-IQ')} <i class="fa-solid fa-arrow-left text-[8px] mx-1"></i> ${k.endDate}</p></div></div><span class="bg-primary/10 text-primary font-bold px-3 py-1 rounded-full text-xs">${k.totalDays} يوم</span></div>`; }); } function saveLastReadPosition() { if(currentSurahId && currentPageIndex) { localStorage.setItem('lastReadSurahId', currentSurahId); localStorage.setItem('lastReadPage', currentPageIndex); localStorage.setItem('lastReadSurahName', allSurahs.find(s => s.id === currentSurahId)?.name_arabic || ''); } } function updateContinueReadingWidget() { const widget = document.getElementById('continue-reading-widget'); if(localStorage.getItem('lastReadSurahId')) { widget.classList.remove('hidden'); document.getElementById('last-read-surah-name').innerText = 'سورة ' + localStorage.getItem('lastReadSurahName'); document.getElementById('last-read-page').innerText = 'الصفحة ' + localStorage.getItem('lastReadPage'); } } function continueReading() { loadSurahData(parseInt(localStorage.getItem('lastReadSurahId')) || 1, parseInt(localStorage.getItem('lastReadPage')) || 1); } 
+        // ================== الختمة وتعديلها (الميزة الجديدة) ==================
+        let allKhatmas = JSON.parse(localStorage.getItem('allKhatmas')) || []; 
+        function openKhatmaSection() { localStorage.setItem('lastKhatmaOpenTime', Date.now()); showScreen('khatma-screen'); switchKhatmaTab('active'); } 
+        function switchKhatmaTab(tab) { document.getElementById('tab-khatma-active').className = tab === 'active' ? "flex-1 py-2.5 rounded-xl font-bold text-sm bg-primary text-white" : "flex-1 py-2.5 rounded-xl font-bold text-sm text-gray-500"; document.getElementById('tab-khatma-history').className = tab === 'history' ? "flex-1 py-2.5 rounded-xl font-bold text-sm bg-primary text-white" : "flex-1 py-2.5 rounded-xl font-bold text-sm text-gray-500"; document.getElementById('khatma-active-container').classList.toggle('hidden', tab !== 'active'); document.getElementById('khatma-history-container').classList.toggle('hidden', tab !== 'history'); if(tab === 'active') renderActiveKhatma(); else renderKhatmaHistory(); } 
+        
+        function renderActiveKhatma() { 
+            const activeKhatma = allKhatmas.find(k => k.status === 'active'); 
+            if (!activeKhatma) { document.getElementById('khatma-setup').classList.remove('hidden'); document.getElementById('khatma-active-status').classList.add('hidden'); } 
+            else { 
+                document.getElementById('khatma-setup').classList.add('hidden'); document.getElementById('khatma-active-status').classList.remove('hidden'); 
+                document.getElementById('khatma-active-name').innerText = activeKhatma.name || 'الختمة الحالية';
+                
+                let savedPage = parseInt(localStorage.getItem('lastReadPage')) || 1; let progress = Math.round((savedPage / 604) * 100); 
+                let daysPassed = Math.max(1, Math.ceil((Date.now() - new Date(activeKhatma.startDate)) / 86400000)); 
+                let target = Math.min(604, daysPassed * Math.ceil(604 / activeKhatma.totalDays)); 
+                
+                document.getElementById('khatma-current-day').innerText = `اليوم ${daysPassed} من ${activeKhatma.totalDays}`; 
+                document.getElementById('khatma-pages').innerText = `وصلت إلى الصفحة ${savedPage}`; 
+                document.getElementById('khatma-target').innerHTML = savedPage >= target ? `<span class='text-green-600'><i class='fa-solid fa-check-circle'></i> لقد أتممت هدفك لهذا اليوم! (الهدف: صـ ${target})</span>` : `هدفك اليوم الوصول إلى الصفحة: ${target}`; 
+                document.getElementById('khatma-progress-text').innerText = `${progress}%`; document.getElementById('khatma-progress-bar').style.width = `${progress}%`; 
+                document.getElementById('btn-continue-khatma').classList.toggle('hidden', savedPage >= 604); document.getElementById('btn-finish-khatma').classList.toggle('hidden', savedPage < 604); 
+            } 
+        } 
+        
+        function startKhatma(days) { if(allKhatmas.find(k => k.status === 'active')) return showToast('يوجد ختمة نشطة!', 'error'); allKhatmas.push({ id: Date.now(), totalDays: parseInt(days), status: 'active', startDate: new Date().toISOString() }); localStorage.setItem('allKhatmas', JSON.stringify(allKhatmas)); renderActiveKhatma(); showToast('تم بدء الختمة بنجاح!'); continueReading(); } 
+        function startCustomKhatma() { const d = document.getElementById('custom-khatma-days').value; if(d > 0) startKhatma(d); } 
+        function continueKhatmaReading() { continueReading(); } 
+        function completeKhatmaFinal() { const k = allKhatmas.find(k => k.status === 'active'); if (k) { k.status = 'completed'; k.endDate = new Date().toLocaleDateString('ar-IQ'); localStorage.setItem('allKhatmas', JSON.stringify(allKhatmas)); showToast('تم إتمام الختمة ونقلها للسجل.'); switchKhatmaTab('history'); } } 
+        function confirmCancelKhatma() { showCustomConfirm('إلغاء الختمة', 'هل أنت متأكد؟', () => { allKhatmas = allKhatmas.filter(k => k.status !== 'active'); localStorage.setItem('allKhatmas', JSON.stringify(allKhatmas)); renderActiveKhatma(); }); } 
+        
+        // تعديل الختمة (النافذة والأوامر)
+        function openKhatmaEditModal() {
+            const activeKhatma = allKhatmas.find(k => k.status === 'active'); if(!activeKhatma) return;
+            document.getElementById('edit-khatma-name').value = activeKhatma.name || '';
+            document.getElementById('edit-khatma-days').value = activeKhatma.totalDays;
+            
+            document.getElementById('khatma-edit-backdrop').classList.remove('hidden');
+            const modal = document.getElementById('khatma-edit-modal');
+            modal.classList.remove('hidden');
+            setTimeout(() => { document.getElementById('khatma-edit-backdrop').classList.remove('opacity-0'); modal.classList.remove('opacity-0', 'scale-95'); modal.classList.add('scale-100'); }, 10);
+        }
+        function closeKhatmaEditModal() {
+            const modal = document.getElementById('khatma-edit-modal'); const backdrop = document.getElementById('khatma-edit-backdrop');
+            backdrop.classList.add('opacity-0'); modal.classList.remove('scale-100'); modal.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => { backdrop.classList.add('hidden'); modal.classList.add('hidden'); }, 300);
+        }
+        function saveKhatmaEdit() {
+            const activeKhatma = allKhatmas.find(k => k.status === 'active'); if(!activeKhatma) return;
+            const newName = document.getElementById('edit-khatma-name').value.trim();
+            const newDays = parseInt(document.getElementById('edit-khatma-days').value);
+            
+            if(newDays > 0) activeKhatma.totalDays = newDays;
+            if(newName) activeKhatma.name = newName; else delete activeKhatma.name;
+            
+            localStorage.setItem('allKhatmas', JSON.stringify(allKhatmas));
+            renderActiveKhatma(); closeKhatmaEditModal(); showToast('تم حفظ التعديلات بنجاح');
+        }
+
+        function renderKhatmaHistory() { const container = document.getElementById('khatma-history-list'); container.innerHTML = ''; const completed = allKhatmas.filter(k => k.status === 'completed'); document.getElementById('khatma-history-empty').classList.toggle('hidden', completed.length > 0); completed.forEach(k => { const kName = k.name || 'ختمة مكتملة'; container.innerHTML += `<div class="khatma-item-card"><div class="flex items-center gap-4"><div class="w-12 h-12 bg-gold/10 text-gold rounded-full flex items-center justify-center text-xl"><i class="fa-solid fa-medal"></i></div><div><h4 class="font-bold text-gray-800 font-cairo">${kName}</h4><p class="text-xs text-gray-500 font-bold mt-1">${new Date(k.startDate).toLocaleDateString('ar-IQ')} <i class="fa-solid fa-arrow-left text-[8px] mx-1"></i> ${k.endDate}</p></div></div><span class="bg-primary/10 text-primary font-bold px-3 py-1 rounded-full text-xs">${k.totalDays} يوم</span></div>`; }); } 
+        function saveLastReadPosition() { if(currentSurahId && currentPageIndex) { localStorage.setItem('lastReadSurahId', currentSurahId); localStorage.setItem('lastReadPage', currentPageIndex); localStorage.setItem('lastReadSurahName', allSurahs.find(s => s.id === currentSurahId)?.name_arabic || ''); } } 
+        function updateContinueReadingWidget() { const widget = document.getElementById('continue-reading-widget'); if(localStorage.getItem('lastReadSurahId')) { widget.classList.remove('hidden'); document.getElementById('last-read-surah-name').innerText = 'سورة ' + localStorage.getItem('lastReadSurahName'); document.getElementById('last-read-page').innerText = 'الصفحة ' + localStorage.getItem('lastReadPage'); } } 
+        function continueReading() { loadSurahData(parseInt(localStorage.getItem('lastReadSurahId')) || 1, parseInt(localStorage.getItem('lastReadPage')) || 1); } 
 
         let notifySettings = { prayer: true, khatma: true, dhikrInterval: 120 }; let notifiedPrayers = JSON.parse(localStorage.getItem('notifiedPrayers')) || {}; 
         function initLocalNotifySystem() { if(localStorage.getItem('notifySettings')) notifySettings = JSON.parse(localStorage.getItem('notifySettings')); const pToggle = document.getElementById('notify-prayer-toggle'); const kToggle = document.getElementById('notify-khatma-toggle'); const dSelect = document.getElementById('notify-dhikr-interval'); if(pToggle) pToggle.checked = notifySettings.prayer; if(kToggle) kToggle.checked = notifySettings.khatma; if(dSelect) dSelect.value = notifySettings.dhikrInterval; if (Notification.permission === "default" && !localStorage.getItem('notifyModalDismissed')) { setTimeout(() => document.getElementById('notification-permission-modal').classList.remove('hidden'), 5000); } setInterval(checkLocalNotificationsEngine, 60000); checkLocalNotificationsEngine(); } 
